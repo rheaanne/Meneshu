@@ -22,13 +22,6 @@ header img {
     height: 70px;
     object-fit: cover;
 }
-.navbar {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    padding: 10px;
-    font-size: 14px;
-}
 .navbar a {
     color: #BA181B;
     text-decoration: none;
@@ -39,7 +32,7 @@ header img {
     align-items: center;
     justify-content: space-between;
     padding: 20px;
-    gap: 20px;
+    gap: 5px;
 }
 .text {
     max-width: 50%;
