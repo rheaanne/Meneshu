@@ -1,11 +1,10 @@
 :root {
-    /* Colors */
+   
     --primary-color: #BA181B;
     --primary-hover: #E5383B;
     --text-color: #333;
     --background-color: #fff;
-    
-    /* Layout */
+  
     --max-width: 1200px;
     --border-radius: 10px;
     --spacing-sm: 0.5rem;
@@ -17,7 +16,7 @@
     --transition: 0.3s ease;
 }
 
-/* Reset and base styles */
+
 * {
     margin: 0;
     padding: 0;
@@ -61,7 +60,7 @@ header img:focus {
     transform: scale(1.1);
 }
 
-/* Navigation styles */
+
 .navbar {
     display: flex;
     align-items: center;
@@ -149,6 +148,26 @@ header img:focus {
     height: auto;
     border-radius: var(--border-radius);
     object-fit: cover;
+}
+.featured {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+.featured {
+    width: 30%;
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px;
+    background: white;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+}
+.featured img {
+    width: 100%;
+    border-radius: 10px;
+}
+.menu-item p {
+    font-size: 14px;
 }
 
 /* Media queries */
