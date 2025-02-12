@@ -8,7 +8,6 @@
     --spacing-sm: 0.5rem;
     --spacing-md: 1rem;
     --spacing-lg: 2rem;
-    /* Effects */
     --shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     --transition: 0.3s ease;
 }
@@ -28,7 +27,6 @@ body {
     scroll-behavior: smooth;
 }
 
-/* Header styles */
 header {
     background: var(--background-color);
     text-align: center;
@@ -86,7 +84,6 @@ header img:focus {
     border-radius: 4px;
 }
 
-/* Container styles */
 .container {
     display: flex;
     align-items: center;
@@ -110,7 +107,6 @@ header img:focus {
     line-height: 1.2;
 }
 
-/* Button styles */
 .order-btn {
     display: inline-block;
     background-color: var(--text-color);
@@ -131,7 +127,6 @@ header img:focus {
     border: 2px solid var(--primary-hover);
 }
 
-/* Image container styles */
 .image-container {
     flex: 1;
     min-width: min(300px, 100%);
@@ -145,31 +140,40 @@ header img:focus {
     object-fit: cover;
 }
 
-.featured {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    width: 30%;
+.featured-menu {
     text-align: center;
-    padding: 10px;
-    border-radius: 10px;
-    background: white;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+    padding: var(--spacing-lg);
+    max-width: var(--max-width);
+    margin: 0 auto;
 }
 
-.featured img {
-    width: 100%;
-    border-radius: 10px;
-    align-items: center;
-    border-radius: 20px;
+.featured-menu h2 {
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-lg);
+}
 
+.menu-items {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+}
+
+.menu-item {
+    flex: 1;
+    min-width: min(300px, 100%);
+}
+
+.menu-item img {
+    width: 100%;
+    border-radius: var(--border-radius);
+    margin-bottom: var(--spacing-md);
 }
 
 .menu-item p {
     font-size: 14px;
 }
 
-/* Media queries */
 @media (max-width: 768px) {
     .container {
         flex-direction: column;
@@ -186,6 +190,10 @@ header img:focus {
         gap: var(--spacing-md);
         flex-wrap: wrap;
         justify-content: center;
+    }
+
+    .menu-items {
+        flex-direction: column;
     }
 }
 
