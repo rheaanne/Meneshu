@@ -47,13 +47,15 @@ header img {
     font-size: 36px;
 }
 .order-btn {
+
     display: inline-block;
     background-color: black;
     color: white;
     padding: 15px 30px;
     text-decoration: none;
-    border-radius: 5px;
+    border-radius: 50px;
     margin-top: 20px;
+    margin-inline-start: auto;
 }
 .image-container {
     width: 50%;
@@ -62,7 +64,7 @@ header img {
 }
 .image-container img {
     width: 100%;
-    max-width: 600px;
+    max-width: 1000px;
     shape-outside: circle();
     
 }
