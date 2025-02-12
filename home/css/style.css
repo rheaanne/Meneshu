@@ -1,21 +1,17 @@
 :root {
-   
     --primary-color: #BA181B;
     --primary-hover: #E5383B;
     --text-color: #333;
     --background-color: #fff;
-  
     --max-width: 1200px;
     --border-radius: 10px;
     --spacing-sm: 0.5rem;
     --spacing-md: 1rem;
     --spacing-lg: 2rem;
-    
     /* Effects */
     --shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     --transition: 0.3s ease;
 }
-
 
 * {
     margin: 0;
@@ -59,7 +55,6 @@ header img:hover,
 header img:focus {
     transform: scale(1.1);
 }
-
 
 .navbar {
     display: flex;
@@ -149,12 +144,11 @@ header img:focus {
     border-radius: var(--border-radius);
     object-fit: cover;
 }
+
 .featured {
     display: flex;
     justify-content: center;
     gap: 20px;
-}
-.featured {
     width: 30%;
     text-align: center;
     padding: 10px;
@@ -162,10 +156,12 @@ header img:focus {
     background: white;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
 }
+
 .featured img {
     width: 100%;
     border-radius: 10px;
 }
+
 .menu-item p {
     font-size: 14px;
 }
