@@ -4,6 +4,23 @@ body {
     padding: 0;
     background-color: #fff;
 }
+header {
+    background: #ffffff;
+    color: #BA181B;
+    font-family:'Poppins', sans-serif;
+    text-align: center;
+    border-radius: 10px;
+    margin: 5px auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 1.5s ease-in-out;
+    padding: 20px;
+}
+header img {
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 100px;
+    height: auto;
+}
 .navbar {
     display: flex;
     justify-content: flex-end;
@@ -27,6 +44,7 @@ body {
 .text h1 {
     color: red;
     font-size: 36px;
+    margin-right: 10;
 }
 .order-btn {
     display: inline-block;
@@ -41,7 +59,7 @@ body {
     position: relative;
 }
 .image-container img {
-    width: 300px;
+    width: 150px;
     border-radius: 50%;
     box-shadow: 15px 15px 20px rgba(0, 0, 0, 0.2);
 }
