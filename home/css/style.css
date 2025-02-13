@@ -160,6 +160,8 @@ header img {
     width: 100%;
     border-radius: var(--border-radius);
     height: auto;
+    size-adjust: 50%;
+    box-shadow: #BA181B;
     margin-bottom: var(--spacing-md);
 }
 
