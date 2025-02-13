@@ -159,11 +159,13 @@ header img {
 .menu-item img {
     width: 100%;
     border-radius: var(--border-radius);
+    height: auto;
     margin-bottom: var(--spacing-md);
 }
 
 .menu-item p {
     font-size: 14px;
+    color: #BA181B;
 }
 
 @media (max-width: 768px) {
