@@ -129,7 +129,7 @@ header img {
     height: auto;
     border-radius: var(--border-radius);
     object-fit: cover;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Added shadow */
+    mask-image: 0 8px 16px rgba(0, 0, 0, 0.2); /* Added shadow */
 }
 
 .featured-menu {
@@ -161,7 +161,7 @@ header img {
     border-radius: var(--border-radius);
     height: auto;
     object-fit: cover;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Added shadow */
+    mask-image: 0 8px 16px rgba(0, 0, 0, 0.2); /* Added shadow */
     margin-bottom: var(--spacing-md);
 }
 
