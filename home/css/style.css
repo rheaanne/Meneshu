@@ -74,14 +74,13 @@ header img:focus {
     font-weight: bold;
     transition: color var(--transition);
     padding: var(--spacing-sm) var(--spacing-md);
-    position: relative;
+    position: relative;;
 }
 
 .nav-links a:hover,
 .nav-links a:focus-visible {
     color: var(--primary-hover);
-    outline: 2px solid currentColor;
-    border-radius: 4px;
+    border-bottom: 2px solid var(--primary-hover);
 }
 
 .container {
