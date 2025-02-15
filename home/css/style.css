@@ -45,6 +45,13 @@ header img {
     width: 70px;
     height: 70px;
     object-fit: cover;
+    transition: transform var(--transition);
+    will-change: transform;
+}
+
+header img:hover,
+header img:focus {
+    transform: scale(1.1);
 }
 
 .navbar {
@@ -73,7 +80,8 @@ header img {
 .nav-links a:hover,
 .nav-links a:focus-visible {
     color: var(--primary-hover);
-    border-bottom: 2px solid var(--primary-hover);
+    outline: 2px solid currentColor;
+    border-radius: 4px;
 }
 
 .container {
@@ -125,11 +133,11 @@ header img {
 }
 
 .image-container img {
-    width: 120%;
+    width: 100%;
+    max-width: var(--max-width);
     height: auto;
     border-radius: var(--border-radius);
     object-fit: cover;
-    
 }
 
 .featured-menu {
@@ -159,14 +167,45 @@ header img {
 .menu-item img {
     width: 100%;
     border-radius: var(--border-radius);
-    height: auto;
-    object-fit: cover;
     margin-bottom: var(--spacing-md);
 }
 
 .menu-item p {
     font-size: 14px;
-    color: #BA181B;
+}
+
+footer {
+    background-color: var(--primary-color);
+    color: var(--background-color);
+    padding: var(--spacing-lg);
+    text-align: center;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: var(--spacing-lg);
+    max-width: var(--max-width);
+    margin: 0 auto;
+}
+
+.footer-section {
+    flex: 1;
+    min-width: min(200px, 100%);
+}
+
+.footer-section h3 {
+    margin-bottom: var(--spacing-md);
+}
+
+.footer-section a {
+    color: var(--background-color);
+    text-decoration: none;
+}
+
+.footer-section a:hover {
+    text-decoration: underline;
 }
 
 @media (max-width: 768px) {
@@ -178,17 +217,22 @@ header img {
 
     .navbar {
         flex-direction: column;
-        gap: var (--spacing-md);
+        gap: var(--spacing-md);
     }
 
     .nav-links {
-        gap: var (--spacing-md);
+        gap: var(--spacing-md);
         flex-wrap: wrap;
         justify-content: center;
     }
 
     .menu-items {
         flex-direction: column;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        align-items: center;
     }
 }
 
