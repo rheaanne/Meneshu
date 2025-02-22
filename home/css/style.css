@@ -36,8 +36,8 @@ body {
 }
 
 .navbar img.logo {
-    width: 50px; /* Reduced the size of the logo */
-    border-radius: 50%;
+    width: 30px; /* Reduced the size of the logo */
+    border-radius: 1%;
     margin-right: var(--spacing-md);
 }
 
