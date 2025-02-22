@@ -47,6 +47,7 @@ header img {
     object-fit: cover;
     transition: transform var(--transition);
     will-change: transform;
+    max-width: 70px;
 }
 
 header img:hover,
@@ -66,6 +67,7 @@ header img:focus {
 .nav-links {
     display: flex;
     gap: var(--spacing-lg);
+    flex-wrap: wrap;
 }
 
 .nav-links a {
@@ -95,16 +97,42 @@ header img:focus {
     flex-wrap: wrap;
 }
 
-.text {
-    flex: 1;
-    min-width: min(300px, 100%);
+.intro {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: var(--max-width);
+    margin: var(--spacing-lg) auto;
+    padding: var(--spacing-lg);
+    background: var(--background-color);
+    box-shadow: var(--shadow);
+    border-radius: var(--border-radius);
 }
 
-.text h1 {
+.intro-text {
+    flex: 1;
+    min-width: 300px;
+    text-align: left;
+}
+
+.intro-text h1 {
     color: var(--primary-color);
     font-size: clamp(24px, 5vw, 36px);
     margin-bottom: var(--spacing-lg);
     line-height: 1.2;
+}
+
+.intro-image {
+    flex: 1;
+    min-width: 300px;
+    text-align: center;
+}
+
+.intro-image img {
+    width: 100%;
+    max-width: 400px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
 }
 
 .order-btn {
@@ -123,28 +151,24 @@ header img:focus {
     background-color: var(--primary-color);
     transform: translateY(-2px);
     box-shadow: var(--shadow);
-    outline: none;
-    border: 2px solid var(--primary-hover);
+    outline: 2px solid var(--primary-hover);
 }
 
-.image-container {
-    flex: 1;
-    min-width: min(300px, 100%);
-}
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        text-align: center;
+        padding: var(--spacing-md);
+    }
 
-.image-container img {
-    width: 100%;
-    max-width: var(--max-width);
-    height: auto;
-    border-radius: var(--border-radius);
-    object-fit: cover;
-}
+    .navbar {
+        flex-direction: column;
+    }
 
-.featured-menu {
-    text-align: center;
-    padding: var(--spacing-lg);
-    max-width: var(--max-width);
-    margin: 0 auto;
+    .intro {
+        flex-direction: column;
+        text-align: center;
+    }
 }
 
 .featured-menu h2 {
@@ -311,3 +335,4 @@ body {
     height: 200px;
     border-radius: 10px;
 }
+
