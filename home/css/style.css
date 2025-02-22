@@ -35,10 +35,9 @@ body {
     background-color: var(--background-color);
 }
 
-.navbar img.logo {
-    width: 30px; /* Reduced the size of the logo */
-    border-radius: 1%;
-    margin-right: var(--spacing-md);
+.navbar img {
+    width: 70px;
+    border-radius: 50%;
 }
 
 .nav-links {
@@ -65,7 +64,6 @@ body {
     padding: var(--spacing-lg);
     max-width: 1200px;
     margin: 0 auto;
-    gap: var(--spacing-lg);
 }
 
 .hero-text {
@@ -87,7 +85,6 @@ body {
     text-decoration: none;
     border-radius: 50px;
     transition: var(--transition);
-    margin-top: var(--spacing-md);
 }
 
 .order-btn:hover {
