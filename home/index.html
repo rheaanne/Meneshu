@@ -15,50 +15,25 @@
         <nav class="navbar">
             <img src="images/Logo.png" alt="Meneshu Restaurant Logo">
             <div class="nav-links">
-                <a href="aboutus.html">About Us</a>
-                <a href="menu.html">Menu</a>
-                <a href="delivery.html">Delivery</a>
-                <a href="contactus.html">Contact Us</a> 
+                <a href="#">About Us</a>
+                <a href="#">Menu</a>
+                <a href="#">Delivery</a>
+                <a href="#">Contact Us</a> 
             </div>
         </nav>
     </header>
 
-    <section class="intro">
-        <div class="intro-text">
+    <section class="hero">
+        <div class="hero-text">
             <h1>Your Destination for Delicious Japanese Cuisine.</h1>
-            <a href="menu.html" class="order-btn">ORDER NOW</a>
+            <a href="#" class="order-btn">ORDER NOW</a>
         </div>
-        <div class="intro-image">
+        <div class="hero-image">
             <img src="images/Frontpage.png" alt="Sushi Rolls">
         </div>
     </section>
 
-    <main class="container">
-        <aside class="sidebar">
-            <ul>
-                <li><a href="menu.html#bestsellers">Best Sellers</a></li>
-                <li><a href="menu.html#ricebowls">Rice Bowls & Donburi</a></li>
-                <li><a href="menu.html#tempura">Tempura & Fried Dishes</a></li>
-                <li><a href="menu.html#curry">Curry Dishes</a></li>
-                <li><a href="menu.html#appetizers">Appetizers & Side Dishes</a></li>
-                <li><a href="menu.html#sushi">Sushi</a></li>
-            </ul>
-        </aside>
-        
-        <section class="content">
-            <h2 id="bestsellers">Best Sellers</h2>
-            <div class="grid">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
-        </section>
-    </main>
-
-    <div class="featured-menu">
+    <section class="featured-menu">
         <h2>Featured Menu</h2>
         <div class="menu-items">
             <div class="menu-item">
@@ -74,8 +49,7 @@
                 <p>These trays bring people together, making celebrations more special with every bite.</p>
             </div>
         </div>
-        <a href="order.html" class="order-btn" aria-label="Place your order now">ORDER NOW</a>
-    </div>
+    </section>
 
     <footer>
         <div class="footer-content">
@@ -85,34 +59,10 @@
                 <p>Phone: <a href="tel:09202167308">0920 216 7308</a></p>
             </div>
             <div class="footer-section">
-                <h3>How to Order</h3>
-                <p>Visit our <a href="menu.html">Menu</a> to place your order.</p>
-            </div>
-            <div class="footer-section">
-                <h3>About Us</h3>
-                <p>Learn more about our authentic Japanese cuisine.</p>
-            </div>
-            <div class="footer-section">
                 <h3>Follow Us</h3>
                 <p><a href="https://www.facebook.com/MeneShu" target="_blank">Facebook</a></p>
             </div>
-            <div class="footer-section">
-                <h3>View Menu</h3>
-                <p><a href="menu.html">View our full menu</a></p>
-            </div>
         </div>
     </footer>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            document.querySelectorAll(".nav-links a, .order-btn").forEach(link => {
-                link.addEventListener("click", function(e) {
-                    if (!this.getAttribute("href").startsWith("#")) {
-                        window.location.href = this.getAttribute("href");
-                    }
-                });
-            });
-        });
-    </script>
 </body>
 </html>
