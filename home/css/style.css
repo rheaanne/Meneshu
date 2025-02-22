@@ -36,7 +36,8 @@ body {
 }
 
 .navbar img.logo {
-    width: 70px;
+    width: 20
+px;
     border-radius: 50%;
     margin-right: var(--spacing-md);
 }
