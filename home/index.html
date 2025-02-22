@@ -15,10 +15,10 @@
         <nav class="navbar">
             <img src="images/Logo.png" alt="Meneshu Restaurant Logo">
             <div class="nav-links">
-                <a href="#aboutus">About Us</a>
+                <a href="aboutus.html">About Us</a>
                 <a href="menu.html">Menu</a>
-                <a href="#delivery">Delivery</a>
-                <a href="#contactus">Contact Us</a> 
+                <a href="delivery.html">Delivery</a>
+                <a href="contactus.html">Contact Us</a> 
             </div>
         </nav>
     </header>
@@ -26,7 +26,7 @@
     <section class="intro">
         <div class="intro-text">
             <h1>Your Destination for Delicious Japanese Cuisine.</h1>
-            <a href="#menu" class="order-btn">ORDER NOW</a>
+            <a href="menu.html" class="order-btn">ORDER NOW</a>
         </div>
         <div class="intro-image">
             <img src="images/Frontpage.png" alt="Sushi Rolls">
@@ -74,7 +74,7 @@
                 <p>These trays bring people together, making celebrations more special with every bite.</p>
             </div>
         </div>
-        <a href="#order" class="order-btn" aria-label="Place your order now">ORDER NOW</a>
+        <a href="order.html" class="order-btn" aria-label="Place your order now">ORDER NOW</a>
     </div>
 
     <footer>
@@ -86,7 +86,7 @@
             </div>
             <div class="footer-section">
                 <h3>How to Order</h3>
-                <p>Visit our <a href="#menu">Menu</a> to place your order.</p>
+                <p>Visit our <a href="menu.html">Menu</a> to place your order.</p>
             </div>
             <div class="footer-section">
                 <h3>About Us</h3>
@@ -102,5 +102,17 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.querySelectorAll(".nav-links a, .order-btn").forEach(link => {
+                link.addEventListener("click", function(e) {
+                    if (!this.getAttribute("href").startsWith("#")) {
+                        window.location.href = this.getAttribute("href");
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
