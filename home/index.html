@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Reggae+One&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css?version=0.12">
+    <link rel="stylesheet" href="css/style.css?version=0.13">
 </head>
 <body>
 
@@ -28,43 +28,40 @@
             </div>
         </nav>
     </header>
+
     <!-- Login Modal -->
-<div id="loginModal" class="modal">
-    <div class="modal-content">
-        <img src="images/Logo.png" alt="Meneshu Restaurant Logo">
-        <span class="close" onclick="closeModal('loginModal')">&times;</span>
-        <h2>Login</h2>
-        <form>
-            <label>Email:</label>
-            <input type="email" required>
-            <label>Password:</label>
-            <input type="password" required>
-            <button type="submit" class="form-btn">Login</button>
-        </form>
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('loginModal')">&times;</span>
+            <h2>Login</h2>
+            <form>
+                <label>Email:</label>
+                <input type="email" required>
+                <label>Password:</label>
+                <input type="password" required>
+                <button type="submit" class="form-btn">Login</button>
+            </form>
+        </div>
     </div>
-</div>
 
-<!-- Sign Up Modal -->
-<div id="signupModal" class="modal">
-    <div class="modal-content">
-        <img src="images/Logo.png" alt="Meneshu Restaurant Logo">
-        <span class="close" onclick="closeModal('signupModal')">&times;</span>
-        <h2>Sign Up</h2>
-        <form>
-            <label>Name:</label>
-            <input type="text" required>
-            <label>Email:</label>
-            <input type="email" required>
-            <label>Password:</label>
-            <input type="password" required>
-            <label>Confirm Password:</label>
-            <input type="password" required>
-            <button type="submit" class="form-btn">Sign Up</button>
-        </form>
+    <!-- Sign Up Modal -->
+    <div id="signupModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('signupModal')">&times;</span>
+            <h2>Sign Up</h2>
+            <form>
+                <label>Name:</label>
+                <input type="text" required>
+                <label>Email:</label>
+                <input type="email" required>
+                <label>Password:</label>
+                <input type="password" required>
+                <label>Confirm Password:</label>
+                <input type="password" required>
+                <button type="submit" class="form-btn">Sign Up</button>
+            </form>
+        </div>
     </div>
-</div>
-
-    
 
     <!-- Hero Section -->
     <section class="hero">
@@ -107,7 +104,7 @@
             </div>
 
             <div class="footer-section order">
-                <h3>How to order</h3>
+                <h3>How to Order</h3>
                 <p><a href="menu.html">View Menu</a></p>
                 <p><a href="delivery.html">Delivery</a></p>
             </div>
@@ -118,6 +115,7 @@
             </div>
         </div>
     </footer>
+
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="js/script.js"></script>
 
