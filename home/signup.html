@@ -4,9 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up - Meneshu Japanese Cuisine</title>
-    <link rel="stylesheet" href="css/login_signup.css?version=0.1">
+    <link rel="stylesheet" href="css/login_signup.css?version=0.2">
 </head>
 <body>
+    <header>
+        <nav class="navbar">
+            <img src="images/Logo.png" alt="Meneshu Restaurant Logo">
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="menu.html">Menu</a>
+                <a href="delivery.html">Delivery</a>
+                <a href="about.html">About Us</a> 
+            </div>
+        </nav>
+    </header>
 
     <div class="form-container">
         <h2>Create Your Account</h2>
@@ -18,6 +29,9 @@
             <input type="email" id="email" name="email" required>
 
             <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <label for="password">Confirm Password:</label>
             <input type="password" id="password" name="password" required>
 
             <button type="submit" class="form-btn">Sign Up</button>

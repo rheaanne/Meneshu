@@ -1,43 +1,37 @@
-.form-container {
-    width: 350px;
-    margin: 80px auto;
-    padding: 20px;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+.auth-buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Adds spacing between buttons */
+}
+
+.auth-buttons .btn {
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
     text-align: center;
 }
 
-.form-container h2 {
-    margin-bottom: 15px;
-    color: #B22222;
+.login-btn {
+    color: #B22222; /* Dark red text */
+    border: 2px solid #B22222;
+    background: transparent;
+    transition: 0.3s ease;
 }
 
-.form-container label {
-    display: block;
-    text-align: left;
-    margin: 8px 0 4px;
+.login-btn:hover {
+    background: #FF4747;
+    color: white;
 }
 
-.form-container input {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 12px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-}
-
-.form-btn {
-    width: 100%;
-    padding: 10px;
-    background-color: #B22222;
+.signup-btn {
+    background: #FF4747; /* Red background */
     color: white;
     border: none;
-    border-radius: 5px;
-    font-weight: bold;
-    cursor: pointer;
+    transition: 0.3s ease;
 }
 
-.form-btn:hover {
-    background-color: #8B0000;
+.signup-btn:hover {
+    background: #D43F3F;
 }
