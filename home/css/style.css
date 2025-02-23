@@ -183,7 +183,7 @@ body {
 .nav-links {
     display: flex;
     align-items: center;
-    gap: 5px; /* Adjust spacing between links */
+    gap: 0px; 
 }
 
 .nav-links a {
@@ -217,7 +217,49 @@ body {
     background-color: white;
     color: #FF4C4C;
 }
+.auth-buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Reduce space between buttons */
+    margin-left: 10px; /* Reduce space from "About Us" */
+}
 
+/* Login Button */
+.login-btn {
+    padding: 6px 16px;
+    background: transparent;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+    border-radius: 5px;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 16px;
+    transition: var(--transition);
+    font-family: 'Poppins', sans-serif;
+}
+
+.login-btn:hover {
+    background: var(--secondary-color);
+    color: white;
+}
+
+/* Sign Up Button */
+.signup-btn {
+    padding: 6px 16px;
+    background: var(--secondary-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 16px;
+    transition: var(--transition);
+    font-family: 'Poppins', sans-serif;
+}
+
+.signup-btn:hover {
+    background: #D43F3F;
+}
 
 /* Responsive */
 @media (max-width: 768px) {
