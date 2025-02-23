@@ -30,14 +30,16 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 50;
-    height: auto;
+    padding:var(--spacing-lg);
+    padding:40px;
+    box-shadow: var(--shadow);
+    background-color: var(--background-color);
 }
 
 .navbar img {
-    width: 100px;
-    height: 50px;
-    border-radius: 50%;
+    width: 50px;
+    max-height:50px;
+    border-radius: 100%;
 }
 
 .nav-links {
@@ -122,13 +124,13 @@ body {
 .menu-item {
     flex: 1;
     text-align: center;
-    align-content: center;
+    padding: var(--spacing-md);
+  
 }
 
 .menu-item img {
-    width: 100%;
+    width: 150%;
     height: auto;
-    border-radius: var(--border-radius);
 }
 
 .menu-item p {
