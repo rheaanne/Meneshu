@@ -1,9 +1,10 @@
 document.addEventListener("DOMContentLoaded", function () {
-    let navLinks = document.querySelectorAll(".nav-links a");
-    let currentPage = window.location.pathname.split("/").pop();
+    let sidebarLinks = document.querySelectorAll(".sidebar-link");
+    let urlParams = new URLSearchParams(window.location.search);
+    let category = urlParams.get("category");
 
-    navLinks.forEach(link => {
-        if (link.getAttribute("href") === currentPage) {
+    sidebarLinks.forEach(link => {
+        if (link.href.includes(category)) {
             link.classList.add("active");
         }
     });
