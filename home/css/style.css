@@ -143,11 +143,13 @@ body {
 
 /* Featured Menu */
 .featured-menu {
+    align-content:center;
     text-align: center;
     padding: var(--spacing-lg);
     max-width: 1200px;
-    margin: 0 auto 150px; /* centers horizontally and adds bottom margin */
-    align-content: center;
+    max-height:1200px;
+    margin-bottom: 150px;
+
 }
 
 .featured-menu h2 {
@@ -173,13 +175,14 @@ body {
 .menu-item img {
     width: 100%;
     height: 100%;
-    align-items:center;
+    align-content:center;
     
     
 }
 
 .menu-item p {
     margin-top: var(--spacing-md);
+    text-align: center;
 }
 
 /* Footer */
