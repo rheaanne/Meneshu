@@ -215,12 +215,12 @@ body {
 }
 
 .footer-content {
-    background-color: #BA181B;
+    background-color: var(--primary-color);
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     padding: 30px 50px;
-    color: var(--white);
+    color: var(--background-color);
 }
 
 .footer-section {
@@ -248,7 +248,6 @@ body {
 .footer-section a:hover {
     opacity: 0.8;
 }
-
 
 @media (max-width: 1024px) {
     .grid {
