@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Reggae+One&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css?version=0.14">
+    <link rel="stylesheet" href="css/style.css?version=0.15">
 </head>
 <body>
 
@@ -28,40 +28,55 @@
             </div>
         </nav>
     </header>
-
-    <!-- Login Modal -->
     <div id="loginModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal('loginModal')">&times;</span>
-            <h2>Login</h2>
+            <h2>Welcome Back!</h2>
+            <p>Log in to access exclusive deals and track your orders.</p>
             <form>
-                <label>Email:</label>
-                <input type="email" required>
-                <label>Password:</label>
-                <input type="password" required>
+                <div class="input-group">
+                    <label>Email:</label>
+                    <input type="email" required>
+                </div>
+                <div class="input-group">
+                    <label>Password:</label>
+                    <input type="password" required>
+                </div>
                 <button type="submit" class="form-btn">Login</button>
+                <p class="modal-text">Don't have an account? <a href="#" onclick="openModal('signupModal')">Sign Up</a></p>
             </form>
         </div>
     </div>
-
+    
     <!-- Sign Up Modal -->
     <div id="signupModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal('signupModal')">&times;</span>
-            <h2>Sign Up</h2>
+            <h2>Join Meneshu Today!</h2>
+            <p>Create an account to enjoy rewards and special discounts.</p>
             <form>
-                <label>Name:</label>
-                <input type="text" required>
-                <label>Email:</label>
-                <input type="email" required>
-                <label>Password:</label>
-                <input type="password" required>
-                <label>Confirm Password:</label>
-                <input type="password" required>
+                <div class="input-group">
+                    <label>Name:</label>
+                    <input type="text" required>
+                </div>
+                <div class="input-group">
+                    <label>Email:</label>
+                    <input type="email" required>
+                </div>
+                <div class="input-group">
+                    <label>Password:</label>
+                    <input type="password" required>
+                </div>
+                <div class="input-group">
+                    <label>Confirm Password:</label>
+                    <input type="password" required>
+                </div>
                 <button type="submit" class="form-btn">Sign Up</button>
+                <p class="modal-text">Already have an account? <a href="#" onclick="openModal('loginModal')">Login</a></p>
             </form>
         </div>
     </div>
+
 
     <!-- Hero Section -->
     <section class="hero">

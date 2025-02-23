@@ -209,7 +209,6 @@ body {
 }
 
 /* Modal Background */
-/* Modal Background */
 .modal {
     display: none;
     position: fixed;
@@ -264,6 +263,56 @@ body {
 
 .form-btn:hover {
     background-color: var(--secondary-color);
+}
+/* Centering text inside modals */
+.modal-content h2 {
+    color: var(--primary-color);
+    margin-bottom: 5px;
+}
+
+.modal-content p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+/* Input Fields Styling */
+.input-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.input-group label {
+    width: 40%;
+    text-align: right;
+    padding-right: 10px;
+    font-weight: bold;
+}
+
+.input-group input {
+    width: 55%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* Adjust spacing for the modal */
+.modal-text {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #333;
+}
+
+.modal-text a {
+    color: var(--primary-color);
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.modal-text a:hover {
+    text-decoration: underline;
 }
 
 
