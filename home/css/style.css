@@ -35,25 +35,9 @@ body {
     background-color: var(--background-color);
 }
 
-.navbar img {
-    width: 70px;
-    border-radius: 50%;
-}
-
 .nav-links {
     display: flex;
     gap: var(--spacing-lg);
-}
-
-.nav-links a {
-    text-decoration: none;
-    color: var(--primary-color);
-    font-weight: bold;
-    transition: color var(--transition);
-}
-
-.nav-links a:hover {
-    color: var(--secondary-color);
 }
 
 /* Hero Section */
@@ -66,34 +50,8 @@ body {
     margin: 0 auto;
 }
 
-.hero-text {
-    flex: 1;
-    text-align: left;
-}
-
-.hero-text h1 {
-    color: var(--primary-color);
-    font-size: 2.5rem;
-    margin-bottom: var(--spacing-md);
-}
-
-.order-btn {
-    display: inline-block;
-    background-color: black;
-    color: white;
-    padding: var(--spacing-md) var(--spacing-lg);
-    text-decoration: none;
-    border-radius: 50px;
-    transition: var(--transition);
-}
-
-.order-btn:hover {
-    background-color: var(--primary-color);
-}
-
 .hero-image img {
     width: 400px;
-    border-radius: var(--border-radius);
     box-shadow: var(--shadow);
 }
 
@@ -105,33 +63,14 @@ body {
     margin: 0 auto;
 }
 
-.featured-menu h2 {
-    color: var(--primary-color);
-    margin-bottom: var(--spacing-lg);
-}
-
 .menu-items {
     display: flex;
     justify-content: center;
     gap: var(--spacing-lg);
 }
 
-.menu-item {
-    flex: 1;
-    text-align: center;
-    padding: var(--spacing-md);
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow);
-    background: var(--background-color);
-}
-
 .menu-item img {
     width: 100%;
-    border-radius: var(--border-radius);
-}
-
-.menu-item p {
-    margin-top: var(--spacing-md);
 }
 
 /* Footer */
@@ -140,25 +79,23 @@ footer {
     color: #b22222;
     padding: 40px 20px;
     font-family: Arial, sans-serif;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1); /* Top shadow */
 }
 
 .footer-content {
     display: flex;
-    justify-content: space-around;
-    align-items: flex-start;
+    justify-content: space-between;
+    align-items: center;
     text-align: left;
     flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .footer-section {
     flex: 1;
-    margin: 10px;
     min-width: 200px;
-}
-
-.footer-logo {
-    width: 100px;
-    margin-bottom: 10px;
+    text-align: left;
 }
 
 .footer-section h3 {
@@ -192,9 +129,6 @@ footer {
     .hero {
         flex-direction: column;
         text-align: center;
-    }
-    .hero-image img {
-        width: 100%;
     }
     .menu-items {
         flex-direction: column;
