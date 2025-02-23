@@ -23,11 +23,45 @@
                 <a href="about.html">About Us</a>
             </div>
             <div class="auth-buttons">
-                <a href="login.html" class="btn login-btn">Login</a>
-                <a href="signup.html" class="btn signup-btn">Sign Up</a>
-            </div> 
+                <button class="btn login-btn" onclick="openModal('loginModal')">Login</button>
+                <button class="btn signup-btn" onclick="openModal('signupModal')">Sign Up</button>
+            </div>
         </nav>
     </header>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('loginModal')">&times;</span>
+            <h2>Login</h2>
+            <form>
+                <label>Email:</label>
+                <input type="email" required>
+                <label>Password:</label>
+                <input type="password" required>
+                <button type="submit" class="form-btn">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Sign Up Modal -->
+    <div id="signupModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('signupModal')">&times;</span>
+            <h2>Sign Up</h2>
+            <form>
+                <label>Name:</label>
+                <input type="text" required>
+                <label>Email:</label>
+                <input type="email" required>
+                <label>Password:</label>
+                <input type="password" required>
+                <label>Confirm Password:</label>
+                <input type="password" required>
+                <button type="submit" class="form-btn">Sign Up</button>
+            </form>
+        </div>
+    </div>
 
     <!-- Hero Section -->
     <section class="hero">
@@ -70,7 +104,7 @@
             </div>
 
             <div class="footer-section order">
-                <h3>How to order</h3>
+                <h3>How to Order</h3>
                 <p><a href="menu.html">View Menu</a></p>
                 <p><a href="delivery.html">Delivery</a></p>
             </div>
@@ -81,6 +115,9 @@
             </div>
         </div>
     </footer>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="js/script.js"></script>
 
 </body>
 </html>

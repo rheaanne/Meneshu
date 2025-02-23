@@ -28,7 +28,7 @@ body {
 /* Navbar */
 .navbar {
     display: flex;
-    align-items: right;
+    align-items: righ;
     justify-content: space-between;
     padding:var(--spacing-lg);
     padding:30px;
@@ -179,136 +179,92 @@ body {
 .footer-section a:hover {
     opacity: 0.8;
 }
-
-.nav-links {
-    display: flex;
-    align-items: center;
-    gap: 0px; 
-}
-
-.nav-links a {
-    text-decoration: none;
-    padding: 8px 15px;
-    border-radius: 5px;
-    font-weight: bold;
-    transition: 0.3s ease;
-}
-
-/* Login Button */
-.login-btn {
-    background-color: transparent;
-    border: 2px solid white;
-    color:var(--primary-color);
-}
-
-.login-btn:hover {
-    background-color: white;
-    color: #B22222;
-}
-
-/* Sign Up Button */
-.signup-btn {
-    background-color: #FF4C4C;
-    color: white;
-    border: 2px solid #FF4C4C;
-}
-
-.signup-btn:hover {
-    background-color: white;
-    color: #FF4C4C;
-}
 .auth-buttons {
     display: flex;
+    gap: 10px; /* Reduce gap between buttons */
     align-items: center;
-    gap: 10px;
-    margin-left: 10px;
 }
 
-/* Login Button */
-.login-btn {
-    padding: 6px 16px;
-    background: transparent;
-    color: var(--primary-color);
+.auth-buttons .btn {
+    padding: 8px 15px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
     border: 2px solid var(--primary-color);
-    border-radius: 5px;
-    font-weight: bold;
-    text-decoration: none;
-    font-size: 16px;
-    transition: var(--transition);
-    font-family: 'Reggae One', cursive;
 }
 
-.login-btn:hover {
-    background: var(--secondary-color);
-    color: white;
+.login-btn {
+    background-color: white;
+    color: var(--primary-color);
 }
 
-/* Sign Up Button */
 .signup-btn {
-    padding: 6px 16px;
-    background: var(--secondary-color);
+    background-color: var(--secondary-color);
     color: white;
-    border: none;
-    border-radius: 5px;
-    font-weight: bold;
-    text-decoration: none;
-    font-size: 16px;
-    transition: var(--transition);
-    font-family: 'Reggae One', cursive;
 }
 
-.signup-btn:hover {
-    background: #D43F3F;
+.login-btn:hover, .signup-btn:hover {
+    opacity: 0.8;
 }
 
-.form-container {
-    width: 350px;
-    margin: 80px auto;
-    padding: 20px;
+/* Modal Background */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+/* Modal Content */
+.modal-content {
     background: white;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    width: 350px;
     text-align: center;
+    box-shadow: var(--shadow);
     font-family: 'Reggae One', cursive;
 }
 
-.form-container h2 {
-    margin-bottom: 15px;
-    color: #B22222;
-    font-family: 'Reggae One', cursive;
+/* Close Button */
+.close {
+    float: right;
+    font-size: 24px;
+    cursor: pointer;
 }
 
-.form-container label {
-    display: block;
-    text-align: left;
-    margin: 8px 0 4px;
-    font-family: 'Reggae One', cursive;
-}
-
-.form-container input {
+/* Input Fields */
+.modal-content input {
     width: 100%;
     padding: 8px;
-    margin-bottom: 12px;
+    margin: 8px 0;
     border: 1px solid #ddd;
     border-radius: 5px;
-    font-family: 'Reggae One', cursive;
 }
 
+/* Submit Button */
 .form-btn {
     width: 100%;
     padding: 10px;
-    background-color: #B22222;
+    background-color: var(--primary-color);
     color: white;
     border: none;
     border-radius: 5px;
     font-weight: bold;
     cursor: pointer;
-    font-family: 'Reggae One', cursive;
 }
 
 .form-btn:hover {
-    background-color: #8B0000;
+    background-color: var(--secondary-color);
 }
+
+
 /* Responsive */
 @media (max-width: 768px) {
     .hero {
