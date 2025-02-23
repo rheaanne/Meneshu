@@ -1,0 +1,111 @@
+:root {
+    --primary-color: #BA181B;
+    --secondary-color: #E5383B;
+    --text-color: #333;
+    --background-color: #fff;
+    --shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+    --border-radius: 10px;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 32px;
+    --transition: 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Reggae One', cursive;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    scroll-behavior: smooth;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding:var(--spacing-lg);
+    padding:30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    box-shadow: var(--shadow);
+    background-color: var(--background-color);
+}
+
+.navbar img {
+    width: 150px;
+    border-radius: 100%;
+}
+
+.nav-links {
+    display: flex;
+    gap: var(--spacing-lg);
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--primary-color);
+    font-weight: bold;
+    transition: color var(--transition);
+    font-size: 20px;
+    font-family: 'Reggae One', cursive;
+}
+
+.nav-links a:hover {
+    color: var(--secondary-color);
+}
+
+.form-container {
+    width: 350px;
+    margin: 80px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    font-family: 'Reggae One', cursive;
+}
+
+.form-container h2 {
+    margin-bottom: 15px;
+    color: #B22222;
+    font-family: 'Reggae One', cursive;
+}
+
+.form-container label {
+    display: block;
+    text-align: left;
+    margin: 8px 0 4px;
+    font-family: 'Reggae One', cursive;
+}
+
+.form-container input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-family: 'Reggae One', cursive;
+}
+
+.form-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #B22222;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    font-family: 'Reggae One', cursive;
+}
+
+.form-btn:hover {
+    background-color: #8B0000;
+}
