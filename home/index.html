@@ -28,89 +28,73 @@
             </div>
         </nav>
     </header>
-
     <!-- Login Modal -->
-    <div id="loginModal" class="modal">
-        <div class="modal-content">
-            <img src="images/logo.png" alt="Logo" class="modal-logo">
-            <h2>Welcome back!</h2>
-            <p>Sign in to your account.</p>
-            <form>
-                <label>Email</label>
-                <input type="email" required class="input-field" placeholder="Email">
-                
-                <label>Password</label>
-                <div class="password-container">
-                    <input type="password" required class="input-field" placeholder="Password" id="loginPassword">
-                    <span class="toggle-password" onclick="togglePassword('loginPassword')">👁️</span>
-                </div>
-                
-                <a href="#" class="forgot-password">Forgot your password?</a>
-                
-                <button type="submit" class="form-btn disabled" id="loginBtn" disabled>Log In</button>
-                
-                <div class="divider">
-                    <hr> <span>OR</span> <hr>
-                </div>
-                
-                <button class="social-login">
-                    <img src="images/facebook-icon.png" alt="Facebook"> Log in with Facebook
-                </button>
-                
-                <button class="guest-login">Continue as guest</button>
-            </form>
-            
-            <p class="terms">By continuing, you agree to our updated <a href="#">Terms & Conditions</a> and <a href="#">Privacy Policy</a>.</p>
-            
-            <p class="signup-link">Order fast and easy with a McDelivery account. <a href="#">Sign up here.</a></p>
-        </div>
+<div id="loginModal" class="modal">
+    <div class="modal-content">
+        <img src="images/Logo.png" alt="Meneshu Restaurant Logo">
+        <span class="close" onclick="closeModal('loginModal')">&times;</span>
+        <h2>Login</h2>
+        <form>
+            <label>Email:</label>
+            <input type="email" required>
+            <label>Password:</label>
+            <input type="password" required>
+            <button type="submit" class="form-btn">Login</button>
+        </form>
     </div>
+</div>
 
-    <!-- Sign Up Modal -->
-    <div id="signupModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('signupModal')">&times;</span>
-            <h2>Ready to sign up?</h2>
-            <p>Tell us more about you so we can give you a better experience.</p>
-            
-            <form id="signupForm">
-                <label>First Name:</label>
-                <input type="text" id="firstName" required>
-                
-                <label>Last Name:</label>
-                <input type="text" id="lastName" required>
-                
-                <label>Email:</label>
-                <input type="email" id="email" required>
-                
-                <label>Phone Number:</label>
-                <div class="phone-input">
-                    <span>+63</span>
-                    <input type="text" id="phone" required>
-                </div>
-                
-                <label>Password:</label>
-                <div class="password-container">
-                    <input type="password" id="signupPassword" required>
-                    <span class="toggle-password" onclick="togglePassword('signupPassword')">👁</span>
-                </div>
-                
-                <label>Confirm Password:</label>
-                <div class="password-container">
-                    <input type="password" id="confirmPassword" required>
-                    <span class="toggle-password" onclick="togglePassword('confirmPassword')">👁</span>
-                </div>
-                
-                <div class="checkbox-group">
-                    <label><input type="checkbox"> I would like to receive announcements and promotions.</label>
-                    <label><input type="checkbox"> I consent to the processing of my personal information.</label>
-                    <label><input type="checkbox" required> I have read and agree to the <a href="#">Terms & Conditions</a>.</label>
-                </div>
-                
-                <button type="submit" id="signupButton" disabled>Create your Account</button>
-            </form>
-        </div>
+<!-- Sign Up Modal -->
+<div id="signupModal" class="modal">
+    <div class="modal-content">
+        <img src="images/Logo.png" alt="Meneshu Restaurant Logo">
+        <span class="close" onclick="closeModal('signupModal')">&times;</span>
+        <h2>Sign Up</h2>
+        <form>
+            <label>Name:</label>
+            <input type="text" required>
+            <label>Email:</label>
+            <input type="email" required>
+            <label>Password:</label>
+            <input type="password" required>
+            <label>Confirm Password:</label>
+            <input type="password" required>
+            <button type="submit" class="form-btn">Sign Up</button>
+        </form>
     </div>
+</div>
+
+    
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-text">
+            <h1>Your Destination for Delicious Japanese Cuisine.</h1>
+            <a href="menu.html" class="order-btn">ORDER NOW</a>
+        </div>
+        <div class="hero-image">
+            <img src="images/Frontpage.png" alt="Sushi Rolls">
+        </div>
+    </section>
+
+    <!-- Featured Menu -->
+    <section class="featured-menu">
+        <h2>Featured Menu</h2>
+        <div class="menu-items">
+            <div class="menu-item">
+                <img src="images/Secpage1.png" alt="Party platter">
+                <p>Level up your celebration with our party platter of your choice.</p>
+            </div>
+            <div class="menu-item">
+                <img src="images/Secpage2.png" alt="Crispy rice bowls">
+                <p>Close-up of crispy, golden-brown rice bowls garnished for extra flavor.</p>
+            </div>
+            <div class="menu-item">
+                <img src="images/Secpage3.png" alt="Celebration trays">
+                <p>These trays bring people together, making celebrations more special with every bite.</p>
+            </div>
+        </div>
+    </section>
 
     <!-- Footer -->
     <footer>
@@ -123,7 +107,7 @@
             </div>
 
             <div class="footer-section order">
-                <h3>How to Order</h3>
+                <h3>How to order</h3>
                 <p><a href="menu.html">View Menu</a></p>
                 <p><a href="delivery.html">Delivery</a></p>
             </div>
@@ -134,11 +118,8 @@
             </div>
         </div>
     </footer>
-
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="js/script.js"></script>
-    <script src="js/logsign.js"></script>
-
 
 </body>
 </html>
