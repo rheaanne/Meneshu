@@ -1,11 +1,36 @@
+:root {
+    --primary-color: #BA181B;
+    --secondary-color: #E5383B;
+    --text-color: #333;
+    --background-color: #fff;
+    --shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+    --border-radius: 10px;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 32px;
+    --transition: 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Reggae One', cursive;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    scroll-behavior: smooth;
+}
+
+/* Navbar */
 .navbar {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding:var(--spacing-lg);
-    padding:30px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding: 10px 30px;
     box-shadow: var(--shadow);
     background-color: var(--background-color);
 }
@@ -32,14 +57,15 @@
     color: var(--secondary-color);
 }
 
+/* Auth Buttons (Login & Sign Up) */
 .auth-buttons {
     display: flex;
     align-items: center;
-    gap: 10px; /* Adds spacing between buttons */
+    gap: 15px; /* Adds spacing between buttons */
 }
 
 .auth-buttons .btn {
-    padding: 10px 20px;
+    padding: 8px 18px;
     border-radius: 5px;
     text-decoration: none;
     font-weight: bold;
@@ -47,23 +73,24 @@
     text-align: center;
 }
 
+/* Fix for the Login Button */
 .login-btn {
-    color: #B22222; /* Dark red text */
-    border: 2px solid #B22222;
-    background: transparent;
-    transition: 0.3s ease;
+    background: var(--secondary-color); /* Make it the same as Sign Up */
+    color: white; /* White text */
+    border: none;
+    transition: var(--transition);
 }
 
 .login-btn:hover {
-    background: #FF4747;
-    color: white;
+    background: #D43F3F;
 }
 
+/* Sign Up Button */
 .signup-btn {
-    background: #FF4747; /* Red background */
+    background: var(--secondary-color);
     color: white;
     border: none;
-    transition: 0.3s ease;
+    transition: var(--transition);
 }
 
 .signup-btn:hover {
