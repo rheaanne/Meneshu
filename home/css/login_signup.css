@@ -54,6 +54,7 @@ body {
     font-weight: bold;
     transition: color var(--transition);
     font-size: 20px;
+    font-family: 'Reggae One', cursive;
 }
 
 .nav-links a:hover {
@@ -68,17 +69,20 @@ body {
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
+    font-family: 'Reggae One', cursive;
 }
 
 .form-container h2 {
     margin-bottom: 15px;
     color: #B22222;
+    font-family: 'Reggae One', cursive;
 }
 
 .form-container label {
     display: block;
     text-align: left;
     margin: 8px 0 4px;
+    font-family: 'Reggae One', cursive;
 }
 
 .form-container input {
@@ -87,6 +91,7 @@ body {
     margin-bottom: 12px;
     border: 1px solid #ddd;
     border-radius: 5px;
+    font-family: 'Reggae One', cursive;
 }
 
 .form-btn {
@@ -98,6 +103,7 @@ body {
     border-radius: 5px;
     font-weight: bold;
     cursor: pointer;
+    font-family: 'Reggae One', cursive;
 }
 
 .form-btn:hover {
