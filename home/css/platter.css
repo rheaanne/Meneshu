@@ -215,49 +215,40 @@ body {
 }
 
 .footer-content {
-    background-color: var(--primary);
+    background-color: #BA181B;
     display: flex;
     justify-content: space-between;
-    align-items: flex-start; /* Ensures proper vertical alignment */
     flex-wrap: wrap;
-    padding: 40px 80px; /* Increase padding for better spacing */
+    padding: 30px 50px;
     color: var(--white);
-    width: 100%; /* Ensure full width */
 }
 
 .footer-section {
     flex: 1;
-    min-width: 250px;
-    text-align: left; /* Align text properly */
-    margin-bottom: 20px; /* Add some spacing below each section */
+    min-width: 200px;
 }
 
-/* Make sure links and icons are properly aligned */
+/* Footer Icons */
 .footer-section a {
     display: flex;
     align-items: center;
-    gap: 8px;
-    color: var(--white);
+    gap: 10px;
+    color: var(--background-color);
     text-decoration: none;
     font-size: 1rem;
-    transition: opacity 0.3s;
+    transition: opacity var(--transition);
+}
+
+.footer-section a img {
+    width: 30px;
+    height: 30px;
+    
 }
 
 .footer-section a:hover {
     opacity: 0.8;
 }
 
-/* Responsive fixes */
-@media (max-width: 768px) {
-    .footer-content {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-    .footer-section {
-        text-align: center;
-    }
-}
 
 @media (max-width: 1024px) {
     .grid {
