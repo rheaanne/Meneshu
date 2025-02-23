@@ -79,6 +79,7 @@ body {
     color: var(--primary-color);
     font-size: 2.5rem;
     margin-bottom: var(--spacing-md);
+    
 }
 
 .order-btn {
@@ -109,6 +110,8 @@ body {
     padding: var(--spacing-lg);
     max-width: 1200px;
     margin: 0 auto;
+    box-shadow: var(--shadow);
+    background-color: var(--background-color);
     align-content: center;
 }
 
