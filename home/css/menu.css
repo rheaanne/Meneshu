@@ -214,9 +214,8 @@ body {
     box-shadow: var(--shadow);
 }
 
-/* Footer */
 .footer-content {
-    background-color: var(--primary);
+    background-color: #BA181B;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
