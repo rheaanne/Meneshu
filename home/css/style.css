@@ -143,42 +143,48 @@ body {
 
 /* Featured Menu */
 .featured-menu {
+    align-content:center;
     text-align: center;
     padding: var(--spacing-lg);
     max-width: 1200px;
-    margin: 0 auto 150px auto; /* Centered the section and added bottom margin */
+    max-height:1200px;
+    margin-bottom: 150px;
+
 }
 
 .featured-menu h2 {
     color: var(--primary-color);
     margin-bottom: var(--spacing-lg);
+    
 }
 
 .menu-items {
     display: flex;
     justify-content: center;
     gap: var(--spacing-lg);
+    align-content:center;
 }
 
 .menu-item {
     flex: 1;
     text-align: center;
     padding: var(--spacing-md);
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow);
-    background: var(--background-color);
+    
 }
 
 .menu-item img {
     width: 100%;
-    height: auto; /* Adjusted height to maintain aspect ratio */
-    border-radius: var(--border-radius);
+    height: 100%;
+    align-content:center;
+    
+    
 }
 
 .menu-item p {
     margin-top: var(--spacing-md);
     text-align: center;
 }
+
 /* Footer */
 .footer-content {
     background-color: var(--primary-color);
