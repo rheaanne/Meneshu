@@ -180,6 +180,44 @@ body {
     opacity: 0.8;
 }
 
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Adjust spacing between links */
+}
+
+.nav-links a {
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: 0.3s ease;
+}
+
+/* Login Button */
+.login-btn {
+    background-color: transparent;
+    border: 2px solid white;
+    color: white;
+}
+
+.login-btn:hover {
+    background-color: white;
+    color: #B22222;
+}
+
+/* Sign Up Button */
+.signup-btn {
+    background-color: #FF4C4C;
+    color: white;
+    border: 2px solid #FF4C4C;
+}
+
+.signup-btn:hover {
+    background-color: white;
+    color: #FF4C4C;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     .hero {
