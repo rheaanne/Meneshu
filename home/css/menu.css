@@ -220,7 +220,7 @@ body {
     justify-content: space-between;
     flex-wrap: wrap;
     padding: 30px 50px;
-    color: var(--background-color);
+    color: var(--white);
 }
 
 .footer-section {
