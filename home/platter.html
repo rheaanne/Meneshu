@@ -167,5 +167,19 @@
 
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="js/platter.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let sidebarLinks = document.querySelectorAll(".sidebar-link");
+            let currentUrl = window.location.href;
+    
+            sidebarLinks.forEach(link => {
+                if (currentUrl.includes(link.getAttribute("href"))) {
+                    link.classList.add("active");
+                }
+            });
+        });
+    </script>
+    
 </body>
 </html>
