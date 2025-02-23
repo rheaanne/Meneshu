@@ -30,13 +30,30 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding:var(--spacing-lg);
-    padding:30px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding: 10px 30px;
     box-shadow: var(--shadow);
     background-color: var(--background-color);
-    font-family: 'Reggae One', cursive;
+    font-family: 'Reggae One', cursive; /* Apply globally to navbar */
+}
+
+/* Navigation Links */
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--primary-color);
+    font-weight: bold;
+    transition: color var(--transition);
+    font-size: 20px;
+    font-family: 'Reggae One', cursive; /* Ensures Home and other links use the font */
+}
+
+.nav-links a:hover {
+    color: var(--secondary-color);
 }
 
 .navbar img {
