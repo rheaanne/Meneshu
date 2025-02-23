@@ -110,8 +110,6 @@ body {
     padding: var(--spacing-lg);
     max-width: 1200px;
     margin: 0 auto;
-    box-shadow: var(--shadow);
-    background-color: var(--background-color);
     align-content: center;
 }
 
@@ -134,6 +132,8 @@ body {
 }
 
 .menu-item img {
+    box-shadow: var(--shadow);
+    background-color: var(--background-color);
     width: 150%;
     height: auto;
 }
