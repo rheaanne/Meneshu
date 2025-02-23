@@ -36,7 +36,8 @@ body {
 }
 
 .navbar img {
-    width: 20px;
+    width: 50px;
+    height: 50px;
     border-radius: 30%;
 }
 
@@ -81,6 +82,7 @@ body {
     display: inline-block;
     background-color: black;
     color: white;
+    margin-top: 20px;
     padding: var(--spacing-md) var(--spacing-lg);
     text-decoration: none;
     border-radius: 50px;
@@ -93,8 +95,8 @@ body {
 
 .hero-image img {
     width: 400px;
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow);
+    height: 400px;
+    
 }
 
 /* Featured Menu */
@@ -127,7 +129,8 @@ body {
 
 .menu-item img {
     width: 100%;
-    border-radius: var(--border-radius);
+    height: 100%;
+    
 }
 
 .menu-item p {
@@ -136,7 +139,7 @@ body {
 
 /* Footer */
 footer {
-    background-color: #ffffff;
+    background-color: #b22222;
     color: #b22222;
     padding: 40px 20px;
     font-family: Arial, sans-serif;
@@ -165,7 +168,7 @@ footer {
 }
 
 .footer-section a {
-    color: black;
+    color: rgb(249, 244, 244);
     text-decoration: none;
     font-size: 16px;
 }
@@ -181,7 +184,7 @@ footer {
 
 .footer-section i {
     margin-right: 8px;
-    color: #b22222;
+    color: #fffefe;
     font-size: 18px;
 }
 
