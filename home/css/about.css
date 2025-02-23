@@ -33,7 +33,7 @@ body {
     padding: var(--spacing-md) var(--spacing-lg);
     padding:40px;
     padding-top: 10px;
-    padiing-bottom:10px;
+    padding-bottom:10px;
     box-shadow: var(--shadow);
     background-color: var(--background-color);
 }

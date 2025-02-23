@@ -32,7 +32,7 @@ body {
     align-items: center;
     justify-content: space-between;
     padding: var(--spacing-md) var(--spacing-lg);
-    padiing:30px;
+    padding:30px;
     padding-top: 10px;
     padding-bottom: 10px;
     box-shadow: var(--shadow);

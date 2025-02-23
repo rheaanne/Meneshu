@@ -51,9 +51,9 @@ body {
 .nav-links a {
     text-decoration: none;
     color: var(--primary-color);
-    font-size: 20px;
     font-weight: bold;
     transition: color var(--transition);
+    font-size: 20px;
 }
 
 .nav-links a:hover {
