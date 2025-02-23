@@ -164,7 +164,6 @@ body {
 .footer-section a {
     display: flex;
     align-items: center;
-    justify-content: center;
     gap: 10px;
     color: var(--background-color);
     text-decoration: none;
@@ -173,8 +172,9 @@ body {
 }
 
 .footer-section a img {
-    width: 20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
+    
 }
 
 .footer-section a:hover {
