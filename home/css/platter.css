@@ -249,6 +249,12 @@ body {
     opacity: 0.8;
 }
 
+.nav-links a.active {
+    color: var(--primary-hover); 
+    font-weight: bold;
+    border-bottom: 2px solid red;
+}
+
 
 @media (max-width: 1024px) {
     .grid {
