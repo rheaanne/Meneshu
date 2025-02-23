@@ -37,8 +37,8 @@ body {
 
 .navbar img {
     width: 100px;
-    height: 50px;
-    border-radius: 40%;
+    height: 100px;
+    border-radius: 50%;
 }
 
 .nav-links {
@@ -82,7 +82,7 @@ body {
     display: inline-block;
     background-color: black;
     color: white;
-    margin-top: 20px;
+    margin-top: 100px;
     padding: var(--spacing-md) var(--spacing-lg);
     text-decoration: none;
     border-radius: 50px;
@@ -104,7 +104,7 @@ body {
     text-align: center;
     padding: var(--spacing-lg);
     max-width: 1200px;
-    margin: 0 auto;
+    margin-bottom: 150px;
 }
 
 .featured-menu h2 {
