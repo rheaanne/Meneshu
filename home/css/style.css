@@ -31,14 +31,15 @@ body {
     align-items: center;
     justify-content: space-between;
     padding:var(--spacing-lg);
-    padding:40px;
+    padding:30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     box-shadow: var(--shadow);
     background-color: var(--background-color);
 }
 
 .navbar img {
-    width: 50px;
-    max-height:50px;
+    width: 150px;
     border-radius: 100%;
 }
 
@@ -50,6 +51,7 @@ body {
 .nav-links a {
     text-decoration: none;
     color: var(--primary-color);
+    font-size: 20px;
     font-weight: bold;
     transition: color var(--transition);
 }
