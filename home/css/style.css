@@ -52,13 +52,28 @@ body {
     text-decoration: none;
     color: var(--primary-color);
     font-weight: bold;
-    transition: color var(--transition);
     font-size: 20px;
-    padding-top: 40px;
+    transition: all var(--transition);
+    position: relative;
 }
 
 .nav-links a:hover {
     color: var(--secondary-color);
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: var(--secondary-color);
+    transition: width var(--transition);
+}
+
+.nav-links a:hover::after {
+    width: 100%;
 }
 
 /* Hero Section */
@@ -286,7 +301,7 @@ body {
 
 .input-group label {
     width: 40%;
-    text-align: right;
+    text-align: left;
     padding-right: 10px;
     font-weight: bold;
 }
