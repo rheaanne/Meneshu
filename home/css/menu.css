@@ -121,6 +121,7 @@ body {
 .menu-section {
     margin-bottom: var(--space-xl);
     scroll-margin-top: 100px;
+    
 }
 
 .menu-section h2 {
@@ -157,10 +158,12 @@ body {
     transition: transform 0.3s ease;
     display: flex;
     flex-direction: column;
-    min-height: 400px; /* Increased to accommodate larger image */
+    min-height: 500px; /* Increased to accommodate larger image */
     max-width: 280px;
     margin: 0 auto;
     padding-bottom: var(--space-sm);
+    aspect-ratio: 2 / 3; 
+    object-fit: cover; 
 }
 
 .menu-card:hover {
