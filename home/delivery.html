@@ -31,31 +31,20 @@
                 <div class="cart-section">
                     <h2>Order Summary</h2>
                     <div class="cart-items">
-                        <div class="cart-item">
-                            <div class="item-image">
-                                <img src="images/Secpage1.png" alt="Teriyaki">
-                            </div>
-                            <div class="item-details">
-                                <h3>Teriyaki</h3>
-                                <p class="item-description">Japanese style grilled chicken</p>
-                                <div class="item-price">₱240.00</div>
-                                <div class="item-controls">
-                                    <div class="quantity-control">
-                                        <button type="button" class="qty-btn minus" aria-label="Decrease quantity">−</button>
-                                        <input type="number" value="1" min="1" max="99" aria-label="Item quantity">
-                                        <button type="button" class="qty-btn plus" aria-label="Increase quantity">+</button>
-                                    </div>
-                                    <button type="button" class="remove-btn" aria-label="Remove item">
-                                        <span>Remove</span>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
+                        <!-- Cart items will be added here dynamically -->
+                    </div>
+                    <div class="empty-cart">
+                        <p>Your cart is empty. Please add items from the menu.</p>
+                        <a href="menu.html" class="menu-btn">View Menu</a>
+                    </div>
+                    <div class="loading-spinner" style="display: none;">
+                        <div class="spinner"></div>
                     </div>
                 </div>
 
-                <!-- Delivery Form -->
+                <!-- Checkout Form -->
                 <form id="checkoutForm" class="checkout-form">
+                    <!-- Delivery Details -->
                     <div class="form-section">
                         <h2>Delivery Details</h2>
                         <div class="form-grid">
@@ -83,32 +72,32 @@
                     </div>
 
                     <!-- Payment Method -->
-<div class="form-section">
-    <h2>Payment Method</h2>
-    <div class="payment-methods">
-        <div class="payment-option">
-            <input type="radio" id="bt" name="payment" value="bt" checked>
-            <label for="bt">
-                <span class="payment-label">Bank Transfer</span>
-                <span class="payment-description">Pay via Bank transfer</span>
-            </label>
-        </div>
-        <div class="payment-option">
-            <input type="radio" id="gcash" name="payment" value="gcash">
-            <label for="gcash">
-                <span class="payment-label">GCash</span>
-                <span class="payment-description">Pay via GCash e-wallet</span>
-            </label>
-        </div>
-        <div class="payment-option">
-            <input type="radio" id="maya" name="payment" value="maya">
-            <label for="maya">
-                <span class="payment-label">Maya</span>
-                <span class="payment-description">Pay via Maya e-wallet</span>
-            </label>
-        </div>
-    </div>
-</div>
+                    <div class="form-section">
+                        <h2>Payment Method</h2>
+                        <div class="payment-methods">
+                            <div class="payment-option">
+                                <input type="radio" id="bt" name="payment" value="bt" checked>
+                                <label for="bt">
+                                    <span class="payment-label">Bank Transfer</span>
+                                    <span class="payment-description">Pay via Bank Transfer</span>
+                                </label>
+                            </div>
+                            <div class="payment-option">
+                                <input type="radio" id="gcash" name="payment" value="gcash">
+                                <label for="gcash">
+                                    <span class="payment-label">GCash</span>
+                                    <span class="payment-description">Pay via GCash e-wallet</span>
+                                </label>
+                            </div>
+                            <div class="payment-option">
+                                <input type="radio" id="maya" name="payment" value="maya">
+                                <label for="maya">
+                                    <span class="payment-label">Maya</span>
+                                    <span class="payment-description">Pay via Maya e-wallet</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
 
                     <!-- Payment Summary -->
                     <div class="payment-section">
@@ -116,7 +105,7 @@
                         <div class="summary-details">
                             <div class="summary-row">
                                 <span>Subtotal</span>
-                                <span>₱240.00</span>
+                                <span>₱0.00</span>
                             </div>
                             <div class="summary-row">
                                 <span>Delivery Fee</span>
@@ -124,12 +113,13 @@
                             </div>
                             <div class="summary-total">
                                 <span>Total Amount</span>
-                                <span>₱290.00</span>
+                                <span>₱50.00</span>
                             </div>
                         </div>
                         <button type="submit" class="checkout-btn">
-                            Place Order
-                        </button>  <!-- Add this closing tag -->
+                            <span class="btn-text">Place Order</span>
+                            <span class="spinner" style="display: none;"></span>
+                        </button>
                     </div>
                 </form>
             </div>
@@ -144,18 +134,20 @@
                 <p><a href="mailto:mye_sabalza@yahoo.com"><img src="images/email.png" alt="Email"> mye_sabalza@yahoo.com</a></p>
                 <p><a href="tel:09202167308"><img src="images/call.png" alt="Phone"> 0920 216 7308</a></p>
             </div>
-
             <div class="footer-section order">
                 <h3>How to order</h3>
                 <p><a href="menu.html">View Menu</a></p>
                 <p><a href="delivery.html">Delivery</a></p>
             </div>
-
             <div class="footer-section about">
                 <h3>About Us</h3>
                 <p><a href="about.html">Learn more</a></p>
             </div>
         </div>
     </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/delivery.js"></script>
 </body>
 </html>
