@@ -1,8 +1,8 @@
 // Initialize Supabase client
 const { createClient } = supabase;
 const supabaseClient = createClient(
-    'https://xhsptturvttitkhfyvhh.supabase.co',
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inhoc3B0dHVydnR0aXRraGZ5dmhoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzc5NzA3MTIsImV4cCI6MjA1MzU0NjcxMn0.8iJz3JyEYOzAswXfoAWwXu2T5Rver2H4xRM1-e5wzKU'
+    'https://hfpvwihgujhlrpbfjaip.supabase.co',
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhmcHZ3aWhndWpobHJwYmZqYWlwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDAzODY5NTMsImV4cCI6MjA1NTk2Mjk1M30.mWMKeQR_eHn1CoXWycUdyuAKvNowaZ9Eg_XwxNtfutc'
 );
 
 // Utility Functions
