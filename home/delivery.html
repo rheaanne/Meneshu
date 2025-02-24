@@ -70,11 +70,6 @@
                                     placeholder="Enter your mobile number">
                             </div>
                             <div class="form-group full-width">
-                                <label for="email">Email Address*</label>
-                                <input type="email" id="email" name="email" required 
-                                    placeholder="Enter your email address">
-                            </div>
-                            <div class="form-group full-width">
                                 <label for="address">Complete Delivery Address*</label>
                                 <textarea id="address" name="address" rows="3" required 
                                     placeholder="House/Unit/Floor No., Building, Street, Barangay, City"></textarea>
@@ -84,13 +79,36 @@
                                 <input type="text" id="landmark" name="landmark" 
                                     placeholder="Enter a nearby landmark">
                             </div>
-                            <div class="form-group">
-                                <label for="notes">Special Instructions</label>
-                                <textarea id="notes" name="notes" rows="2" 
-                                    placeholder="Add notes for the rider"></textarea>
-                            </div>
                         </div>
                     </div>
+
+                    <!-- Payment Method -->
+<div class="form-section">
+    <h2>Payment Method</h2>
+    <div class="payment-methods">
+        <div class="payment-option">
+            <input type="radio" id="bt" name="payment" value="bt" checked>
+            <label for="bt">
+                <span class="payment-label">Bank Transfer</span>
+                <span class="payment-description">Pay via Bank transfer</span>
+            </label>
+        </div>
+        <div class="payment-option">
+            <input type="radio" id="gcash" name="payment" value="gcash">
+            <label for="gcash">
+                <span class="payment-label">GCash</span>
+                <span class="payment-description">Pay via GCash e-wallet</span>
+            </label>
+        </div>
+        <div class="payment-option">
+            <input type="radio" id="maya" name="payment" value="maya">
+            <label for="maya">
+                <span class="payment-label">Maya</span>
+                <span class="payment-description">Pay via Maya e-wallet</span>
+            </label>
+        </div>
+    </div>
+</div>
 
                     <!-- Payment Summary -->
                     <div class="payment-section">
