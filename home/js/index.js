@@ -1,6 +1,6 @@
 import { createClient } from '@supabase/supabase-js'
 const supabaseUrl = 'https://octxrfafjrjqknskrxxf.supabase.co'
-const supabaseKey = process.env.SUPABASE_KEY
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9jdHhyZmFmanJqcWtuc2tyeHhmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDA0MDczODQsImV4cCI6MjA1NTk4MzM4NH0.8pQmRYVxPlxsic6Nx6bZVu0VVCffwfMg-koiAz2KRyo'
 const supabase = createClient(supabaseUrl, supabaseKey)
 
 // Handle Login with Email & Password
