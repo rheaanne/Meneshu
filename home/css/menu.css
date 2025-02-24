@@ -46,6 +46,7 @@ body {
     top: 0;
     z-index: 100;
 }
+
 .navbar img {
     width: 150px;
     border-radius: 100%;
@@ -53,7 +54,7 @@ body {
 
 .nav-links {
     display: flex;
-    gap: var(--space-lg);
+    gap: var(--spacing-lg);
 }
 
 .nav-links a {
@@ -83,6 +84,7 @@ body {
 .nav-links a:hover::after {
     width: 100%;
 }
+
 /* Main Layout */
 .container {
     display: flex;
