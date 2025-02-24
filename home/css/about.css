@@ -89,17 +89,7 @@ body {
     max-width: 1000px;
     margin: var(--spacing-xl) auto;
     padding: var(--spacing-lg);
-    text-align: right;
-
-}.about-section {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    max-width: 1000px;
-    margin: var(--spacing-xl) auto;
-    padding: var(--spacing-lg);
-    text-align: left;
-    gap: var(--spacing-lg);
+    text-align: center;
 }
 
 .about-section h1 {
@@ -132,7 +122,6 @@ body {
     width: 100%;
     max-width: 800px;
     height: auto;
-    align-content: left;
     transition: transform var(--transition);
 }
 
