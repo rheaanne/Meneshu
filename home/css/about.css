@@ -86,10 +86,14 @@ body {
 
 /* About Section */
 .about-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     max-width: 1000px;
     margin: var(--spacing-xl) auto;
     padding: var(--spacing-lg);
-    text-align: center;
+    text-align: left;
+    gap: var(--spacing-lg);
 }
 
 .about-section h1 {
@@ -111,9 +115,10 @@ body {
     background-color: var(--primary-color);
 }
 
-.about-image {
-    margin: var(--spacing-lg) 0;
-    overflow: hidden;
+.about-image img {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
     border-radius: var(--border-radius);
     box-shadow: var(--shadow);
 }
