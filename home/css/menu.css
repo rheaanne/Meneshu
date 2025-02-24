@@ -17,6 +17,7 @@
     --space-md: 1.5rem;
     --space-lg: 2rem;
     --space-xl: 3rem;
+    --transition: 0.3s ease;
 }
 
 /* Reset & Base Styles */
@@ -39,8 +40,8 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px var(--spacing-lg);
-    background-color: var(--background-color);
+    padding: 10px var(--space-lg);
+    background-color: var(--white);
     box-shadow: var(--shadow);
     position: sticky;
     top: 0;
@@ -54,12 +55,12 @@ body {
 
 .nav-links {
     display: flex;
-    gap: var(--spacing-lg);
+    gap: var(--space-lg);
 }
 
 .nav-links a {
     text-decoration: none;
-    color: var(--primary-color);
+    color: var(--primary);
     font-weight: bold;
     font-size: 20px;
     transition: all var(--transition);
@@ -67,7 +68,7 @@ body {
 }
 
 .nav-links a:hover {
-    color: var(--secondary-color);
+    color: var(--primary-hover);
 }
 
 .nav-links a::after {
@@ -77,7 +78,7 @@ body {
     height: 2px;
     bottom: -4px;
     left: 0;
-    background-color: var(--secondary-color);
+    background-color: var(--primary-hover);
     transition: width var(--transition);
 }
 
