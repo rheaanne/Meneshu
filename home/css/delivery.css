@@ -31,12 +31,12 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: var(--spacing-md) var(--spacing-lg);
-    padding:30px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    box-shadow: var(--shadow);
+    padding: 10px var(--spacing-lg);
     background-color: var(--background-color);
+    box-shadow: var(--shadow);
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
 .navbar img {

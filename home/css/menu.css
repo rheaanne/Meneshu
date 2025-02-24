@@ -35,18 +35,18 @@ body {
 }
 
 /* Navbar */
+
 .navbar {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: var(--space-md) var(--space-lg);
+    padding: 10px var(--spacing-lg);
+    background-color: var(--background-color);
     box-shadow: var(--shadow);
-    padding: 30px;
-    padding-top:10px ;
-    padding-bottom: 10px;
-    background-color: var(--white);
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
-
 .navbar img {
     width: 150px;
     border-radius: 100%;
