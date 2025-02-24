@@ -1,4 +1,9 @@
-
+// Initialize Supabase client
+const { createClient } = supabase;
+const supabaseClient = createClient(
+    'https://xhsptturvttitkhfyvhh.supabase.co',
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inhoc3B0dHVydnR0aXRraGZ5dmhoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzc5NzA3MTIsImV4cCI6MjA1MzU0NjcxMn0.8iJz3JyEYOzAswXfoAWwXu2T5Rver2H4xRM1-e5wzKU'
+);
 
 // Utility Functions
 function showMessage(message, type = 'error') {
@@ -49,6 +54,21 @@ function updateTotals() {
     localStorage.setItem('cartItems', JSON.stringify(cartData));
 }
 
+function validateForm(formData) {
+    if (!formData.name || formData.name.length < 3) {
+        throw new Error('Please enter a valid name');
+    }
+    if (!formData.phone || !/^\d{10,11}$/.test(formData.phone)) {
+        throw new Error('Please enter a valid phone number');
+    }
+    if (!formData.address || formData.address.length < 10) {
+        throw new Error('Please enter a complete delivery address');
+    }
+    if (!formData.payment_method) {
+        throw new Error('Please select a payment method');
+    }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     // Check for stored cart items
     const storedItems = localStorage.getItem('cartItems');
@@ -90,10 +110,6 @@ document.addEventListener('DOMContentLoaded', () => {
         
         cartItems.appendChild(cartItem);
         updateTotals();
-        
-        // Hide empty cart message
-        const emptyCart = document.querySelector('.empty-cart');
-        if (emptyCart) emptyCart.style.display = 'none';
     }
 
     // Event Delegation for Cart Controls
@@ -142,29 +158,51 @@ document.addEventListener('DOMContentLoaded', () => {
             submitBtn.innerHTML = '<span class="spinner"></span> Processing...';
 
             try {
-                const formData = {
+                const orderData = {
                     name: document.getElementById('name')?.value.trim(),
                     phone: document.getElementById('phone')?.value.trim(),
                     address: document.getElementById('address')?.value.trim(),
                     landmark: document.getElementById('landmark')?.value.trim(),
                     payment_method: document.querySelector('input[name="payment"]:checked')?.value,
-                    order_items: Array.from(cartItems).map(item => ({
-                        item_name: item.querySelector('h3').textContent,
-                        quantity: parseInt(item.querySelector('.quantity-control input').value) || 1,
-                        price: parseFloat(item.querySelector('.item-price').textContent.replace('₱', '')) || 0
-                    })),
                     subtotal: parseFloat(document.querySelector('.summary-row:first-child span:last-child').textContent.replace('₱', '')) || 0,
                     delivery_fee: 50,
                     total_amount: parseFloat(document.querySelector('.summary-total span:last-child').textContent.replace('₱', '')) || 0,
-                    order_date: new Date().toISOString()
+                    order_date: new Date().toISOString(),
+                    status: 'pending'
                 };
 
-                const { data, error } = await supabase
-                    .from('orders')
-                    .insert([formData])
-                    .select();
+                // Validate form data
+                validateForm(orderData);
 
-                if (error) throw error;
+                // Insert order and get the ID
+                const { data: order, error: orderError } = await supabaseClient
+                    .from('orders')
+                    .insert([orderData])
+                    .select()
+                    .single();
+
+                if (orderError) {
+                    console.error('Order Error:', orderError);
+                    throw new Error('Failed to create order. Please try again.');
+                }
+
+                // Create order items
+                const orderItems = Array.from(cartItems).map(item => ({
+                    order_id: order.id,
+                    item_name: item.querySelector('h3').textContent,
+                    quantity: parseInt(item.querySelector('.quantity-control input').value) || 1,
+                    price: parseFloat(item.querySelector('.item-price').textContent.replace('₱', '')) || 0
+                }));
+
+                // Insert order items
+                const { error: itemsError } = await supabaseClient
+                    .from('order_items')
+                    .insert(orderItems);
+
+                if (itemsError) {
+                    console.error('Items Error:', itemsError);
+                    throw new Error('Failed to process order items. Please try again.');
+                }
 
                 // Clear cart after successful order
                 localStorage.removeItem('cartItems');
