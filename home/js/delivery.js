@@ -1,4 +1,5 @@
 
+
 // Utility Functions
 function showMessage(message, type = 'error') {
     const existingMessage = document.querySelector('.message');
@@ -37,19 +38,27 @@ function updateTotals() {
     if (emptyCart) {
         emptyCart.style.display = cartItems.length === 0 ? 'block' : 'none';
     }
+
+    // Update localStorage with current cart state
+    const cartData = Array.from(cartItems).map(item => ({
+        image: item.querySelector('img').src,
+        name: item.querySelector('h3').textContent,
+        price: item.querySelector('.item-price').textContent.replace('₱', '').trim(),
+        quantity: parseInt(item.querySelector('.quantity-control input').value) || 1
+    }));
+    localStorage.setItem('cartItems', JSON.stringify(cartData));
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Check for stored menu item
-    const storedItem = localStorage.getItem('selectedMenuItem');
-    if (storedItem) {
+    // Check for stored cart items
+    const storedItems = localStorage.getItem('cartItems');
+    if (storedItems) {
         try {
-            const itemData = JSON.parse(storedItem);
-            addItemToCart(itemData);
-            localStorage.removeItem('selectedMenuItem');
+            const cartItems = JSON.parse(storedItems);
+            cartItems.forEach(itemData => addItemToCart(itemData));
         } catch (e) {
-            console.error('Error loading cart item:', e);
-            showMessage('Error loading cart item');
+            console.error('Error loading cart items:', e);
+            showMessage('Error loading cart items');
         }
     }
 
@@ -122,6 +131,13 @@ document.addEventListener('DOMContentLoaded', () => {
             const submitBtn = checkoutForm.querySelector('button[type="submit"]');
             if (!submitBtn) return;
 
+            // Validate cart is not empty
+            const cartItems = document.querySelectorAll('.cart-item');
+            if (cartItems.length === 0) {
+                showMessage('Your cart is empty. Please add items before checking out.');
+                return;
+            }
+
             submitBtn.disabled = true;
             submitBtn.innerHTML = '<span class="spinner"></span> Processing...';
 
@@ -132,7 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     address: document.getElementById('address')?.value.trim(),
                     landmark: document.getElementById('landmark')?.value.trim(),
                     payment_method: document.querySelector('input[name="payment"]:checked')?.value,
-                    order_items: Array.from(document.querySelectorAll('.cart-item')).map(item => ({
+                    order_items: Array.from(cartItems).map(item => ({
                         item_name: item.querySelector('h3').textContent,
                         quantity: parseInt(item.querySelector('.quantity-control input').value) || 1,
                         price: parseFloat(item.querySelector('.item-price').textContent.replace('₱', '')) || 0
@@ -150,6 +166,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (error) throw error;
 
+                // Clear cart after successful order
+                localStorage.removeItem('cartItems');
                 showMessage('Order placed successfully!', 'success');
                 checkoutForm.reset();
                 document.querySelector('.cart-items').innerHTML = '';
