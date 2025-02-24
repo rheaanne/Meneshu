@@ -86,6 +86,12 @@ body {
 
 /* About Section */
 .about-section {
+    max-width: 1000px;
+    margin: var(--spacing-xl) auto;
+    padding: var(--spacing-lg);
+    text-align: right;
+
+}.about-section {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -115,10 +121,9 @@ body {
     background-color: var(--primary-color);
 }
 
-.about-image img {
-    width: 100%;
-    max-width: 500px;
-    height: auto;
+.about-image {
+    margin: var(--spacing-lg) 0;
+    overflow: hidden;
     border-radius: var(--border-radius);
     box-shadow: var(--shadow);
 }
@@ -127,6 +132,7 @@ body {
     width: 100%;
     max-width: 800px;
     height: auto;
+    align-content: left;
     transition: transform var(--transition);
 }
 
