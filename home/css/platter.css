@@ -17,8 +17,8 @@
     --space-md: 1.5rem;
     --space-lg: 2rem;
     --space-xl: 3rem;
+    --transition: 0.3s ease;
 }
-
 /* Reset & Base Styles */
 * {
     margin: 0;
