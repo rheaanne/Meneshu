@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Reggae+One&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css?version=0.15">
+    <link rel="stylesheet" href="css/style.css?version=0.16">
 </head>
 <body>
 
@@ -22,70 +22,8 @@
                 <a href="delivery.html">Delivery</a>
                 <a href="about.html">About Us</a>
             </div>
-            <div class="auth-buttons">
-                <button class="btn login-btn" onclick="openModal('loginModal')">Login</button>
-                <button class="btn signup-btn" onclick="openModal('signupModal')">Sign Up</button>
-            </div>
         </nav>
     </header>
-
-    <!-- Login Modal -->
-    <div id="loginModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('loginModal')">&times;</span>
-            <h2>Welcome Back!</h2>
-            <p>Log in to access exclusive deals and track your orders.</p>
-            <form id="loginForm">
-                <div class="input-group">
-                    <label>Email:</label>
-                    <input type="email" required>
-                </div>
-                <div class="input-group">
-                    <label>Password:</label>
-                    <input type="password" required>
-                </div>
-                <button type="submit" class="form-btn">Login</button>
-                <button type="button" class="google-btn" onclick="loginWithGoogle()">Sign in with Google</button>
-                <p class="modal-text">Don't have an account? <a href="#" onclick="openModal('signupModal')">Sign Up</a></p>
-            </form>
-        </div>
-    </div>
-
-    <!-- Sign Up Modal -->
-    <div id="signupModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('signupModal')">&times;</span>
-            <h2>Join Meneshu Today!</h2>
-            <p>Create an account to enjoy rewards and special discounts.</p>
-            <form id="signupForm">
-                <div class="input-group">
-                    <label>Name:</label>
-                    <input type="text" required>
-                </div>
-                <div class="input-group">
-                    <label>Email:</label>
-                    <input type="email" required>
-                </div>
-                <div class="input-group">
-                    <label>Password:</label>
-                    <input type="password" required>
-                </div>
-                <div class="input-group">
-                    <label>Confirm Password:</label>
-                    <input type="password" required>
-                </div>
-                <button type="submit" class="form-btn">Sign Up</button>
-                <button type="button" class="google-btn" onclick="loginWithGoogle()">Sign up with Google</button>
-                <p class="modal-text">Already have an account? <a href="#" onclick="openModal('loginModal')">Login</a></p>
-            </form>
-        </div>
-    </div>
-
-    <!-- Logout Button (Appears when logged in) -->
-    <div class="user-info">
-        <p id="userEmail"></p>
-        <button id="logoutBtn" class="btn logout-btn" onclick="logout()" style="display:none;">Logout</button>
-    </div>
 
     <!-- Hero Section -->
     <section class="hero">
