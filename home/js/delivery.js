@@ -5,6 +5,20 @@ const supabaseClient = createClient(
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhmcHZ3aWhndWpobHJwYmZqYWlwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDAzODY5NTMsImV4cCI6MjA1NTk2Mjk1M30.mWMKeQR_eHn1CoXWycUdyuAKvNowaZ9Eg_XwxNtfutc'
 );
 
+// Add this function at the top level of your file
+async function updateOrderStatus(orderId, newStatus) {
+    try {
+        const { error } = await supabaseClient
+            .from('orders')
+            .update({ status: newStatus })
+            .eq('id', orderId);
+
+        if (error) throw error;
+    } catch (error) {
+        console.error('Error updating status:', error);
+    }
+}
+
 // Utility Functions
 function showMessage(message, type = 'error') {
     const existingMessage = document.querySelector('.message');
@@ -205,24 +219,31 @@ document.addEventListener('DOMContentLoaded', () => {
                     throw new Error('Failed to process order items. Please try again.');
                 }
 
-                // Show success message and handle redirect
-                if (order.id) {
-                    localStorage.removeItem('cartItems'); // Clear cart
-                    showMessage('Order placed successfully!', 'success');
-                    checkoutForm.reset();
-                    document.querySelector('.cart-items').innerHTML = '';
-                    updateTotals();
-                    
-                    // Disable the submit button during the wait
-                    submitBtn.disabled = true;
-                    submitBtn.textContent = 'Order Completed';
+// Modify your form submission success handler
+if (order.id) {
+    localStorage.removeItem('cartItems'); // Clear cart
+    showMessage('Order placed successfully!', 'success');
+    checkoutForm.reset();
+    document.querySelector('.cart-items').innerHTML = '';
+    updateTotals();
+    
+    // Disable the submit button during the wait
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Order Completed';
 
-                    // Wait for 10 seconds before redirect
-                    setTimeout(() => {
-                        window.location.href = `rate.html?orderId=${order.id}`;
-                    }, 10000); // 10000 milliseconds = 10 seconds
-                    return;
-                }
+    // Update order status after delays
+    setTimeout(async () => {
+        await updateOrderStatus(order.id, 'delivered');
+        
+    }, 10000); // 5 seconds to preparing
+
+    // Redirect to rate page
+    setTimeout(() => {
+        window.location.href = `rate.html?orderId=${order.id}`;
+    }, 10000); // Give time for all status updates to complete
+
+    return;
+}
 
                 // This code will only run if order.id is not present
                 showMessage('Order placed but redirect failed. Please try again.', 'warning');
