@@ -132,7 +132,6 @@ body {
     padding-bottom: 30px;
 }
 
-
 .menu-items {
     display: flex;
     justify-content: center; 
@@ -144,21 +143,21 @@ body {
 }
 
 .menu-item {
-    flex: 0 1 300px; 
-    max-width: 300px;
+    flex: 0 1 350px; /* Increase width for larger images */
+    max-width: 100%;
     padding-top: 30px;
     text-align: center;
 }
 
-
 .menu-item img {
-    width: 100%;
+    width: 100%; /* Make images full width */
     height: auto;
     display: block;
     margin: 0 auto; 
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow);
+    border-radius: 0; /* Remove rounded corners */
+    box-shadow: none; /* Remove shadow */
 }
+
 
 /* Footer */
 .footer-content {
