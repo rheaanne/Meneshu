@@ -174,7 +174,7 @@ body {
     transition: transform 0.3s ease;
     display: flex;
     flex-direction: column;
-    min-height: 400px; /* Increased to accommodate larger image */
+    min-height: 500px; /* Increased to accommodate larger image */
     max-width: 280px;
     margin: 0 auto;
     padding-bottom: var(--space-sm);
