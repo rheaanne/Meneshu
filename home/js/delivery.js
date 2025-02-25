@@ -240,11 +240,11 @@ if (order.id) {
             
             setTimeout(async () => {
                 await updateOrderStatus(order.id, 'delivered');
-            }, 5000); // 5 seconds to delivered
+            }, 3000); // 5 seconds to delivered
             
-        }, 2000); // 2 seconds to delivering
+        }, 1000); // 2 seconds to delivering
         
-    }, 2000); // 2 seconds to preparing
+    }, 1000); // 2 seconds to preparing
 
     // Redirect to rate page
     setTimeout(() => {
