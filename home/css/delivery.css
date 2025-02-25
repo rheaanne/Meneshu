@@ -617,16 +617,3 @@ body {
     }
 }
 
-.delivery-note {
-    margin: var(--spacing-lg) 0;
-    padding: var(--spacing-md);
-    background-color: #fff3cd;
-    border-left: 4px solid #ffc107;
-    border-radius: var(--border-radius);
-}
-
-.delivery-note p {
-    color: #856404;
-    margin: 0;
-    font-size: 0.9rem;
-}
