@@ -233,10 +233,10 @@ if (order.id) {
 
     // Update order status after delays
     setTimeout(async () => {
-        await updateOrderStatus(order.id, 'preparing');
+        await updateOrderStatus(order.id, 'pending');
         
         setTimeout(async () => {
-            await updateOrderStatus(order.id, 'delivering');
+            await updateOrderStatus(order.id, 'pending');
             
             setTimeout(async () => {
                 await updateOrderStatus(order.id, 'delivered');
