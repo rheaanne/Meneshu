@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Complete - Meneshu Japanese Cuisine</title>
+    <link rel="stylesheet" href="css/rate.css">
+</head>
+<body>
+    <div class="order-complete-container">
+        <div class="success-animation">
+            <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
+                <path class="checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+            </svg>
+        </div>
+        <h1>Your order has been successfully delivered!</h1>
+        <p class="order-number">Order #<span id="orderNumber"></span></p>
+        <div class="feedback-section">
+            <h2>How was your experience?</h2>
+            <div class="rating">
+                <input type="radio" id="star5" name="rating" value="5">
+                <label for="star5">★</label>
+                <input type="radio" id="star4" name="rating" value="4">
+                <label for="star4">★</label>
+                <input type="radio" id="star3" name="rating" value="3">
+                <label for="star3">★</label>
+                <input type="radio" id="star2" name="rating" value="2">
+                <label for="star2">★</label>
+                <input type="radio" id="star1" name="rating" value="1">
+                <label for="star1">★</label>
+            </div>
+            <textarea id="feedbackText" placeholder="Tell us about your experience (optional)"></textarea>
+            <button id="submitFeedback" class="submit-btn">Submit Feedback</button>
+        </div>
+        <a href="menu.html" class="back-btn">Back to Menu</a>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/rate.js"></script>
+</body>
+</html>

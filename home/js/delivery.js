@@ -199,17 +199,33 @@ document.addEventListener('DOMContentLoaded', () => {
                     .from('order_items')
                     .insert(orderItems);
 
+
                 if (itemsError) {
                     console.error('Items Error:', itemsError);
                     throw new Error('Failed to process order items. Please try again.');
                 }
 
-                // Clear cart after successful order
-                localStorage.removeItem('cartItems');
-                showMessage('Order placed successfully!', 'success');
-                checkoutForm.reset();
-                document.querySelector('.cart-items').innerHTML = '';
-                updateTotals();
+                // Show success message and handle redirect
+                if (order.id) {
+                    localStorage.removeItem('cartItems'); // Clear cart
+                    showMessage('Order placed successfully!', 'success');
+                    checkoutForm.reset();
+                    document.querySelector('.cart-items').innerHTML = '';
+                    updateTotals();
+                    
+                    // Disable the submit button during the wait
+                    submitBtn.disabled = true;
+                    submitBtn.textContent = 'Order Completed';
+
+                    // Wait for 10 seconds before redirect
+                    setTimeout(() => {
+                        window.location.href = `rate.html?orderId=${order.id}`;
+                    }, 10000); // 10000 milliseconds = 10 seconds
+                    return;
+                }
+
+                // This code will only run if order.id is not present
+                showMessage('Order placed but redirect failed. Please try again.', 'warning');
 
             } catch (error) {
                 console.error('Error:', error);
@@ -218,6 +234,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 submitBtn.disabled = false;
                 submitBtn.textContent = 'Place Order';
             }
+
+
         });
     }
 
