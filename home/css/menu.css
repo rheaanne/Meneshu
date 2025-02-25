@@ -178,6 +178,8 @@ body {
     max-width: 280px;
     margin: 0 auto;
     padding-bottom: var(--space-sm);
+    aspect-ratio: 2 / 3; 
+    object-fit: cover; 
 }
 
 .menu-card:hover {
