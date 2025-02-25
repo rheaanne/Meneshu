@@ -240,16 +240,16 @@ if (order.id) {
             
             setTimeout(async () => {
                 await updateOrderStatus(order.id, 'delivered');
-            }, 10000); // 5 seconds to delivered
+            }, 5000); // 5 seconds to delivered
             
-        }, 5000); // 2 seconds to delivering
+        }, 1000); // 2 seconds to pending
         
-    }, 5000); // 2 seconds to preparing
+    }, 1000); // 2 seconds to pending
 
     // Redirect to rate page
     setTimeout(() => {
         window.location.href = `rate.html?orderId=${order.id}`;
-    }, 25000); // Give time for all status updates to complete
+    }, 10000); // Give time for all status updates to complete
 
     return;
 }
