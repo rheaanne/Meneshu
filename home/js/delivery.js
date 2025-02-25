@@ -233,9 +233,18 @@ if (order.id) {
 
     // Update order status after delays
     setTimeout(async () => {
-        await updateOrderStatus(order.id, 'delivered');
+        await updateOrderStatus(order.id, 'preparing');
         
-    }, 10000); // 5 seconds to preparing
+        setTimeout(async () => {
+            await updateOrderStatus(order.id, 'delivering');
+            
+            setTimeout(async () => {
+                await updateOrderStatus(order.id, 'delivered');
+            }, 5000); // 5 seconds to delivered
+            
+        }, 2000); // 2 seconds to delivering
+        
+    }, 2000); // 2 seconds to preparing
 
     // Redirect to rate page
     setTimeout(() => {
