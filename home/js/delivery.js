@@ -40,9 +40,7 @@ function updateTotals() {
     const totalEl = document.querySelector('.summary-total span:last-child');
 
     cartItems.forEach(item => {
-        // Update this line to handle prices with or without the peso sign
-        const priceText = item.querySelector('.item-price').textContent;
-        const price = parseFloat(priceText.replace(/[₱,]/g, '')) || 0;
+        const price = parseFloat(item.querySelector('.item-price').textContent.replace('₱', '')) || 0;
         const quantity = parseInt(item.querySelector('.quantity-control input').value) || 1;
         subtotal += price * quantity;
     });
@@ -64,15 +62,17 @@ function updateTotals() {
     const cartData = Array.from(cartItems).map(item => ({
         image: item.querySelector('img').src,
         name: item.querySelector('h3').textContent,
-        price: item.querySelector('.item-price').textContent.replace(/[₱,]/g, '').trim(),
+        price: item.querySelector('.item-price').textContent.replace('₱', '').trim(),
         quantity: parseInt(item.querySelector('.quantity-control input').value) || 1
     }));
     localStorage.setItem('cartItems', JSON.stringify(cartData));
 }
 
+ // Name validation with regex pattern
  if (!formData.name || formData.name.length <= 3 ||
     !/^[A-Za-z]+(?:[ ''-][A-Za-z]+)*$/.test(formData.name)) {
     throw new Error('Please enter a valid name');
+}
 
 // Phone validation with 09 prefix requirement
 if (!formData.phone || !/^09\d{9}$/.test(formData.phone)) {
