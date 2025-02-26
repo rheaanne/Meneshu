@@ -25,8 +25,9 @@ function showMessage(message, type = 'error') {
     if (existingMessage) existingMessage.remove();
 
     const messageDiv = document.createElement('div');
-    messageDiv.className = `message ${type}-message`;
+    messageDiv.className = `${type}-message message`; 
     messageDiv.textContent = message;
+    
     document.body.appendChild(messageDiv);
     setTimeout(() => messageDiv.remove(), 5000);
 }
@@ -40,8 +41,9 @@ function updateTotals() {
     const totalEl = document.querySelector('.summary-total span:last-child');
 
     cartItems.forEach(item => {
-        const price = parseFloat(item.querySelector('.item-price').textContent.replace('₱', '')) || 0;
-        const quantity = parseInt(item.querySelector('.quantity-control input').value) || 1;
+        const price = parseFloat(item.querySelector('.item-price').textContent.replace('₱', '').trim()) || 0;
+        const quantityInput = item.querySelector('.quantity-control input');
+        const quantity = Math.max(1, parseInt(quantityInput.value) || 1); // Prevents invalid values
         subtotal += price * quantity;
     });
 
@@ -60,44 +62,47 @@ function updateTotals() {
 
     // Update localStorage with current cart state
     const cartData = Array.from(cartItems).map(item => ({
-        image: item.querySelector('img').src,
-        name: item.querySelector('h3').textContent,
-        price: item.querySelector('.item-price').textContent.replace('₱', '').trim(),
-        quantity: parseInt(item.querySelector('.quantity-control input').value) || 1
+        image: item.querySelector('img')?.src.trim(),
+        name: item.querySelector('h3')?.textContent.trim(),
+        price: item.querySelector('.item-price')?.textContent.replace('₱', '').trim(),
+        quantity: Math.max(1, parseInt(item.querySelector('.quantity-control input').value) || 1)
     }));
+    
     localStorage.setItem('cartItems', JSON.stringify(cartData));
 }
 
- // Name validation with regex pattern
- if (!formData.name || formData.name.length <= 3 ||
-    !/^[A-Za-z]+(?:[ ''-][A-Za-z]+)*$/.test(formData.name)) {
-    throw new Error('Please enter a valid name');
-}
 
-// Phone validation with 09 prefix requirement
-if (!formData.phone || !/^09\d{9}$/.test(formData.phone)) {
-    throw new Error('Please enter a valid phone number starting with 09');
+function validateForm(formData) {
+    // Name validation with regex pattern
+    if (!formData.name || formData.name.length <= 3 ||
+        !/^[A-Za-z]+(?:[ ''-][A-Za-z]+)*$/.test(formData.name)) {
+        throw new Error('Please enter a valid name');
+    }
+   
+    // Phone validation with 09 prefix requirement
+    if (!formData.phone || !/^09\d{9}$/.test(formData.phone)) {
+        throw new Error('Please enter a valid phone number starting with 09');
+    }
+   
+    // Address validation with regex pattern
+    if (!formData.address || formData.address.length <= 10 ||
+        !/^[0-9A-Za-z][0-9A-Za-z /,.-]*[0-9A-Za-z]$/.test(formData.address)) {
+        throw new Error('Please enter a complete delivery address');
+    }
+   
+    // Landmark validation with regex pattern
+    if (formData.landmark && (
+        formData.landmark.length < 4 ||
+        !/^[0-9A-Za-z][0-9A-Za-z /,.-]*[0-9A-Za-z]$/.test(formData.landmark)
+    )) {
+        throw new Error('Please enter a valid landmark or leave it empty');
+    }
+   
+    // Payment method validation
+    if (!formData.payment_method) {
+        throw new Error('Please select a payment method');
+    }
 }
-
-// Address validation with regex pattern
-if (!formData.address || formData.address.length <= 10 ||
-    !/^[0-9A-Za-z][0-9A-Za-z /,.-]*[0-9A-Za-z]$/.test(formData.address)) {
-    throw new Error('Please enter a complete delivery address');
-}
-
-// Landmark validation with regex pattern
-if (formData.landmark && (
-    formData.landmark.length < 4 ||
-    !/^[0-9A-Za-z][0-9A-Za-z /,.-]*[0-9A-Za-z]$/.test(formData.landmark)
-)) {
-    throw new Error('Please enter a valid landmark or leave it empty');
-}
-
-// Payment method validation
-if (!formData.payment_method) {
-    throw new Error('Please select a payment method');
-}
-
 
 document.addEventListener('DOMContentLoaded', () => {
     // Check for stored cart items
@@ -115,7 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function addItemToCart(itemData) {
         const cartItems = document.querySelector('.cart-items');
         if (!cartItems) return;
-
+    
         const cartItem = document.createElement('div');
         cartItem.className = 'cart-item';
         cartItem.innerHTML = `
@@ -137,10 +142,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             </div>
         `;
-        
+    
         cartItems.appendChild(cartItem);
-        updateTotals();
     }
+    
 
     // Event Delegation for Cart Controls
     document.addEventListener('click', (e) => {
@@ -183,8 +188,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 showMessage('Your cart is empty. Please add items before checking out.');
                 return;
             }
-            
-            
 
             submitBtn.disabled = true;
             submitBtn.innerHTML = '<span class="spinner"></span> Processing...';
@@ -205,8 +208,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // Validate form data
                 validateForm(orderData);
-
-
 
                 // Insert order and get the ID
                 const { data: order, error: orderError } = await supabaseClient
@@ -246,33 +247,35 @@ if (order.id) {
     checkoutForm.reset();
     document.querySelector('.cart-items').innerHTML = '';
     updateTotals();
-    
+
     // Disable the submit button during the wait
     submitBtn.disabled = true;
     submitBtn.textContent = 'Order Completed';
 
-    // Update order status after delays
+    // Update order status step by step
     setTimeout(async () => {
-        await updateOrderStatus(order.id, 'pending');
-        
+        await updateOrderStatus(order.id, 'confirmed');
+
         setTimeout(async () => {
-            await updateOrderStatus(order.id, 'pending');
-            
+            await updateOrderStatus(order.id, 'shipped');
+
             setTimeout(async () => {
                 await updateOrderStatus(order.id, 'delivered');
+
+                // Redirect after order is delivered
+                setTimeout(() => {
+                    window.location.href = `rate.html?orderId=${order.id}`;
+                }, 1000); // Small delay before redirect
+                
             }, 5000); // 5 seconds to delivered
             
-        }, 1000); // 2 seconds to pending
+        }, 1000); // 3 seconds to shipped
         
-    }, 1000); // 2 seconds to pending
-
-    // Redirect to rate page
-    setTimeout(() => {
-        window.location.href = `rate.html?orderId=${order.id}`;
-    }, 10000); // Give time for all status updates to complete
+    }, 1000); // 2 seconds to confirmed
 
     return;
 }
+
 
                 // This code will only run if order.id is not present
                 showMessage('Order placed but redirect failed. Please try again.', 'warning');
