@@ -72,16 +72,16 @@ function updateTotals() {
 
 
 function validateForm(formData) {
-    // Helper function to check for repeated or meaningless patterns
+    // Helper function to check nonsense or repeated characters
     function isNonsense(input) {
-        return /(.)\1{4,}|(123|abc|qwerty|test|dummy){2,}/i.test(input); 
+        return /(.)\1{4,}|(123|abc|qwerty|asdf|test|dummy|unknown|xxxxx|zzzzz){2,}/i.test(input); 
     }
 
     // Name validation: At least two words, proper capitalization, no nonsense
     if (!formData.name || formData.name.length < 4 || 
         !/^[A-Z][a-z]+(?:\s[A-Z][a-z]+)+$/.test(formData.name) || 
         isNonsense(formData.name)) {
-        throw new Error('Please enter a valid full name with proper capitalization (e.g., John Doe).');
+        throw new Error('Please enter a valid full name with at least two properly capitalized words (e.g., John Doe).');
     }
 
     // Phone validation: Must start with 09 and contain exactly 11 digits
@@ -89,15 +89,16 @@ function validateForm(formData) {
         throw new Error('Please enter a valid phone number (e.g., 09123456789).');
     }
 
-    // Address validation: Allows letters, numbers, spaces, commas, periods, hyphens, and ensures meaningful input
+    // Address validation: Ensures meaningful input, prevents repeated patterns and nonsense
     if (!formData.address || formData.address.length < 10 || 
         !/^[A-Za-z0-9][A-Za-z0-9\s,.-]*$/.test(formData.address) || 
-        isNonsense(formData.address)) {
+        isNonsense(formData.address) || 
+        /^(\d+|[.,-]+)$/.test(formData.address)) {
         throw new Error('Please enter a complete and valid delivery address.');
     }
 
-    // Landmark validation (optional field): Must be at least 4 characters if provided and must not be nonsense
-    if (formData.landmark && (formData.landmark.length < 4 || isNonsense(formData.landmark))) {
+    // Landmark validation (optional field): At least 4 characters if provided and not nonsense
+    if (formData.landmark && (formData.landmark.length < 4 || isNonsense(formData.landmark) || /^(\d+|[.,-]+)$/.test(formData.landmark))) {
         throw new Error('Please enter a valid landmark or leave it empty.');
     }
 
@@ -106,7 +107,6 @@ function validateForm(formData) {
         throw new Error('Please select a payment method.');
     }
 }
-
 
 
 
