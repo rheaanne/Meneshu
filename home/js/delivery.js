@@ -71,15 +71,24 @@ function updateTotals() {
 }
 
 function validateForm(formData) {
-    if (!formData.name || formData.name.length < 3) {
+    // Name validation with regex pattern
+    if (!formData.name || formData.name.length <= 3 || 
+        !/^[A-Za-z]+(?:[ ''-][A-Za-z]+)*$/.test(formData.name)) {
         throw new Error('Please enter a valid name');
     }
-    if (!formData.phone || !/^\d{10,11}$/.test(formData.phone)) {
-        throw new Error('Please enter a valid phone number');
+    
+    // Phone validation with 09 prefix requirement
+    if (!formData.phone || !/^09\d{9}$/.test(formData.phone)) {
+        throw new Error('Please enter a valid phone number starting with 09');
     }
-    if (!formData.address || formData.address.length < 10) {
+    
+    // Address validation with regex pattern
+    if (!formData.address || formData.address.length <= 10 || 
+        !/^[0-9A-Za-z][0-9A-Za-z /,.-]*[0-9A-Za-z]$/.test(formData.address)) {
         throw new Error('Please enter a complete delivery address');
     }
+    
+    // Payment method validation (keeping your existing check)
     if (!formData.payment_method) {
         throw new Error('Please select a payment method');
     }
