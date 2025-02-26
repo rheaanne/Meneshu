@@ -25,9 +25,8 @@ function showMessage(message, type = 'error') {
     if (existingMessage) existingMessage.remove();
 
     const messageDiv = document.createElement('div');
-    messageDiv.className = `${type}-message message`; 
+    messageDiv.className = `message ${type}-message`;
     messageDiv.textContent = message;
-    
     document.body.appendChild(messageDiv);
     setTimeout(() => messageDiv.remove(), 5000);
 }
@@ -41,9 +40,10 @@ function updateTotals() {
     const totalEl = document.querySelector('.summary-total span:last-child');
 
     cartItems.forEach(item => {
-        const price = parseFloat(item.querySelector('.item-price').textContent.replace('₱', '').trim()) || 0;
-        const quantityInput = item.querySelector('.quantity-control input');
-        const quantity = Math.max(1, parseInt(quantityInput.value) || 1); // Prevents invalid values
+        // Update this line to handle prices with or without the peso sign
+        const priceText = item.querySelector('.item-price').textContent;
+        const price = parseFloat(priceText.replace(/[₱,]/g, '')) || 0;
+        const quantity = parseInt(item.querySelector('.quantity-control input').value) || 1;
         subtotal += price * quantity;
     });
 
@@ -62,12 +62,11 @@ function updateTotals() {
 
     // Update localStorage with current cart state
     const cartData = Array.from(cartItems).map(item => ({
-        image: item.querySelector('img')?.src.trim(),
-        name: item.querySelector('h3')?.textContent.trim(),
-        price: item.querySelector('.item-price')?.textContent.replace('₱', '').trim(),
-        quantity: Math.max(1, parseInt(item.querySelector('.quantity-control input').value) || 1)
+        image: item.querySelector('img').src,
+        name: item.querySelector('h3').textContent,
+        price: item.querySelector('.item-price').textContent.replace('₱', '').trim(),
+        quantity: parseInt(item.querySelector('.quantity-control input').value) || 1
     }));
-    
     localStorage.setItem('cartItems', JSON.stringify(cartData));
 }
 
@@ -144,6 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
     
         cartItems.appendChild(cartItem);
+        updateTotals();
     }
     
 
@@ -247,35 +247,33 @@ if (order.id) {
     checkoutForm.reset();
     document.querySelector('.cart-items').innerHTML = '';
     updateTotals();
-
+    
     // Disable the submit button during the wait
     submitBtn.disabled = true;
     submitBtn.textContent = 'Order Completed';
 
-    // Update order status step by step
+    // Update order status after delays
     setTimeout(async () => {
-        await updateOrderStatus(order.id, 'confirmed');
-
+        await updateOrderStatus(order.id, 'pending');
+        
         setTimeout(async () => {
-            await updateOrderStatus(order.id, 'shipped');
-
+            await updateOrderStatus(order.id, 'pending');
+            
             setTimeout(async () => {
                 await updateOrderStatus(order.id, 'delivered');
-
-                // Redirect after order is delivered
-                setTimeout(() => {
-                    window.location.href = `rate.html?orderId=${order.id}`;
-                }, 1000); // Small delay before redirect
-                
             }, 5000); // 5 seconds to delivered
             
-        }, 1000); // 3 seconds to shipped
+        }, 1000); // 2 seconds to pending
         
-    }, 1000); // 2 seconds to confirmed
+    }, 1000); // 2 seconds to pending
+
+    // Redirect to rate page
+    setTimeout(() => {
+        window.location.href = 'rate.html?orderId=${order.id}';
+    }, 10000); // Give time for all status updates to complete
 
     return;
 }
-
 
                 // This code will only run if order.id is not present
                 showMessage('Order placed but redirect failed. Please try again.', 'warning');
