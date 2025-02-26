@@ -72,39 +72,37 @@ function updateTotals() {
 
 
 function validateForm(formData) {
-    // Name validation with regex pattern
+    // Name validation with regex pattern (at least two words, each starting with a capital letter)
     if (!formData.name || formData.name.length <= 3 ||
-        !/^[A-Za-z]+(?:[ '-][A-Za-z]+)*$/.test(formData.name)) {
-        throw new Error('Please enter a valid name');
+        !/^[A-Z][a-zA-Z]+(?:\s[A-Z][a-zA-Z]+)+$/.test(formData.name)) {
+        throw new Error('Please enter a valid name with at least two words, each starting with a capital letter');
     }
-   
+
     // Phone validation with 09 prefix requirement
     if (!formData.phone || !/^09\d{9}$/.test(formData.phone)) {
         throw new Error('Please enter a valid phone number starting with 09');
     }
-   
-    // Address validation with regex pattern
+
+    // Address validation with regex pattern (letters, numbers, spaces, commas, periods, and hyphens)
     if (!formData.address || formData.address.length <= 10 ||
-        !/^[0-9A-Za-z][0-9A-Za-z /,.-]*[0-9A-Za-z]$/.test(formData.address)) {
+        !/^[0-9A-Za-z]+(?:[0-9A-Za-z\s,.-]*[0-9A-Za-z]+)*$/.test(formData.address)) {
         throw new Error('Please enter a complete delivery address');
     }
-   
-    // Landmark validation with regex pattern
+
+    // Landmark validation with regex pattern (optional field)
     if (formData.landmark && (
         formData.landmark.length < 4 ||
-        !/^[0-9A-Za-z][0-9A-Za-z /,.-]*[0-9A-Za-z]$/.test(formData.landmark)
+        !/^[0-9A-Za-z]+(?:[0-9A-Za-z\s,.-]*[0-9A-Za-z]+)*$/.test(formData.landmark)
     )) {
         throw new Error('Please enter a valid landmark or leave it empty');
     }
-   
+
     // Payment method validation
     if (!formData.payment_method) {
         throw new Error('Please select a payment method');
     }
-
-    // Form is valid
-    return true;
 }
+
 
 
 document.addEventListener('DOMContentLoaded', () => {
