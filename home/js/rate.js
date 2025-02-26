@@ -11,7 +11,7 @@ function validateFeedback(rating, comment) {
     }
 
     // Comment constraints
-    if (comment) {  // Comment is optional but if provided must meet criteria
+    if (comment && comment.length > 0) {  // Only validate if comment is not empty
         if (comment.length < 5) {
             throw new Error('Comment must be at least 5 characters long');
         }
@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     .insert([{
                         order_id: orderId,
                         rating: parseInt(rating),
-                        comment: comment,
+                        comment: comment.length > 0 ? comment : null, // Convert empty string to null
                         created_at: new Date().toISOString()
                     }]);
     
