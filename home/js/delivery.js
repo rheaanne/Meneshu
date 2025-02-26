@@ -72,36 +72,41 @@ function updateTotals() {
 
 
 function validateForm(formData) {
-    // Name validation with regex pattern (at least two words, each starting with a capital letter)
-    if (!formData.name || formData.name.length <= 3 ||
-        !/^[A-Z][a-zA-Z]+(?:\s[A-Z][a-zA-Z]+)+$/.test(formData.name)) {
-        throw new Error('Please enter a valid name with at least two words, each starting with a capital letter');
+    // Helper function to check for repeated or meaningless patterns
+    function isNonsense(input) {
+        return /(.)\1{4,}|(123|abc|qwerty|test|dummy){2,}/i.test(input); 
     }
 
-    // Phone validation with 09 prefix requirement
+    // Name validation: At least two words, proper capitalization, no nonsense
+    if (!formData.name || formData.name.length < 4 || 
+        !/^[A-Z][a-z]+(?:\s[A-Z][a-z]+)+$/.test(formData.name) || 
+        isNonsense(formData.name)) {
+        throw new Error('Please enter a valid full name with proper capitalization (e.g., John Doe).');
+    }
+
+    // Phone validation: Must start with 09 and contain exactly 11 digits
     if (!formData.phone || !/^09\d{9}$/.test(formData.phone)) {
-        throw new Error('Please enter a valid phone number starting with 09');
+        throw new Error('Please enter a valid phone number (e.g., 09123456789).');
     }
 
-    // Address validation with regex pattern (letters, numbers, spaces, commas, periods, and hyphens)
-    if (!formData.address || formData.address.length <= 10 ||
-        !/^[0-9A-Za-z]+(?:[0-9A-Za-z\s,.-]*[0-9A-Za-z]+)*$/.test(formData.address)) {
-        throw new Error('Please enter a complete delivery address');
+    // Address validation: Allows letters, numbers, spaces, commas, periods, hyphens, and ensures meaningful input
+    if (!formData.address || formData.address.length < 10 || 
+        !/^[A-Za-z0-9][A-Za-z0-9\s,.-]*$/.test(formData.address) || 
+        isNonsense(formData.address)) {
+        throw new Error('Please enter a complete and valid delivery address.');
     }
 
-    // Landmark validation with regex pattern (optional field)
-    if (formData.landmark && (
-        formData.landmark.length < 4 ||
-        !/^[0-9A-Za-z]+(?:[0-9A-Za-z\s,.-]*[0-9A-Za-z]+)*$/.test(formData.landmark)
-    )) {
-        throw new Error('Please enter a valid landmark or leave it empty');
+    // Landmark validation (optional field): Must be at least 4 characters if provided and must not be nonsense
+    if (formData.landmark && (formData.landmark.length < 4 || isNonsense(formData.landmark))) {
+        throw new Error('Please enter a valid landmark or leave it empty.');
     }
 
-    // Payment method validation
+    // Payment method validation: Must be selected
     if (!formData.payment_method) {
-        throw new Error('Please select a payment method');
+        throw new Error('Please select a payment method.');
     }
 }
+
 
 
 
