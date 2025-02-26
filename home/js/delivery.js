@@ -40,7 +40,9 @@ function updateTotals() {
     const totalEl = document.querySelector('.summary-total span:last-child');
 
     cartItems.forEach(item => {
-        const price = parseFloat(item.querySelector('.item-price').textContent.replace('₱', '')) || 0;
+        // Update this line to handle prices with or without the peso sign
+        const priceText = item.querySelector('.item-price').textContent;
+        const price = parseFloat(priceText.replace(/[₱,]/g, '')) || 0;
         const quantity = parseInt(item.querySelector('.quantity-control input').value) || 1;
         subtotal += price * quantity;
     });
@@ -62,7 +64,7 @@ function updateTotals() {
     const cartData = Array.from(cartItems).map(item => ({
         image: item.querySelector('img').src,
         name: item.querySelector('h3').textContent,
-        price: item.querySelector('.item-price').textContent.replace('₱', '').trim(),
+        price: item.querySelector('.item-price').textContent.replace(/[₱,]/g, '').trim(),
         quantity: parseInt(item.querySelector('.quantity-control input').value) || 1
     }));
     localStorage.setItem('cartItems', JSON.stringify(cartData));
