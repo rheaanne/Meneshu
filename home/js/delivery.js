@@ -70,37 +70,34 @@ function updateTotals() {
     localStorage.setItem('cartItems', JSON.stringify(cartData));
 }
 
-function validateForm(formData) {
-    // Name validation with regex pattern
-    if (!formData.name || formData.name.length <= 3 || 
-        !/^[A-Za-z]+(?:[ ''-][A-Za-z]+)*$/.test(formData.name)) {
-        throw new Error('Please enter a valid name');
-    }
-    
-    // Phone validation with 09 prefix requirement
-    if (!formData.phone || !/^09\d{9}$/.test(formData.phone)) {
-        throw new Error('Please enter a valid phone number starting with 09');
-    }
-    
-    // Address validation with regex pattern
-    if (!formData.address || formData.address.length <= 10 || 
-        !/^[0-9A-Za-z][0-9A-Za-z /,.-]*[0-9A-Za-z]$/.test(formData.address)) {
-        throw new Error('Please enter a complete delivery address');
-    }
-    
-    // Landmark validation with regex pattern
-    if (formData.landmark && (
-        formData.landmark.length < 4 || 
-        !/^[0-9A-Za-z][0-9A-Za-z /,.-]*[0-9A-Za-z]$/.test(formData.landmark)
-    )) {
-        throw new Error('Please enter a valid landmark or leave it empty');
-    }
-    
-    // Payment method validation
-    if (!formData.payment_method) {
-        throw new Error('Please select a payment method');
-    }
+ if (!formData.name || formData.name.length <= 3 ||
+    !/^[A-Za-z]+(?:[ ''-][A-Za-z]+)*$/.test(formData.name)) {
+    throw new Error('Please enter a valid name');
+
+// Phone validation with 09 prefix requirement
+if (!formData.phone || !/^09\d{9}$/.test(formData.phone)) {
+    throw new Error('Please enter a valid phone number starting with 09');
 }
+
+// Address validation with regex pattern
+if (!formData.address || formData.address.length <= 10 ||
+    !/^[0-9A-Za-z][0-9A-Za-z /,.-]*[0-9A-Za-z]$/.test(formData.address)) {
+    throw new Error('Please enter a complete delivery address');
+}
+
+// Landmark validation with regex pattern
+if (formData.landmark && (
+    formData.landmark.length < 4 ||
+    !/^[0-9A-Za-z][0-9A-Za-z /,.-]*[0-9A-Za-z]$/.test(formData.landmark)
+)) {
+    throw new Error('Please enter a valid landmark or leave it empty');
+}
+
+// Payment method validation
+if (!formData.payment_method) {
+    throw new Error('Please select a payment method');
+}
+
 
 document.addEventListener('DOMContentLoaded', () => {
     // Check for stored cart items
@@ -186,6 +183,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 showMessage('Your cart is empty. Please add items before checking out.');
                 return;
             }
+            
+            
 
             submitBtn.disabled = true;
             submitBtn.innerHTML = '<span class="spinner"></span> Processing...';
@@ -206,6 +205,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // Validate form data
                 validateForm(orderData);
+
+
 
                 // Insert order and get the ID
                 const { data: order, error: orderError } = await supabaseClient
