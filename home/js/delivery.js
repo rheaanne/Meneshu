@@ -74,7 +74,7 @@ function updateTotals() {
 function validateForm(formData) {
     // Name validation with regex pattern
     if (!formData.name || formData.name.length <= 3 ||
-        !/^[A-Za-z]+(?:[ ''-][A-Za-z]+)*$/.test(formData.name)) {
+        !/^[A-Za-z]+(?:[ '-][A-Za-z]+)*$/.test(formData.name)) {
         throw new Error('Please enter a valid name');
     }
    
@@ -101,7 +101,11 @@ function validateForm(formData) {
     if (!formData.payment_method) {
         throw new Error('Please select a payment method');
     }
+
+    // Form is valid
+    return true;
 }
+
 
 document.addEventListener('DOMContentLoaded', () => {
     // Check for stored cart items
