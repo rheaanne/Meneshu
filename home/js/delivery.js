@@ -88,7 +88,15 @@ function validateForm(formData) {
         throw new Error('Please enter a complete delivery address');
     }
     
-    // Payment method validation (keeping your existing check)
+    // Landmark validation with regex pattern
+    if (formData.landmark && (
+        formData.landmark.length < 4 || 
+        !/^[0-9A-Za-z][0-9A-Za-z /,.-]*[0-9A-Za-z]$/.test(formData.landmark)
+    )) {
+        throw new Error('Please enter a valid landmark or leave it empty');
+    }
+    
+    // Payment method validation
     if (!formData.payment_method) {
         throw new Error('Please select a payment method');
     }
