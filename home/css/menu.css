@@ -40,7 +40,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px var(--space-lg);
+    padding: 10px var(--spacing-lg);
     background-color: var(--white);
     box-shadow: var(--shadow);
     position: sticky;
@@ -57,7 +57,7 @@ body {
 
 .nav-links {
     display: flex;
-    gap: var(--space-lg);
+    gap: var(--spacing-lg);
 }
 
 .nav-links a {
