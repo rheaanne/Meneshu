@@ -43,8 +43,10 @@ body {
 }
 
 .navbar img {
-    width: 150px;
+    width: 80px;
     border-radius: 100%;
+    margin-left: 30px;
+    transition: transform var(--transition);
 }
 
 .nav-links {
