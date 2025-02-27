@@ -39,6 +39,12 @@ body {
     position: sticky;
     top: 0;
     z-index: 100;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: white; /* Adjust the background color as needed */
+    z-index: 1000; /* Ensure it stays on top of other elements */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow for better visibility */
 }
 
 .navbar img {
@@ -219,7 +225,7 @@ body {
     gap: 10px;
     color: var(--background-color);
     text-decoration: none;
-    font-size: medium;
+    font-size: 1rem;
     transition: opacity var(--transition);
     font-family: 'Lora';
 

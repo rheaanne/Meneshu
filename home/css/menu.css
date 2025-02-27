@@ -40,12 +40,18 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px 32px;
+    padding: 10px var(--spacing-lg);
     background-color: var(--white);
     box-shadow: var(--shadow);
     position: sticky;
     top: 0;
     z-index: 100;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: white; /* Adjust the background color as needed */
+    z-index: 1000; /* Ensure it stays on top of other elements */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow for better visibility */
 }
 
 .navbar img {
@@ -57,9 +63,9 @@ body {
 
 .nav-links {
     display: flex;
-    gap: 32px;
+    gap: var(--spacing-lg);
+    
 }
-
 .nav-links a {
     text-decoration: none;
     color: var(--primary);
@@ -144,6 +150,7 @@ body {
 
 .menu-section h2 {
     color: var(--primary);
+    margin-top: 80px;
     margin-bottom: var(--space-lg);
     position: relative;
     padding-bottom: var(--space-xs);
@@ -256,9 +263,8 @@ body {
     gap: 10px;
     color: var(--background-color);
     text-decoration: none;
-    font-size: large;
+    font-size: 1rem;
     transition: opacity var(--transition);
-    font-family: Lora;
 }
 
 .footer-section a img {
@@ -340,25 +346,20 @@ html {
 @media (max-width: 768px) {
     .navbar {
         flex-direction: column;
-        padding: 16px;
+        padding: var(--spacing-md);
+
     }
 
     .nav-links {
-        margin-top: 16px;
-        gap: 16px;
-    }
-
-    .about-section {
-        padding: var(--spacing-md);
-    }
-
-    .about-content {
-        padding: var(--spacing-md);
+        margin-top: var(--spacing-lg);
+        padding: 20px;
+        gap: 20px;
     }
 
     .footer-content {
         flex-direction: column;
         text-align: center;
+        
     }
 
     .footer-section {
