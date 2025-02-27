@@ -225,22 +225,29 @@ body {
 }
 
 
-/* Responsive */
+/* Responsive Design */
 @media (max-width: 768px) {
-    .hero {
+    .navbar {
         flex-direction: column;
-        text-align: center;
+        padding: var(--spacing-md);
     }
-    .hero-image img {
-        width: 100%;
+
+    .nav-links {
+        margin-top: var(--spacing-md);
+        gap: var(--spacing-md);
     }
-    .menu-items {
-        flex-direction: column;
-        align-items: center;
-    }
+
     .footer-content {
         flex-direction: column;
-        align-items: center;
+        text-align: center;
+        
+    }
+
+    .footer-section {
+        margin-bottom: var(--spacing-lg);
+    }
+
+    .footer-section a {
+        justify-content: center;
     }
 }
-

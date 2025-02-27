@@ -40,7 +40,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px var(--spacing-lg);
+    padding: 10px var(--space-lg);
     background-color: var(--white);
     box-shadow: var(--shadow);
     position: sticky;
@@ -63,9 +63,10 @@ body {
 
 .nav-links {
     display: flex;
-    gap: var(--spacing-lg);
-    
+    gap: var(--space-md); /* Adjust the spacing between the links */
+    margin-right: var(--space-lg); /* Add margin to the right of the nav links */
 }
+
 .nav-links a {
     text-decoration: none;
     color: var(--primary);
@@ -93,7 +94,6 @@ body {
 .nav-links a:hover::after {
     width: 100%;
 }
-
 /* Main Layout */
 .container {
     display: flex;
