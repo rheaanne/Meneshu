@@ -221,5 +221,12 @@ body {
         flex-direction: column;
         align-items: center;
     }
+    .footer-section {
+        margin-bottom: var(--spacing-lg);
+    }
+
+    .footer-section a {
+        justify-content: center;
+    }
 }
 
