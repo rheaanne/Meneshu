@@ -27,6 +27,7 @@ body {
     background-color: var(--background-color);
     color: var(--text-color);
     line-height: 1.6;
+    scroll-behavior: smooth;
 }
 
 /* Navigation */
@@ -47,6 +48,10 @@ body {
     border-radius: 100%;
     margin-left: 30px;
     transition: transform var(--transition);
+}
+
+.navbar img:hover {
+    transform: scale(1.05);
 }
 
 .nav-links {
