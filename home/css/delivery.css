@@ -596,11 +596,6 @@ body {
     .remove-btn {
         margin: var(--spacing-md) auto 0;
     }
-
-    .footer-content {
-        flex-direction: column;
-        align-items: center;
-    }
 }
 
 @media (max-width: 480px) {
@@ -624,3 +619,28 @@ body {
     }
 }
 
+/* Responsive Design */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        padding: var(--spacing-md);
+    }
+
+    .nav-links {
+        margin-top: var(--spacing-md);
+        gap: var(--spacing-md);
+    }
+
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-section {
+        margin-bottom: var(--spacing-lg);
+    }
+
+    .footer-section a {
+        justify-content: center;
+    }
+}

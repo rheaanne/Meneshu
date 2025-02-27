@@ -239,9 +239,35 @@ section {
         flex-direction: column;
         align-items: center;
     }
+    .navbar {
+        flex-direction: column;
+        padding: var(--spacing-md);
+    }
+
+    .nav-links {
+        margin-top: var(--spacing-md);
+        gap: var(--spacing-md);
+    }
+
+    .about-section {
+        padding: var(--spacing-md);
+    }
+
+    .about-content {
+        padding: var(--spacing-md);
+    }
+
     .footer-content {
         flex-direction: column;
-        align-items: center;
+        text-align: center;
+    }
+
+    .footer-section {
+        margin-bottom: var(--spacing-lg);
+    }
+
+    .footer-section a {
+        justify-content: center;
     }
 }
 
