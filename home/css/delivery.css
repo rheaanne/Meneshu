@@ -94,10 +94,25 @@ body {
 }
 
 /* Main Content Styles */
+
+body {
+
+    background: url('../images/SushiBG.png') no-repeat center center fixed;
+    background-size: cover;
+}
+
+
+/* Main Content Styles */
+
 .delivery-section {
+    background-image: url('../images/your-background-image.jpg'); /* Update the path to your image */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     padding: var(--spacing-lg);
     max-width: 1200px;
     margin: var(--spacing-xl) auto;
+    border-radius: var(--border-radius); /* Optional: Add border radius if needed */
 }
 
 .delivery-section h1 {
@@ -109,6 +124,10 @@ body {
     padding-bottom: var(--spacing-sm);
     margin-top: 100px;
 }
+.delivery-section h2{
+    text-align: center;
+
+}
 
 .delivery-section h1::after {
     content: '';
@@ -118,6 +137,7 @@ body {
     transform: translateX(-50%);
     width: 100px;
     height: 3px;
+    text-align: center;
     background-color: var(--primary-color);
 }
 
