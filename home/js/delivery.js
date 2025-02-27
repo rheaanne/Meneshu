@@ -275,7 +275,7 @@ if (order.id) {
 
     // Redirect to rate page
     setTimeout(() => {
-        window.location.href = 'rate.html?orderId=${order.id}';
+        window.location.href = `rate.html?orderId=${order.id}`;
     }, 10000); // Give time for all status updates to complete
 
     return;
