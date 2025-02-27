@@ -79,9 +79,10 @@ body {
 }
 
 /* Hero Section */
-.hero{
+section {
     background-image: url('../images/Background.jpg');
 }
+
 .hero {
     display: flex;
     align-items: center;
