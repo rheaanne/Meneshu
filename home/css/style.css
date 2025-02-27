@@ -79,8 +79,10 @@ body {
 }
 
 /* Hero Section */
+.hero{
+    background-image: url('..images/Background.jpg');
+}
 .hero {
-    background-image: url('images/Background.jpg');
     display: flex;
     align-items: center;
     justify-content: space-between;
