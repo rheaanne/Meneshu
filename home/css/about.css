@@ -22,6 +22,12 @@
 }
 
 body {
+    background-image: url('../images/SushiBG.png'); 
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; 
+    background-repeat: no-repeat;
+    background-color: var(--white);
     background-color: var(--background-color);
     color: var(--text-color);
     line-height: 1.6;
@@ -104,7 +110,7 @@ body {
     margin-top: 90px;
     font-size: 2.5rem;
     margin-bottom: var(--spacing-xl);
-    position: relative;
+    position: relative; /* Ensure it scrolls with the content */
     padding-bottom: var(--spacing-md);
 }
 
@@ -171,7 +177,6 @@ body {
     line-height: 1.8;
     font-size: 1.1rem;
     font-family: 'Lora';
-
 }
 
 .about-content ul {
@@ -179,7 +184,6 @@ body {
     padding: 0;
     margin: var(--spacing-lg) auto;
     max-width: 400px;
-    
 }
 
 .about-content ul li {
@@ -188,12 +192,10 @@ body {
     position: relative;
     transition: transform var(--transition);
     font-family: 'Lora';
-
 }
 
 .about-content ul li:hover {
     transform: translateX(10px);
-    
 }
 
 .about-content ul li::before {
@@ -202,7 +204,6 @@ body {
     position: absolute;
     left: -20px;
     transition: color var(--transition);
-    
 }
 
 .footer-content {
@@ -229,13 +230,11 @@ body {
     font-size: 1rem;
     transition: opacity var(--transition);
     font-family: 'Lora';
-
 }
 
 .footer-section a img {
     width: 30px;
     height: 30px;
-    
 }
 
 .footer-section a:hover {
@@ -260,13 +259,11 @@ body {
 
     .about-content {
         padding: var(--spacing-md);
-        
     }
 
     .footer-content {
         flex-direction: column;
         text-align: center;
-        
     }
 
     .footer-section {
