@@ -547,7 +547,7 @@ body {
     gap: 10px;
     color: var(--background-color);
     text-decoration: none;
-    font-size: 1rem;
+    font-size: large;
     transition: opacity var(--transition);
     font-family: 'Lora';
 
