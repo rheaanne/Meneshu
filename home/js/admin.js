@@ -60,7 +60,7 @@ async function updateOrderStatus(orderId, newStatus) {
 }
 
 if (localStorage.getItem("isAdminLoggedIn") !== "true") {
-    window.location.href = "admin.html"; // Redirect to login page if not logged in
+    window.location.href = "login.html"; // Redirect to login page if not logged in
 }
 
 
