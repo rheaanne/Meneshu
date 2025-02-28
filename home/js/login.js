@@ -1,12 +1,14 @@
-function login() {
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
+document.getElementById("login-form").addEventListener("submit", function(event) {
+    event.preventDefault(); // Prevent page reload
 
-    // Sample hardcoded login credentials (replace with Supabase or DB check)
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+
+    // Hardcoded credentials for testing (replace with DB check)
     if (username === "admin" && password === "admin123") {
-        localStorage.setItem("isLoggedIn", "true"); // Save login state
+        localStorage.setItem("isAdminLoggedIn", "true"); // Save session
         window.location.href = "admin.html"; // Redirect to dashboard
     } else {
-        alert("Invalid credentials! Please try again.");
+        document.getElementById("error-message").textContent = "Invalid login credentials.";
     }
-}
+});

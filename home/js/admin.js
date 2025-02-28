@@ -59,9 +59,17 @@ async function updateOrderStatus(orderId, newStatus) {
     }
 }
 
-if (localStorage.getItem("isAdminLoggedIn") !== "true") {
-    window.location.href = "login.html"; // Redirect to login page if not logged in
+function checkLogin() {
+    if (localStorage.getItem("isAdminLoggedIn") !== "true") {
+        window.location.href = "login.html"; // Redirect to login if not logged in
+    }
 }
+
+function logout() {
+    localStorage.removeItem("isAdminLoggedIn"); // Clear session
+    window.location.href = "login.html"; // Redirect to login
+}
+
 
 
 // Load orders when the page loads
