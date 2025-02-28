@@ -11,28 +11,33 @@ const supabaseClient = createClient(
 async function loadDashboardStats() {
     try {
         // Get total orders count
-        const { count: totalOrders, error: ordersError } = await supabaseClient
+        const { data: orders, count: totalOrders, error: ordersError } = await supabaseClient
             .from('orders')
-            .select('*', { count: 'exact' });
+            .select('*', { count: 'exact', head: true });
 
         // Get total products count
-        const { count: totalProducts, error: productsError } = await supabaseClient
+        const { data: products, count: totalProducts, error: productsError } = await supabaseClient
             .from('products')
-            .select('*', { count: 'exact' });
+            .select('*', { count: 'exact', head: true });
 
         if (ordersError || productsError) {
             console.error("Error fetching totals:", ordersError || productsError);
             return;
         }
 
+        // Debugging log
+        console.log("Total Orders:", totalOrders);
+        console.log("Total Products:", totalProducts);
+
         // Update dashboard stats
-        document.querySelector('.stat-box:nth-child(1) span').textContent = totalOrders || 0;
-        document.querySelector('.stat-box:nth-child(2) span').textContent = totalProducts || 0;
+        document.querySelector('.stat-box:nth-child(1) span').textContent = totalOrders ?? 0;
+        document.querySelector('.stat-box:nth-child(2) span').textContent = totalProducts ?? 0;
 
     } catch (error) {
         console.error("Error loading dashboard stats:", error);
     }
 }
+
 
 // Function to load all orders
 async function loadOrders() {
