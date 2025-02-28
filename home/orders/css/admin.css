@@ -1,120 +1,38 @@
-:root {
-    --primary-color: #BA181B;
-    --secondary-color: #E5383B;
-    --text-color: #333;
-    --background-color: #fff;
-    --text-light: #666;
-    --shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
-    --border-radius: 10px;
-    --spacing-xs: 4px;
-    --spacing-sm: 8px;
-    --spacing-md: 16px;
-    --spacing-lg: 32px;
-    --spacing-xl: 48px;
-    --transition: 0.3s ease;
-}
-
-/* Base Styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Reggae One', cursive;
-}
-
-body {
-    background-image: url('../images/SushiBG.png'); 
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed; 
-    background-repeat: no-repeat;
-    background-color: var(--text-color);
-    color: var(--text-color);
-    line-height: 1.6;
-    scroll-behavior: smooth;
-}
-
-
-/* Navigation */
-.navbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px var(--spacing-lg);
-    background-color: var(--background-color);
-    box-shadow: var(--shadow);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    position: fixed;
-    top: 0;
-    width: 100%;
-}
-
-.navbar img {
-    width: 80px;
-    border-radius: 100%;
-    margin-left: 30px;
-    transition: transform var(--transition);
-}
-
-.navbar img:hover {
-    transform: scale(1.05);
-}
-
-.nav-links {
-    display: flex;
-    gap: var(--spacing-lg);
-}
-
-.nav-links a {
-    text-decoration: none;
-    color: var(--primary-color);
-    font-weight: bold;
-    font-size: 20px;
-    transition: all var(--transition);
-    position: relative;
-}
-
-.nav-links a:hover {
-    color: var(--secondary-color);
-}
-
-.nav-links a::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: -4px;
-    left: 0;
-    background-color: var(--secondary-color);
-    transition: width var(--transition);
-}
-
-.nav-links a:hover::after {
-    width: 100%;
-}
-
+/* General Styles */
 body {
     font-family: Arial, sans-serif;
-    margin: 20px;
-    padding: 0;
     background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
 }
 
+/* Container */
+.container {
+    max-width: 900px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Title */
 h1 {
     text-align: center;
+    color: #333;
 }
 
+/* Table Styling */
 table {
     width: 100%;
     border-collapse: collapse;
-    background: white;
+    margin-top: 20px;
+    background: #fff;
 }
 
 th, td {
-    padding: 10px;
     border: 1px solid #ddd;
+    padding: 10px;
     text-align: center;
 }
 
@@ -123,6 +41,27 @@ th {
     color: white;
 }
 
-select {
-    padding: 5px;
+/* Status Labels */
+.pending {
+    color: #d9534f;
+    font-weight: bold;
+}
+
+.completed {
+    color: #5cb85c;
+    font-weight: bold;
+}
+
+/* Buttons */
+.view-btn {
+    background: #007bff;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.view-btn:hover {
+    background: #0056b3;
 }

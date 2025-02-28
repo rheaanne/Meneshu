@@ -1,4 +1,6 @@
 // Initialize Supabase client
+console.log("Orders script is running!");
+
 const { createClient } = supabase;
 const supabaseClient = createClient(
     'https://svvmxxkcqexwjzckuhgr.supabase.co',

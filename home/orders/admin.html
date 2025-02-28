@@ -3,29 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard - Orders</title>
+    <title>Order Management</title>
     <link rel="stylesheet" href="/home/orders/css/admin.css">
 </head>
 <body>
-    <h1>Order Management</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>Order ID</th>
-                <th>Customer Name</th>
-                <th>Phone</th>
-                <th>Address</th>
-                <th>Total Amount</th>
-                <th>Status</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody id="orders-table">
-            <!-- Orders will be inserted here dynamically -->
-        </tbody>
-    </table>
-    
+
+    <div class="container">
+        <h1>Order Management</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Customer Name</th>
+                    <th>Phone</th>
+                    <th>Address</th>
+                    <th>Total Amount</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>001</td>
+                    <td>Juan Dela Cruz</td>
+                    <td>09123456789</td>
+                    <td>Makati City</td>
+                    <td>₱500</td>
+                    <td><span class="pending">Pending</span></td>
+                    <td><button class="view-btn">View</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
     <script src="/home/orders/js/admin.js"></script>
+
 </body>
 </html>
