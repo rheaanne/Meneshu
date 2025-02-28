@@ -7,32 +7,27 @@ const supabaseClient = createClient(
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN2dm14eGtjcWV4d2p6Y2t1aGdyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDA1ODAxMTAsImV4cCI6MjA1NjE1NjExMH0.kFg45Xd3W7GsDXpabYCO9PfmyLCDXNddl6dNK4H6UQ0'
 );
 
-// Function to load dashboard stats (Total Orders & Products)
 async function loadDashboardStats() {
     try {
+        console.log("Fetching total orders and products...");
+
         // Fetch total orders count
-        let { count: totalOrders, error: ordersError } = await supabaseClient
+        let { data: ordersData, error: ordersError, count: totalOrders } = await supabaseClient
             .from('orders')
             .select('*', { count: 'exact', head: true });
 
         // Fetch total products count
-        let { count: totalProducts, error: productsError } = await supabaseClient
+        let { data: productsData, error: productsError, count: totalProducts } = await supabaseClient
             .from('products')
             .select('*', { count: 'exact', head: true });
 
-        if (ordersError) {
-            console.error("Orders Error:", ordersError);
-            totalOrders = 0; // Ensure a default value
-        }
+        console.log("Orders Data:", ordersData);
+        console.log("Products Data:", productsData);
+        console.log("Total Orders:", totalOrders);
+        console.log("Total Products:", totalProducts);
 
-        if (productsError) {
-            console.error("Products Error:", productsError);
-            totalProducts = 0; // Ensure a default value
-        }
-
-        // Debugging logs
-        console.log("Total Orders Retrieved:", totalOrders);
-        console.log("Total Products Retrieved:", totalProducts);
+        if (ordersError) console.error("Orders Error:", ordersError);
+        if (productsError) console.error("Products Error:", productsError);
 
         // Update the UI
         document.getElementById('total-orders').textContent = `Total Orders: ${totalOrders ?? 0}`;
@@ -42,6 +37,7 @@ async function loadDashboardStats() {
         console.error("Error loading dashboard stats:", error);
     }
 }
+
 
 // Call function after page load
 document.addEventListener("DOMContentLoaded", loadDashboardStats);
