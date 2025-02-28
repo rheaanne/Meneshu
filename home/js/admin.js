@@ -4,7 +4,7 @@ console.log("Admin script is running!");
 const { createClient } = supabase;
 const supabaseClient = createClient(
     'https://svvmxxkcqexwjzckuhgr.supabase.co',
-    'your-api-key-here'
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN2dm14eGtjcWV4d2p6Y2t1aGdyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDA1ODAxMTAsImV4cCI6MjA1NjE1NjExMH0.kFg45Xd3W7GsDXpabYCO9PfmyLCDXNddl6dNK4H6UQ0'
 );
 
 async function loadDashboardStats() {
