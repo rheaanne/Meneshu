@@ -164,7 +164,7 @@ body {
 }
 
 .menu-section h2 {
-    color: var(--primary);
+    color: var(--white);
     margin-top: 150px;
     margin-bottom: var(--space-lg);
     position: relative;

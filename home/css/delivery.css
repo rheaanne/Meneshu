@@ -114,7 +114,7 @@ body {
 }
 
 .delivery-section h1 {
-    color: var(--primary-color);
+    color: var(--background-color);
     text-align: center;
     font-size: 2.5rem;
     margin-bottom: var(--spacing-xl);
