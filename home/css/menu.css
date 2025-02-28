@@ -113,20 +113,20 @@ body {
 /* Main Layout */
 .container {
     display: flex;
-    max-width: 1200px;
+    max-width: 1300px;
     margin: var(--space-lg) auto;
-    gap: var(--space-lg);
+    gap: var(--space-xl);
     padding: 0 var(--space-sm);
 }
 
 /* Sidebar */
 .sidebar {
-    width: 250px;
+    width: 280px;
     background: var(--primary);
     padding: var(--space-sm);
     border-radius: 8px;
     position: sticky;
-    top: 100px;
+    top: 225px;
     height: fit-content;
 }
 
@@ -221,7 +221,7 @@ body {
 }
 
 .menu-card h3 {
-    color: var(--text-light);
+    color: var(--text);
     padding: var(--space-xs);
     font-size: 1.2rem;
     text-align: center;
@@ -279,8 +279,9 @@ body {
     gap: 10px;
     color: var(--background-color);
     text-decoration: none;
-    font-size: 1rem;
+    font-size: large;
     transition: opacity var(--transition);
+    font-family: Lora;
 }
 
 .footer-section a img {
