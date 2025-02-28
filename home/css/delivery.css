@@ -24,11 +24,17 @@
 }
 
 body {
-    background-color: #333;
+    background-image: url('../images/SushiBG.png'); 
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; 
+    background-repeat: no-repeat;
+    background-color: var(--text-color);
     color: var(--text-color);
     line-height: 1.6;
     scroll-behavior: smooth;
 }
+
 
 /* Navigation */
 .navbar {
@@ -44,9 +50,6 @@ body {
     position: fixed;
     top: 0;
     width: 100%;
-    background-color: white; /* Adjust the background color as needed */
-    z-index: 1000; /* Ensure it stays on top of other elements */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow for better visibility */
 }
 
 .navbar img {
@@ -93,13 +96,8 @@ body {
     width: 100%;
 }
 
-/* Main Content Styles */
 
-body {
 
-    background: url('../images/SushiBG.png') no-repeat center center fixed;
-    background-size: cover;
-}
 
 
 /* Main Content Styles */
