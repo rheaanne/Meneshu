@@ -244,7 +244,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (itemsError) {
                     console.error('Items Error:', itemsError);
                     throw new Error('Failed to process order items. Please try again.');
-                }
+                } 
+
 
 // Modify your form submission success handler
 if (order.id) {
