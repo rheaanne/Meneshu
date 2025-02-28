@@ -24,7 +24,7 @@
 }
 
 body {
-    background-color: var(--text-color);
+    background-color: #333;
     color: var(--text-color);
     line-height: 1.6;
     scroll-behavior: smooth;
