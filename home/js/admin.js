@@ -10,33 +10,41 @@ const supabaseClient = createClient(
 // Function to load dashboard stats (Total Orders & Products)
 async function loadDashboardStats() {
     try {
-        // Get total orders count
-        const { data: orders, count: totalOrders, error: ordersError } = await supabaseClient
+        // Fetch total orders count
+        let { count: totalOrders, error: ordersError } = await supabaseClient
             .from('orders')
             .select('*', { count: 'exact', head: true });
 
-        // Get total products count
-        const { data: products, count: totalProducts, error: productsError } = await supabaseClient
+        // Fetch total products count
+        let { count: totalProducts, error: productsError } = await supabaseClient
             .from('products')
             .select('*', { count: 'exact', head: true });
 
-        if (ordersError || productsError) {
-            console.error("Error fetching totals:", ordersError || productsError);
-            return;
+        if (ordersError) {
+            console.error("Orders Error:", ordersError);
+            totalOrders = 0; // Ensure a default value
         }
 
-        // Debugging log
-        console.log("Total Orders:", totalOrders);
-        console.log("Total Products:", totalProducts);
+        if (productsError) {
+            console.error("Products Error:", productsError);
+            totalProducts = 0; // Ensure a default value
+        }
 
-        // Update dashboard stats
-        document.querySelector('.stat-box:nth-child(1) span').textContent = totalOrders ?? 0;
-        document.querySelector('.stat-box:nth-child(2) span').textContent = totalProducts ?? 0;
+        // Debugging logs
+        console.log("Total Orders Retrieved:", totalOrders);
+        console.log("Total Products Retrieved:", totalProducts);
+
+        // Update the UI
+        document.getElementById('total-orders').textContent = `Total Orders: ${totalOrders ?? 0}`;
+        document.getElementById('total-products').textContent = `Total Products: ${totalProducts ?? 0}`;
 
     } catch (error) {
         console.error("Error loading dashboard stats:", error);
     }
 }
+
+// Call function after page load
+document.addEventListener("DOMContentLoaded", loadDashboardStats);
 
 
 // Function to load all orders
