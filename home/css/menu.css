@@ -71,7 +71,6 @@ body {
 .nav-links {
     display: flex;
     gap: var(--space-md); /* Adjust the spacing between the links */
-    margin-right: var(--space-lg); /* Add margin to the right of the nav links */
 }
 
 .nav-links a {
