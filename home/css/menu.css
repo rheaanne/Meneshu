@@ -70,7 +70,7 @@ body {
 
 .nav-links {
     display: flex;
-    gap: var(--space-md); /* Adjust the spacing between the links */
+    gap: var(--space-lg); /* Adjust the spacing between the links */
 }
 
 .nav-links a {
