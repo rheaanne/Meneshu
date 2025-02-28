@@ -1,67 +1,103 @@
 /* General Styles */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    display: flex;
     margin: 0;
-    padding: 20px;
+    font-family: 'Arial', sans-serif;
+    background-color: #F5F5F5;
 }
 
-/* Container */
-.container {
-    max-width: 900px;
-    margin: auto;
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    background: #BA181B;
+    color: white;
+    padding: 20px;
+    height: 100vh;
+    position: fixed;
+}
+
+.sidebar h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    padding: 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.sidebar ul li:hover {
+    background: #8A1215;
+}
+
+/* Main Content */
+.main-content {
+    margin-left: 270px;
+    padding: 20px;
+    flex-grow: 1;
+}
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.stats {
+    display: flex;
+    gap: 15px;
+}
+
+.stat-box {
     background: white;
-    padding: 20px;
+    padding: 15px;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Title */
-h1 {
-    text-align: center;
-    color: #333;
-}
-
-/* Table Styling */
+/* Table */
 table {
     width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-    background: #fff;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
 }
 
 th, td {
-    border: 1px solid #ddd;
-    padding: 10px;
-    text-align: center;
+    padding: 15px;
+    text-align: left;
 }
 
 th {
-    background: #333;
+    background: #BA181B;
     color: white;
 }
 
-/* Status Labels */
-.pending {
-    color: #d9534f;
-    font-weight: bold;
-}
-
-.completed {
-    color: #5cb85c;
-    font-weight: bold;
+tr:nth-child(even) {
+    background: #F9F9F9;
 }
 
 /* Buttons */
 .view-btn {
-    background: #007bff;
+    background: #BA181B;
     color: white;
-    padding: 5px 10px;
+    padding: 8px 12px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    transition: 0.3s;
 }
 
 .view-btn:hover {
-    background: #0056b3;
+    background: #8A1215;
 }

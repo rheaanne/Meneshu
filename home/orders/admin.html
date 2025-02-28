@@ -3,13 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Order Management</title>
+    <title>Admin Dashboard</title>
     <link rel="stylesheet" href="/home/orders/css/admin.css?version=0.1">
 </head>
 <body>
-
-    <div class="container">
-        <h1>Order Management</h1>
+    <div class="sidebar">
+        <h2>Dashboard</h2>
+        <ul>
+            <li>Orders</li>
+            <li>Products</li>
+            <li>Categories</li>
+            <li>Settings</li>
+        </ul>
+    </div>
+    <div class="main-content">
+        <header>
+            <h1>Order Management</h1>
+            <div class="stats">
+                <div class="stat-box">Total Orders: <span>9</span></div>
+                <div class="stat-box">Total Products: <span>7897</span></div>
+            </div>
+        </header>
         <table>
             <thead>
                 <tr>
@@ -22,22 +36,13 @@
                     <th>Action</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td>001</td>
-                    <td>Juan Dela Cruz</td>
-                    <td>09123456789</td>
-                    <td>Makati City</td>
-                    <td>₱500</td>
-                    <td><span class="pending">Pending</span></td>
-                    <td><button class="view-btn">View</button></td>
-                </tr>
+            <tbody id="orders-table">
+                <!-- Dynamic Orders Here -->
             </tbody>
         </table>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
     <script src="/home/orders/js/admin.js"></script>
-
 </body>
 </html>

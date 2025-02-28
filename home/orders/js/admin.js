@@ -29,7 +29,7 @@ async function loadOrders() {
             <td>${order.phone}</td>
             <td>${order.address}</td>
             <td>₱${order.total_amount.toFixed(2)}</td>
-            <td>${order.status}</td>
+            <td class="${order.status.replace(/\s/g, '-')}">${order.status}</td>
             <td>
                 <select onchange="updateOrderStatus(${order.id}, this.value)">
                     <option value="pending" ${order.status === 'pending' ? 'selected' : ''}>Pending</option>
