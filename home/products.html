@@ -3,31 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Products</title>
-    <link rel="stylesheet" href="css/admin.css?version=0.1">
+    <title>Manage Products</title>
+    <link rel="stylesheet" href="css/admin.css?versio=0.1">
 </head>
 <body>
     <div class="sidebar">
         <h2>Dashboard</h2>
         <ul>
-            <li><a href="orders.html">Orders</a></li>
-            <li><a href="products.html">Products</a></li>
+            <li><a href="admin.html">Orders</a></li>
+            <li><a href="products.html" class="active">Products</a></li>
             <li><a href="categories.html">Categories</a></li>
             <li><a href="settings.html">Settings</a></li>
         </ul>
         <button id="logout-btn">Logout</button>
     </div>
+
     <div class="main-content">
         <header>
-            <h1>Products</h1>
+            <h1>Product Management</h1>
         </header>
+
+        <!-- Product Form -->
+        <form id="add-product-form">
+            <h2>Add New Product</h2>
+            <input type="text" id="product-name" placeholder="Product Name" required>
+            <input type="number" id="product-price" placeholder="Price" required>
+            <input type="text" id="product-category" placeholder="Category" required>
+            <input type="number" id="product-stock" placeholder="Stock" required>
+            <button type="submit">Add Product</button>
+        </form>
+
+        <!-- Product List -->
         <table>
             <thead>
                 <tr>
-                    <th>Product ID</th>
+                    <th>ID</th>
                     <th>Name</th>
-                    <th>Category</th>
                     <th>Price</th>
+                    <th>Category</th>
                     <th>Stock</th>
                     <th>Action</th>
                 </tr>
@@ -38,7 +51,7 @@
         </table>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
     <script src="js/products.js"></script>
-    <script src="js/logout.js"></script>
 </body>
 </html>

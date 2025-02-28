@@ -4,23 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Categories</title>
-    <link rel="stylesheet" href="css/admin.css?version=0.1">
+    <link rel="stylesheet" href="css/admin.css?version=0.2">
 </head>
 <body>
     <div class="sidebar">
         <h2>Dashboard</h2>
         <ul>
-            <li><a href="orders.html">Orders</a></li>
+            <li><a href="admin.html">Orders</a></li>
             <li><a href="products.html">Products</a></li>
             <li><a href="categories.html">Categories</a></li>
             <li><a href="settings.html">Settings</a></li>
         </ul>
         <button id="logout-btn">Logout</button>
     </div>
+    
     <div class="main-content">
         <header>
             <h1>Categories</h1>
         </header>
+
+        <!-- Add Category Form -->
+        <div class="form-container">
+            <h2>Add New Category</h2>
+            <input type="text" id="category-name" placeholder="Category Name" required>
+            <input type="text" id="category-description" placeholder="Category Description" required>
+            <button id="add-category-btn">Add Category</button>
+        </div>
+
+        <!-- Categories Table -->
         <table>
             <thead>
                 <tr>

@@ -1,11 +1,38 @@
 // Initialize Supabase client
-console.log("Orders script is running!");
+console.log("Admin script is running!");
 
 const { createClient } = supabase;
 const supabaseClient = createClient(
     'https://svvmxxkcqexwjzckuhgr.supabase.co',
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN2dm14eGtjcWV4d2p6Y2t1aGdyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDA1ODAxMTAsImV4cCI6MjA1NjE1NjExMH0.kFg45Xd3W7GsDXpabYCO9PfmyLCDXNddl6dNK4H6UQ0'
 );
+
+// Function to load dashboard stats (Total Orders & Products)
+async function loadDashboardStats() {
+    try {
+        // Get total orders count
+        const { count: totalOrders, error: ordersError } = await supabaseClient
+            .from('orders')
+            .select('*', { count: 'exact' });
+
+        // Get total products count
+        const { count: totalProducts, error: productsError } = await supabaseClient
+            .from('products')
+            .select('*', { count: 'exact' });
+
+        if (ordersError || productsError) {
+            console.error("Error fetching totals:", ordersError || productsError);
+            return;
+        }
+
+        // Update dashboard stats
+        document.querySelector('.stat-box:nth-child(1) span').textContent = totalOrders || 0;
+        document.querySelector('.stat-box:nth-child(2) span').textContent = totalProducts || 0;
+
+    } catch (error) {
+        console.error("Error loading dashboard stats:", error);
+    }
+}
 
 // Function to load all orders
 async function loadOrders() {
@@ -59,24 +86,6 @@ async function updateOrderStatus(orderId, newStatus) {
     }
 }
 
-function checkLogin() {
-    if (localStorage.getItem("isAdminLoggedIn") !== "true") {
-        window.location.href = "login.html"; // Redirect to login if not logged in
-    }
-}
-
-function logout() {
-    localStorage.removeItem("isAdminLoggedIn"); // Clear session
-    window.location.href = "login.html"; // Redirect to login
-}
-
-document.addEventListener("DOMContentLoaded", function () {
-    checkLogin(); // Ensure login check happens on page load
-
-    // Attach event listener to logout button
-    document.getElementById("logout-btn").addEventListener("click", logout);
-});
-
 // Function to check if the user is logged in
 function checkLogin() {
     if (localStorage.getItem("isAdminLoggedIn") !== "true") {
@@ -90,8 +99,12 @@ function logout() {
     window.location.href = "login.html"; // Redirect to login page
 }
 
+// Event listeners
+document.addEventListener("DOMContentLoaded", function () {
+    checkLogin(); // Ensure login check happens on page load
+    loadOrders(); // Load orders on page load
+    loadDashboardStats(); // Load total orders & products
 
-
-
-// Load orders when the page loads
-document.addEventListener('DOMContentLoaded', loadOrders);
+    // Attach event listener to logout button
+    document.getElementById("logout-btn").addEventListener("click", logout);
+});
