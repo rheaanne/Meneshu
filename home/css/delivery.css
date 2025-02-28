@@ -136,7 +136,7 @@ body {
     width: 100px;
     height: 3px;
     text-align: center;
-    background-color: var(--primary-color);
+    background-color: var(--background-color);
 }
 
 /* Checkout Container */

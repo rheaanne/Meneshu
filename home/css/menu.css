@@ -178,7 +178,7 @@ body {
     left: 0;
     width: 60px;
     height: 3px;
-    background-color: var(--primary);
+    background-color: var(--white);
 }
 
 /* Grid Layout */
