@@ -226,18 +226,114 @@ td {
     border-bottom: 1px solid #ddd;
 }
 
-/* Logout Button */
-#logout-btn {
-    background: black;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-    margin-top: 10px;
-    transition: 0.3s;
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    height: 100vh;
 }
 
-#logout-btn:hover {
-    background: #333;
+.sidebar {
+    width: 250px;
+    background-color: #BA181B;
+    color: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
+
+.sidebar h2 {
+    text-align: center;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    padding: 10px;
+    border-bottom: 1px solid #fff;
+}
+
+.sidebar ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+.sidebar button {
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.main-content {
+    flex-grow: 1;
+    padding: 20px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: black;
+    color: white;
+}
+
+/* Settings page specific */
+.settings-container {
+    max-width: 500px;
+}
+
+.settings-container input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+}
+
+.settings-container button {
+    width: 100%;
+    padding: 10px;
+    background-color: #BA181B;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+
+/* Logout Button */
+.logout-btn {
+    background-color: #BA181B; /* Red */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 20px;
+    font-size: 16px;
+}
+
+.logout-btn:hover {
+    background-color: #8A1215; /* Darker Red */
+}
+

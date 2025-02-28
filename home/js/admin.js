@@ -70,6 +70,27 @@ function logout() {
     window.location.href = "login.html"; // Redirect to login
 }
 
+document.addEventListener("DOMContentLoaded", function () {
+    checkLogin(); // Ensure login check happens on page load
+
+    // Attach event listener to logout button
+    document.getElementById("logout-btn").addEventListener("click", logout);
+});
+
+// Function to check if the user is logged in
+function checkLogin() {
+    if (localStorage.getItem("isAdminLoggedIn") !== "true") {
+        window.location.href = "login.html"; // Redirect to login if not logged in
+    }
+}
+
+// Function to log out
+function logout() {
+    localStorage.removeItem("isAdminLoggedIn"); // Remove login session
+    window.location.href = "login.html"; // Redirect to login page
+}
+
+
 
 
 // Load orders when the page loads

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard</title>
+    <title>Categories</title>
     <link rel="stylesheet" href="css/admin.css?version=0.1">
 </head>
 <body>
@@ -19,32 +19,24 @@
     </div>
     <div class="main-content">
         <header>
-            <h1>Order Management</h1>
-            <div class="stats">
-                <div class="stat-box">Total Orders: <span>9</span></div>
-                <div class="stat-box">Total Products: <span>7897</span></div>
-            </div>
+            <h1>Categories</h1>
         </header>
         <table>
             <thead>
                 <tr>
-                    <th>Order ID</th>
-                    <th>Customer Name</th>
-                    <th>Phone</th>
-                    <th>Address</th>
-                    <th>Total Amount</th>
-                    <th>Status</th>
+                    <th>Category ID</th>
+                    <th>Name</th>
+                    <th>Description</th>
                     <th>Action</th>
                 </tr>
             </thead>
-            <tbody id="orders-table">
-                <!-- Dynamic Orders Here -->
+            <tbody id="categories-table">
+                <!-- Dynamic Categories Here -->
             </tbody>
         </table>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
-    <script src="js/admin.js"></script>
+    <script src="js/categories.js"></script>
     <script src="js/logout.js"></script>
 </body>
 </html>
