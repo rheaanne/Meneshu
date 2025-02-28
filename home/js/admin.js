@@ -4,25 +4,23 @@ console.log("Admin script is running!");
 const { createClient } = supabase;
 const supabaseClient = createClient(
     'https://svvmxxkcqexwjzckuhgr.supabase.co',
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN2dm14eGtjcWV4d2p6Y2t1aGdyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDA1ODAxMTAsImV4cCI6MjA1NjE1NjExMH0.kFg45Xd3W7GsDXpabYCO9PfmyLCDXNddl6dNK4H6UQ0'
+    'your-api-key-here'
 );
 
 async function loadDashboardStats() {
     try {
         console.log("Fetching total orders and products...");
 
-        // Fetch total orders count
-        let { data: ordersData, error: ordersError, count: totalOrders } = await supabaseClient
+        // Fetch total orders count from `orders` table
+        let { count: totalOrders, error: ordersError } = await supabaseClient
             .from('orders')
             .select('*', { count: 'exact', head: true });
 
-        // Fetch total products count
-        let { data: productsData, error: productsError, count: totalProducts } = await supabaseClient
-            .from('products')
+        // Fetch total products count from `order_items` table
+        let { count: totalProducts, error: productsError } = await supabaseClient
+            .from('order_items')
             .select('*', { count: 'exact', head: true });
 
-        console.log("Orders Data:", ordersData);
-        console.log("Products Data:", productsData);
         console.log("Total Orders:", totalOrders);
         console.log("Total Products:", totalProducts);
 
@@ -37,11 +35,6 @@ async function loadDashboardStats() {
         console.error("Error loading dashboard stats:", error);
     }
 }
-
-
-// Call function after page load
-document.addEventListener("DOMContentLoaded", loadDashboardStats);
-
 
 // Function to load all orders
 async function loadOrders() {
@@ -64,7 +57,7 @@ async function loadOrders() {
             <td>${order.name}</td>
             <td>${order.phone}</td>
             <td>${order.address}</td>
-            <td>₱${order.total_amount.toFixed(2)}</td>
+            <td>₱${order.total_amount ? order.total_amount.toFixed(2) : "0.00"}</td>
             <td class="${order.status.replace(/\s/g, '-')}">${order.status}</td>
             <td>
                 <select onchange="updateOrderStatus(${order.id}, this.value)">
