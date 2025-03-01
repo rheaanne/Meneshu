@@ -11,7 +11,7 @@ async function fetchReviews() {
     console.log("Fetching reviews...");
 
     try {
-        // Fetch data from 'feedback' table
+        // Fetch data from Supabase
         let { data: reviews, error } = await supabaseClient
             .from('feedback')
             .select('*');
@@ -21,13 +21,21 @@ async function fetchReviews() {
             return;
         }
 
+        // Log the fetched data
         console.log("Fetched reviews:", reviews);
 
-        // Get the correct table body element
+        // Handle empty reviews case
+        if (!reviews || reviews.length === 0) {
+            console.warn("No reviews found.");
+            document.getElementById("reviews-body").innerHTML = "<tr><td colspan='5'>No reviews available.</td></tr>";
+            return;
+        }
+
+        // Get the table body
         const reviewsBody = document.getElementById("reviews-body");
         reviewsBody.innerHTML = ""; // Clear previous content
 
-        // Populate the table with reviews
+        // Populate table with reviews
         reviews.forEach(review => {
             const row = document.createElement("tr");
 

@@ -8,46 +8,45 @@ const supabaseClient = createClient(
 );
 
 // Function to load dashboard statistics
+// Function to load dashboard statistics
 async function loadDashboardStats() {
     try {
-        console.log("Fetching total orders, products, and sales...");
+        console.log("Fetching total orders and total sales...");
 
         // Fetch total orders count from `orders`
         let { count: totalOrders, error: ordersError } = await supabaseClient
             .from('orders')
             .select('*', { count: 'exact', head: true });
 
-        // Fetch total unique products from `order_items`
-        let { data: totalProductsData, error: productsError } = await supabaseClient
-            .from('order_items')
-            .select('product_id');
+        if (ordersError) {
+            console.error("Orders Error:", ordersError);
+            totalOrders = 0; // Set default value if error occurs
+        }
 
         // Fetch total sales amount
         let { data: totalSalesData, error: salesError } = await supabaseClient
             .from('orders')
             .select('total_amount');
 
-        if (ordersError) console.error("Orders Error:", ordersError);
-        if (productsError) console.error("Products Error:", productsError);
-        if (salesError) console.error("Sales Error:", salesError);
+        if (salesError) {
+            console.error("Sales Error:", salesError);
+            totalSalesData = [];
+        }
 
         // Sum up total sales
-        let totalSales = totalSalesData?.reduce((sum, order) => sum + (order.total_amount || 0), 0) || 0;
+        let totalSales = totalSalesData.reduce((sum, order) => sum + (order.total_amount || 0), 0);
 
-        console.log("Total Orders:", totalOrders || 0);
-        console.log("Total Products:", totalProductsData?.length || 0);
-        console.log("Total Sales: ₱", totalSales.toFixed(2));
+        console.log("Total Orders:", totalOrders);
+        console.log("Total Sales: ", totalSales.toFixed(2));
 
         // Update UI
-        document.getElementById('total-orders').textContent = totalOrders ?? 0;
-        document.getElementById('total-products').textContent = totalProductsData?.length ?? 0;
+        document.getElementById('total-orders').textContent = totalOrders;
         document.getElementById('total-sales').textContent = `₱${totalSales.toFixed(2)}`;
 
     } catch (error) {
         console.error("Error loading dashboard stats:", error);
     }
 }
-
 
 // Function to load all orders with items
 async function loadOrders() {
