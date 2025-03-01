@@ -21,7 +21,7 @@
     
     <div class="main-content">
         <header>
-            <h1>Order Management</h1>
+            <h1>Customer Reviews</h1>
         </header>
 
         <div class="reviews-container">
@@ -33,14 +33,15 @@
                         <th>Rating</th>
                         <th>Comment</th>
                         <th>Date</th>
+                        <th>Action</th> <!-- Added for Delete Button -->
                     </tr>
                 </thead>
-                <tbody id="reviews-table">
+                <tbody id="reviews-body">
                     <!-- Reviews will be loaded dynamically -->
                 </tbody>
             </table>
         </div>
-    </div> <!-- Closed .main-content properly -->
+    </div>
 
     <script src="https://unpkg.com/@supabase/supabase-js"></script>
     <script src="js/reviews.js"></script> <!-- JS file for fetching reviews -->

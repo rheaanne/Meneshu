@@ -1,8 +1,7 @@
-// Initialize Supabase client correctly
 console.log("Admin script is running!");
 
-const { createClient } = supabase || window.supabase;
-const supabaseClient = createClient(
+// Ensure Supabase is correctly initialized
+const supabaseClient = supabase.createClient(
     'https://svvmxxkcqexwjzckuhgr.supabase.co',
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN2dm14eGtjcWV4d2p6Y2t1aGdyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDA1ODAxMTAsImV4cCI6MjA1NjE1NjExMH0.kFg45Xd3W7GsDXpabYCO9PfmyLCDXNddl6dNK4H6UQ0'
 );
@@ -17,15 +16,18 @@ async function fetchReviews() {
             .from('feedback')
             .select('*');
 
-        if (error) throw error;
+        if (error) {
+            console.error("Error fetching reviews:", error.message);
+            return;
+        }
 
         console.log("Fetched reviews:", reviews);
 
-        // Get the table body element
-        const reviewsBody = document.getElementById("reviews-table");
-        reviewsBody.innerHTML = ""; // Clear existing content
+        // Get the correct table body element
+        const reviewsBody = document.getElementById("reviews-body");
+        reviewsBody.innerHTML = ""; // Clear previous content
 
-        // Populate table with reviews
+        // Populate the table with reviews
         reviews.forEach(review => {
             const row = document.createElement("tr");
 
@@ -34,14 +36,14 @@ async function fetchReviews() {
                 <td>${review.rating} ⭐</td>
                 <td>${review.comment || "No comment"}</td>
                 <td>${new Date(review.created_at).toLocaleString()}</td>
-                <td><button onclick="deleteReview('${review.id}')">Delete</button></td>
+                <td><button onclick="deleteReview('${review.id}')">🗑 Delete</button></td>
             `;
 
             reviewsBody.appendChild(row);
         });
 
     } catch (error) {
-        console.error("Error fetching reviews:", error.message);
+        console.error("Error fetching reviews:", error);
     }
 }
 
@@ -55,14 +57,18 @@ async function deleteReview(id) {
             .delete()
             .eq("id", id);
 
-        if (error) throw error;
+        if (error) {
+            console.error("Error deleting review:", error.message);
+            alert("Failed to delete review.");
+            return;
+        }
 
         console.log(`Review ID ${id} deleted successfully.`);
 
         // Refresh the reviews list
         fetchReviews();
     } catch (error) {
-        console.error("Error deleting review:", error.message);
+        console.error("Error deleting review:", error);
     }
 }
 
