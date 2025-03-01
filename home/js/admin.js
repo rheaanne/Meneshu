@@ -8,7 +8,6 @@ const supabaseClient = createClient(
 );
 
 // Function to load dashboard statistics
-// Function to load dashboard statistics
 async function loadDashboardStats() {
     try {
         console.log("Fetching total orders and total sales...");
@@ -30,14 +29,14 @@ async function loadDashboardStats() {
 
         if (salesError) {
             console.error("Sales Error:", salesError);
-            totalSalesData = [];
+            totalSalesData = []; // Set default value if error occurs
         }
 
         // Sum up total sales
         let totalSales = totalSalesData.reduce((sum, order) => sum + (order.total_amount || 0), 0);
 
         console.log("Total Orders:", totalOrders);
-        console.log("Total Sales: ", totalSales.toFixed(2));
+        console.log("Total Sales: ₱", totalSales.toFixed(2));
 
         // Update UI
         document.getElementById('total-orders').textContent = totalOrders;
@@ -47,6 +46,7 @@ async function loadDashboardStats() {
         console.error("Error loading dashboard stats:", error);
     }
 }
+
 
 // Function to load all orders with items
 async function loadOrders() {
