@@ -24,7 +24,7 @@ async function loadDashboardStats() {
 
         // Fetch total sales amount
         let { data: totalSalesData, error: salesError } = await supabaseClient
-            .from('orders_item')
+            .from('orders')
             .select('SUM(total_amount)', { head: true });
 
         // Extract total sales
@@ -38,10 +38,10 @@ async function loadDashboardStats() {
         if (productsError) console.error("Products Error:", productsError);
         if (salesError) console.error("Sales Error:", salesError);
 
-        // Update UI
-        document.getElementById('total-orders').textContent = `Total Orders: ${totalOrders ?? 0}`;
-        document.getElementById('total-products').textContent = `Total Products: ${totalProductsData?.length ?? 0}`;
-        document.getElementById('total-sales').textContent = totalSales.toFixed(2); // Display total sales
+      // Update UI with correct values (no duplicated labels)
+        document.getElementById('total-orders').textContent = totalOrders ?? 0;
+        document.getElementById('total-products').textContent = totalProducts ?? 0;
+        document.getElementById('total-sales').textContent = totalSales.toFixed(2);
 
     } catch (error) {
         console.error("Error loading dashboard stats:", error);
