@@ -16,7 +16,6 @@ async function loadSettings() {
         return;
     }
 
-    // Populate fields with existing settings
     document.getElementById('admin-username').value = settings.username || '';
     document.getElementById('theme-selector').value = settings.theme || 'light';
 }
@@ -30,7 +29,7 @@ async function saveSettings() {
     let updateData = { username, theme };
 
     if (password.trim() !== '') {
-        updateData.password = password; // Only update password if entered
+        updateData.password = password;
     }
 
     const { error } = await supabaseClient
@@ -61,69 +60,63 @@ function applyTheme(theme) {
 // Function to check if the user is logged in
 function checkLogin() {
     if (localStorage.getItem("isAdminLoggedIn") !== "true") {
-        window.location.href = "login.html"; // Redirect to login if not logged in
+        window.location.href = "login.html";
     }
 }
 
 // Function to log out
 function logout() {
-    localStorage.removeItem("isAdminLoggedIn"); // Remove login session
-    window.location.href = "login.html"; // Redirect to login page
+    localStorage.removeItem("isAdminLoggedIn");
+    window.location.href = "login.html";
 }
 
-// Load settings when the page is ready
+// Ensure sections scroll smoothly without being covered by the header
 document.addEventListener('DOMContentLoaded', function () {
-    checkLogin(); // Ensure user is logged in
-    loadSettings(); // Load current settings
+    checkLogin();
+    loadSettings();
 
-    // Attach event listeners
     document.getElementById('save-settings').addEventListener('click', saveSettings);
     document.getElementById('logout-btn').addEventListener('click', logout);
 
-    // Apply saved theme
     const savedTheme = localStorage.getItem('theme') || 'light';
     applyTheme(savedTheme);
-});
 
-document.addEventListener('DOMContentLoaded', function () {
-    // Handle profile form submission
-    document.getElementById('profile-form').addEventListener('submit', function (event) {
-        event.preventDefault();
-        // Add your form submission logic here
-        alert('Profile updated successfully!');
+    // Smooth scrolling for sidebar links
+    document.querySelectorAll('.settings-sidebar a').forEach(link => {
+        link.addEventListener('click', function (event) {
+            event.preventDefault();
+
+            const targetId = this.getAttribute('href').substring(1);
+            const targetSection = document.getElementById(targetId);
+
+            if (targetSection) {
+                const headerHeight = document.querySelector('header').offsetHeight; // Get header height
+                const offsetTop = targetSection.offsetTop - headerHeight - 20; // Adjust offset to prevent overlap
+
+                window.scrollTo({
+                    top: offsetTop,
+                    behavior: 'smooth'
+                });
+
+                // Ensure only the clicked section is centered
+                document.querySelectorAll('.settings-card').forEach(section => {
+                    section.classList.remove('active');
+                });
+                targetSection.classList.add('active');
+            }
+        });
     });
 
-    // Handle password form submission
-    document.getElementById('password-form').addEventListener('submit', function (event) {
-        event.preventDefault();
-        // Add your form submission logic here
-        alert('Password changed successfully!');
+    // Handle form submissions
+    document.querySelectorAll('form').forEach(form => {
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+            alert(`${this.id.replace('-form', '')} updated successfully!`);
+        });
     });
 
-    // Handle notification preferences form submission
-    document.getElementById('notification-form').addEventListener('submit', function (event) {
-        event.preventDefault();
-        // Add your form submission logic here
-        alert('Notification preferences updated successfully!');
-    });
-
-    // Handle privacy settings form submission
-    document.getElementById('privacy-form').addEventListener('submit', function (event) {
-        event.preventDefault();
-        // Add your form submission logic here
-        alert('Privacy settings updated successfully!');
-    });
-
-    // Handle account settings form submission
-    document.getElementById('account-form').addEventListener('submit', function (event) {
-        event.preventDefault();
-        // Add your form submission logic here
-        alert('Account settings updated successfully!');
-    });
-
-    // Handle delete account button click
+    // Handle delete account
     document.getElementById('delete-account').addEventListener('click', function () {
-        // Add your delete account logic here
         if (confirm('Are you sure you want to delete your account? This action cannot be undone.')) {
             alert('Account deleted successfully!');
         }
