@@ -7,6 +7,7 @@ const supabaseClient = supabase.createClient(
 );
 
 // Function to fetch reviews
+// Function to fetch reviews
 async function fetchReviews() {
     console.log("Fetching reviews...");
 
