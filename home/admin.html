@@ -22,21 +22,27 @@
         <header>
             <h1>Order Management</h1>
             <div class="stats">
-                <div class="stat-box">Total Orders: <span>0</span></div>
-                <div class="stat-box">Total Products: <span>0</span></div>
+                <div class="stat-box">Total Orders: <span id="total-orders">0</span></div>
+                <div class="stat-box">Total Products: <span id="total-products">0</span></div>
+                <div class="stat-box">Total Sales: ₱<span id="total-sales">0.00</span></div> <!-- New Total Sales Box -->
             </div>
         </header>
         <table>
             <thead>
-                <tr>
-                    <th>Order ID</th>
-                    <th>Customer Name</th>
-                    <th>Phone</th>
-                    <th>Address</th>
-                    <th>Total Amount</th>
-                    <th>Status</th>
-                    <th>Action</th>
-                </tr>
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Customer Name</th>
+                        <th>Phone</th>
+                        <th>Address</th>
+                        <th>Item Name</th> <!-- New Column -->
+                        <th>Quantity</th>   <!-- New Column -->
+                        <th>Total Amount</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                
             </thead>
             <tbody id="orders-table">
                 <!-- Dynamic Orders Here -->
