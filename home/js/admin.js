@@ -24,7 +24,7 @@ async function loadDashboardStats() {
 
         // Fetch total sales amount
         let { data: totalSalesData, error: salesError } = await supabaseClient
-            .from('orders')
+            .from('orders_item')
             .select('SUM(total_amount)', { head: true });
 
         // Extract total sales
@@ -89,7 +89,7 @@ async function loadOrders() {
 
             // Generate item names and quantities as a list
             let itemsHTML = items.map(item => `
-                <div>${item.product_name} (x${item.quantity})</div>
+                <div>${item.item_name} (x${item.quantity})</div>
             `).join('');
 
             row.innerHTML = `
