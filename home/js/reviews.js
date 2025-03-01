@@ -4,29 +4,29 @@ console.log("Admin script is running!");
 const { createClient } = supabase || window.supabase;
 const supabaseClient = createClient(
     'https://svvmxxkcqexwjzckuhgr.supabase.co',
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN2dm14eGtjcWV4d2p6Y2t1aGdyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDA1ODAxMTAsImV4cCI6MjA1NjE1NjExMH0.kFg45Xd3W7GsDXpabYCO9PfmyLCDXNddl6dNK4H6UQ0' 
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN2dm14eGtjcWV4d2p6Y2t1aGdyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDA1ODAxMTAsImV4cCI6MjA1NjE1NjExMH0.kFg45Xd3W7GsDXpabYCO9PfmyLCDXNddl6dNK4H6UQ0'
 );
+
 // Function to fetch reviews
 async function fetchReviews() {
     console.log("Fetching reviews...");
 
     try {
         // Fetch data from 'feedback' table
-        const { data, error } = await supabaseClient
-            .from("feedback") // Ensure this table exists in Supabase
-            .select("id, order_id, rating, comment, created_at") // Explicitly select columns
-            .order("created_at", { ascending: false });
+        let { data: reviews, error } = await supabaseClient
+            .from('feedback')
+            .select('*');
 
         if (error) throw error;
 
-        console.log("Fetched reviews:", data);
+        console.log("Fetched reviews:", reviews);
 
         // Get the table body element
-        const reviewsBody = document.getElementById("reviews-body");
+        const reviewsBody = document.getElementById("reviews-table");
         reviewsBody.innerHTML = ""; // Clear existing content
 
         // Populate table with reviews
-        data.forEach(review => {
+        reviews.forEach(review => {
             const row = document.createElement("tr");
 
             row.innerHTML = `

@@ -20,33 +20,34 @@ async function loadDashboardStats() {
         // Fetch total unique products from `order_items`
         let { data: totalProductsData, error: productsError } = await supabaseClient
             .from('order_items')
-            .select('product_id', { count: 'exact' });
+            .select('product_id');
 
         // Fetch total sales amount
         let { data: totalSalesData, error: salesError } = await supabaseClient
             .from('orders')
-            .select('SUM(total_amount)', { head: true });
-
-        // Extract total sales
-        let totalSales = totalSalesData?.[0]?.sum || 0;
-
-        console.log("Total Orders:", totalOrders || 0);
-        console.log("Total Products:", totalProductsData?.length || 0);
-        console.log("Total Sales: ₱", totalSales.toFixed(2));
+            .select('total_amount');
 
         if (ordersError) console.error("Orders Error:", ordersError);
         if (productsError) console.error("Products Error:", productsError);
         if (salesError) console.error("Sales Error:", salesError);
 
-      // Update UI with correct values (no duplicated labels)
+        // Sum up total sales
+        let totalSales = totalSalesData?.reduce((sum, order) => sum + (order.total_amount || 0), 0) || 0;
+
+        console.log("Total Orders:", totalOrders || 0);
+        console.log("Total Products:", totalProductsData?.length || 0);
+        console.log("Total Sales: ₱", totalSales.toFixed(2));
+
+        // Update UI
         document.getElementById('total-orders').textContent = totalOrders ?? 0;
-        document.getElementById('total-products').textContent = totalProducts ?? 0;
-        document.getElementById('total-sales').textContent = totalSales.toFixed(2);
+        document.getElementById('total-products').textContent = totalProductsData?.length ?? 0;
+        document.getElementById('total-sales').textContent = `₱${totalSales.toFixed(2)}`;
 
     } catch (error) {
         console.error("Error loading dashboard stats:", error);
     }
 }
+
 
 // Function to load all orders with items
 async function loadOrders() {
