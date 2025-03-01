@@ -494,3 +494,61 @@ input, select {
     background-color: #8A1215; /* Darker Red */
 }
 
+/* Internal Settings Sidebar */
+.settings-container {
+    display: flex;
+}
+
+.settings-sidebar {
+    width: 200px;
+    margin-top: 150px; /* Adjust based on the header height */
+    background: #f4f4f4;
+    padding: 20px;
+    margin-left: 50px;
+    border-right: 1px solid #ddd;
+    position: fixed;
+    top: 0;
+    left: 250px; /* Adjust based on the main sidebar width */
+    height: 100vh;
+    overflow-y: auto; /* Allow internal sidebar to scroll if content overflows */
+}
+
+.settings-sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.settings-sidebar ul li {
+    margin: 10px 0;
+}
+
+.settings-sidebar ul li a {
+    color: #333;
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.settings-sidebar ul li a:hover {
+    background: #ddd;
+}
+
+.settings-form {
+    flex: 1;
+    padding: 20px;
+    margin-left: 200px; /* Adjust based on the internal sidebar width */
+    overflow-y: auto; /* Allow settings form to scroll if content overflows */
+    height: 100vh; /* Ensure settings form takes full height */
+}
+
+/* Settings Card */
+.settings-card {
+    background: white;
+    padding: 20px;
+    margin-left: 60px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}

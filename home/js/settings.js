@@ -84,3 +84,48 @@ document.addEventListener('DOMContentLoaded', function () {
     const savedTheme = localStorage.getItem('theme') || 'light';
     applyTheme(savedTheme);
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+    // Handle profile form submission
+    document.getElementById('profile-form').addEventListener('submit', function (event) {
+        event.preventDefault();
+        // Add your form submission logic here
+        alert('Profile updated successfully!');
+    });
+
+    // Handle password form submission
+    document.getElementById('password-form').addEventListener('submit', function (event) {
+        event.preventDefault();
+        // Add your form submission logic here
+        alert('Password changed successfully!');
+    });
+
+    // Handle notification preferences form submission
+    document.getElementById('notification-form').addEventListener('submit', function (event) {
+        event.preventDefault();
+        // Add your form submission logic here
+        alert('Notification preferences updated successfully!');
+    });
+
+    // Handle privacy settings form submission
+    document.getElementById('privacy-form').addEventListener('submit', function (event) {
+        event.preventDefault();
+        // Add your form submission logic here
+        alert('Privacy settings updated successfully!');
+    });
+
+    // Handle account settings form submission
+    document.getElementById('account-form').addEventListener('submit', function (event) {
+        event.preventDefault();
+        // Add your form submission logic here
+        alert('Account settings updated successfully!');
+    });
+
+    // Handle delete account button click
+    document.getElementById('delete-account').addEventListener('click', function () {
+        // Add your delete account logic here
+        if (confirm('Are you sure you want to delete your account? This action cannot be undone.')) {
+            alert('Account deleted successfully!');
+        }
+    });
+});

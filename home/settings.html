@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Settings</title>
-    <link rel="stylesheet" href="css/admin.css?version=0.2">
+    <link rel="stylesheet" href="css/admin.css?version=0.3">
 </head>
 <body>
     <div class="sidebar">
@@ -13,34 +13,136 @@
             <li><a href="admin.html">Orders</a></li>
             <li><a href="products.html">Products</a></li>
             <li><a href="categories.html">Categories</a></li>
-            <li><a href="settings.html" class="active">Settings</a></li>
+            <li><a href="settings.html">Settings</a></li>
         </ul>
         <button id="logout-btn">Logout</button>
     </div>
-
     <div class="main-content">
         <header>
             <h1>Settings</h1>
         </header>
-        
         <div class="settings-container">
-            <h2>Admin Settings</h2>
-            <label for="admin-username">Username:</label>
-            <input type="text" id="admin-username" placeholder="Enter new username">
-            
-            <label for="admin-password">New Password:</label>
-            <input type="password" id="admin-password" placeholder="Enter new password">
-            
-            <label for="theme-selector">Theme:</label>
-            <select id="theme-selector">
-                <option value="light">Light</option>
-                <option value="dark">Dark</option>
-            </select>
+            <div class="settings-sidebar">
+                <ul>
+                    <li><a href="#user-profile">User Profile</a></li>
+                    <li><a href="#change-password">Change Password</a></li>
+                    <li><a href="#notification-preferences">Notification Preferences</a></li>
+                    <li><a href="#privacy-settings">Privacy Settings</a></li>
+                    <li><a href="#account-settings">Account Settings</a></li>
+                </ul>
+            </div>
+            <div class="settings-form">
+                <!-- User Profile Section -->
+                <section id="user-profile" class="settings-card">
+                    <h2>User Profile</h2>
+                    <p>Update your personal information such as username, email, and a brief description about yourself.</p>
+                    <form id="profile-form" action="#" method="post">
+                        <div class="form-group">
+                            <label for="username">Username:</label>
+                            <input type="text" id="username" name="username" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Description:</label>
+                            <textarea id="description" name="description" rows="4" required></textarea>
+                        </div>
+                        <button type="submit">Update Profile</button>
+                    </form>
+                </section>
 
-            <button id="save-settings">Save Changes</button>
+                <!-- Change Password Section -->
+                <section id="change-password" class="settings-card">
+                    <h2>Change Password</h2>
+                    <p>Change your current password to ensure your account remains secure.</p>
+                    <form id="password-form" action="#" method="post">
+                        <div class="form-group">
+                            <label for="current-password">Current Password:</label>
+                            <input type="password" id="current-password" name="current-password" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="new-password">New Password:</label>
+                            <input type="password" id="new-password" name="new-password" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirm-password">Confirm New Password:</label>
+                            <input type="password" id="confirm-password" name="confirm-password" required>
+                        </div>
+                        <button type="submit">Change Password</button>
+                    </form>
+                </section>
+
+                <!-- Notification Preferences Section -->
+                <section id="notification-preferences" class="settings-card">
+                    <h2>Notification Preferences</h2>
+                    <p>Manage your notification preferences for email and SMS alerts.</p>
+                    <form id="notification-form" action="#" method="post">
+                        <div class="form-group">
+                            <label for="email-notifications">Email Notifications:</label>
+                            <select id="email-notifications" name="email-notifications">
+                                <option value="enabled">Enabled</option>
+                                <option value="disabled">Disabled</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="sms-notifications">SMS Notifications:</label>
+                            <select id="sms-notifications" name="sms-notifications">
+                                <option value="enabled">Enabled</option>
+                                <option value="disabled">Disabled</option>
+                            </select>
+                        </div>
+                        <button type="submit">Update Preferences</button>
+                    </form>
+                </section>
+
+                <!-- Privacy Settings Section -->
+                <section id="privacy-settings" class="settings-card">
+                    <h2>Privacy Settings</h2>
+                    <p>Control your privacy settings, including profile visibility and data sharing preferences.</p>
+                    <form id="privacy-form" action="#" method="post">
+                        <div class="form-group">
+                            <label for="profile-visibility">Profile Visibility:</label>
+                            <select id="profile-visibility" name="profile-visibility">
+                                <option value="public">Public</option>
+                                <option value="private">Private</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="data-sharing">Data Sharing:</label>
+                            <select id="data-sharing" name="data-sharing">
+                                <option value="enabled">Enabled</option>
+                                <option value="disabled">Disabled</option>
+                            </select>
+                        </div>
+                        <button type="submit">Update Privacy Settings</button>
+                    </form>
+                </section>
+
+                <!-- Account Settings Section -->
+                <section id="account-settings" class="settings-card">
+                    <h2>Account Settings</h2>
+                    <p>Manage your account status and delete your account if necessary.</p>
+                    <form id="account-form" action="#" method="post">
+                        <div class="form-group">
+                            <label for="account-status">Account Status:</label>
+                            <select id="account-status" name="account-status">
+                                <option value="active">Active</option>
+                                <option value="inactive">Inactive</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="delete-account">Delete Account:</label>
+                            <button type="button" id="delete-account" name="delete-account">Delete Account</button>
+                        </div>
+                    </form>
+                </section>
+            </div>
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
     <script src="js/settings.js"></script>
     <script src="js/logout.js"></script>
 </body>
