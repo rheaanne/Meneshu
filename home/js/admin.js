@@ -99,7 +99,7 @@ async function loadOrders() {
                 <td>${itemsHTML || "No Items"}</td>
                 <td>${items.reduce((sum, item) => sum + item.quantity, 0)}</td>
                 <td>₱${order.total_amount ? order.total_amount.toFixed(2) : "0.00"}</td>
-                <td class="${order.status.replace(/\s/g, '-')}">${order.status}</td>
+                <td class="${order.status.replace(/\s/g, '-').toLowerCase()}">${order.status}</td>
                 <td>
                     <select class="order-status" data-id="${order.id}">
                         <option value="Pending" ${order.status === 'Pending' ? 'selected' : ''}>Pending</option>
