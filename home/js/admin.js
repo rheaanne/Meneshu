@@ -107,9 +107,6 @@ async function loadOrders() {
                         <option value="Delivered" ${order.status === 'Delivered' ? 'selected' : ''}>Delivered</option>  
                     </select>
                 </td>
-                <td>
-                    <button class="delete-btn" data-id="${order.id}">Delete</button>
-                </td>
             `;
 
             ordersTable.appendChild(row);
@@ -121,20 +118,10 @@ async function loadOrders() {
             });
         });
 
-        document.querySelectorAll(".delete-btn").forEach(button => {
-            button.addEventListener("click", async function () {
-                const orderId = this.dataset.id;
-                if (confirm("Are you sure you want to delete this order?")) {
-                    await deleteOrder(orderId);
-                }
-            });
-        });
-
     } catch (error) {
         console.error('Error loading orders:', error);
     }
 }
-
 
 // Update order status
 async function updateOrderStatus(orderId, newStatus) {
@@ -154,31 +141,6 @@ async function updateOrderStatus(orderId, newStatus) {
     } catch (error) {
         console.error('Error updating status:', error);
         alert('Failed to update status');
-    }
-}
-
-// Delete order
-async function deleteOrder(orderId) {
-    try {
-        console.log("Deleting order with ID:", orderId);
-
-        const { error } = await supabaseClient
-            .from('orders')
-            .delete()
-            .eq('id', orderId);
-
-        if (error) {
-            console.error("Delete Error:", error);
-            alert("Failed to delete order: " + error.message);
-            return;
-        }
-
-        alert("Order deleted successfully");
-        loadOrders();
-
-    } catch (error) {
-        console.error("Unexpected error deleting order:", error);
-        alert("An unexpected error occurred while deleting the order.");
     }
 }
 
