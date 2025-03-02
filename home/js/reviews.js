@@ -60,30 +60,26 @@ async function fetchReviews() {
     }
 }
 
-// Function to delete a review
 async function deleteReview(id) {
     console.log(`Deleting review ID: ${id}`);
 
     try {
-        const { error } = await supabaseClient
+        const { data, error } = await supabaseClient
             .from("feedback")
             .delete()
             .eq("id", id);
 
         if (error) {
             console.error("Error deleting review:", error.message, error);
-            alert("Failed to delete review.");
+            alert(`Failed to delete review: ${error.message}`);
             return;
         }
 
-        console.log(`Review ID ${id} deleted successfully.`);
+        console.log(`Review ID ${id} deleted successfully.`, data);
 
         // Refresh the reviews list
-        fetchReviews();
+        await fetchReviews();
     } catch (error) {
         console.error("Unexpected error deleting review:", error);
     }
 }
-
-// Fetch reviews when the page loads
-document.addEventListener("DOMContentLoaded", fetchReviews);
