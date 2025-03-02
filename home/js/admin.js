@@ -102,10 +102,10 @@ async function loadOrders() {
                 <td class="${order.status.replace(/\s/g, '-')}">${order.status}</td>
                 <td>
                     <select class="order-status" data-id="${order.id}">
-                        <option value="Pending" ${order.status === 'pending' ? 'selected' : ''}>Pending</option>
-                        <option value="Preparing" ${order.status === 'preparing' ? 'selected' : ''}>Preparing</option>
-                        <option value="Out for Delivery" ${order.status === 'out for delivery' ? 'selected' : ''}>Out for Delivery</option>
-                        <option value="Delivered" ${order.status === 'delivered' ? 'selected' : ''}>Delivered</option>  
+                        <option value="Pending" ${order.status === 'Pending' ? 'selected' : ''}>Pending</option>
+                        <option value="Preparing" ${order.status === 'Preparing' ? 'selected' : ''}>Preparing</option>
+                        <option value="Out for Delivery" ${order.status === 'Out for Delivery' ? 'selected' : ''}>Out for Delivery</option>
+                        <option value="Delivered" ${order.status === 'Delivered' ? 'selected' : ''}>Delivered</option>  
                     </select>
                 </td>
                 <td>
