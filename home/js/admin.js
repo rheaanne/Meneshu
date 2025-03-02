@@ -67,10 +67,11 @@ async function loadOrders() {
         if (itemsError) throw itemsError;
         console.log("Order Items Data:", orderItems);
 
+        // 🔥 Fix: Map order items by order_id
         const orderItemsMap = {};
         orderItems.forEach(item => {
-            if (!orderItemsMap[item.id]) orderItemsMap[item.id] = [];
-            orderItemsMap[item.id].push(item);
+            if (!orderItemsMap[item.order_id]) orderItemsMap[item.order_id] = [];
+            orderItemsMap[item.order_id].push(item);
         });
 
         const ordersTable = document.getElementById('orders-table');
@@ -82,17 +83,19 @@ async function loadOrders() {
         ordersTable.innerHTML = '';
 
         orders.forEach(order => {
-            const row = document.createElement('tr');
             const items = orderItemsMap[order.id] || [];
-            let itemsHTML = items.map(item => `<div>${item.item_name} (x${item.quantity})</div>`).join('');
+            let itemsHTML = items.length > 0
+                ? items.map(item => `<div>${item.item_name} (x${item.quantity})</div>`).join('')
+                : "<div>No Items</div>";
 
+            const row = document.createElement('tr');
             row.innerHTML = `
                 <td>${order.id}</td>
                 <td>${order.order_date || "N/A"}</td>
                 <td>${order.name || "N/A"}</td>
                 <td>${order.phone || "N/A"}</td>
                 <td>${order.address || "N/A"}</td>
-                <td>${itemsHTML || "No Items"}</td>
+                <td>${itemsHTML}</td>
                 <td>${items.reduce((sum, item) => sum + item.quantity, 0)}</td>
                 <td>₱${order.total_amount ? order.total_amount.toFixed(2) : "0.00"}</td>
                 <td class="${order.status.toLowerCase().replace(/\s/g, '-')}">${order.status}</td>
@@ -131,6 +134,7 @@ async function loadOrders() {
         console.error('Error loading orders:', error);
     }
 }
+
 
 // Update order status
 async function updateOrderStatus(orderId, newStatus) {
