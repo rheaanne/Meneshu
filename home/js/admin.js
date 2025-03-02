@@ -92,7 +92,7 @@ async function loadOrders() {
 
             row.innerHTML = `
                 <td>${order.id}</td>
-                <td>${order.order_date || "N/A"}</td> <!-- Fixed -->
+                <td>${order.order_date || "N/A"}</td>
                 <td>${order.name || "N/A"}</td>
                 <td>${order.phone || "N/A"}</td>
                 <td>${order.address || "N/A"}</td>
@@ -101,18 +101,36 @@ async function loadOrders() {
                 <td>₱${order.total_amount ? order.total_amount.toFixed(2) : "0.00"}</td>
                 <td class="${order.status.replace(/\s/g, '-')}">${order.status}</td>
                 <td>
-                    <select onchange="updateOrderStatus(${order.id}, this.value)">
+                    <select class="order-status" data-id="${order.id}">
                         <option value="pending" ${order.status === 'pending' ? 'selected' : ''}>Pending</option>
                         <option value="preparing" ${order.status === 'preparing' ? 'selected' : ''}>Preparing</option>
                         <option value="out for delivery" ${order.status === 'out for delivery' ? 'selected' : ''}>Out for Delivery</option>
-                        <option value="delivered" ${order.status === 'delivered' ? 'selected' : ''}>Delivered</option>
+                        <option value="delivered" ${order.status === 'delivered' ? 'selected' : ''}>Delivered</option>  
                     </select>
                 </td>
                 <td>
-                    <button onclick="deleteOrder(${order.id})">Delete</button> <!-- Delete button added -->
+                    <button class="delete-btn" data-id="${order.id}">Delete</button>
                 </td>
             `;
+
             ordersTable.appendChild(row);
+        });
+
+        // Attach event listeners to status update dropdowns
+        document.querySelectorAll(".order-status").forEach(select => {
+            select.addEventListener("change", async function () {
+                await updateOrderStatus(this.dataset.id, this.value);
+            });
+        });
+
+        // Attach event listeners to delete buttons
+        document.querySelectorAll(".delete-btn").forEach(button => {
+            button.addEventListener("click", async function () {
+                const orderId = this.dataset.id;
+                if (confirm("Are you sure you want to delete this order?")) {
+                    await deleteOrder(orderId);
+                }
+            });
         });
 
     } catch (error) {
@@ -123,6 +141,8 @@ async function loadOrders() {
 // Update order status
 async function updateOrderStatus(orderId, newStatus) {
     try {
+        console.log("Updating order ID:", orderId, "to status:", newStatus);
+        
         const { error } = await supabaseClient
             .from('orders')
             .update({ status: newStatus })
@@ -142,40 +162,24 @@ async function updateOrderStatus(orderId, newStatus) {
 // Delete order
 async function deleteOrder(orderId) {
     try {
+        console.log("Deleting order with ID:", orderId);
+
         const { error } = await supabaseClient
             .from('orders')
             .delete()
             .eq('id', orderId);
 
-        if (error) throw error;
+        if (error) {
+            console.error("Delete Error:", error);
+            alert("Failed to delete order: " + error.message);
+            return;
+        }
 
-        alert('Order deleted successfully');
-        loadOrders(); // Refresh orders
+        alert("Order deleted successfully");
+        loadOrders(); // Refresh order list
 
     } catch (error) {
-        console.error('Error deleting order:', error);
-        alert('Failed to delete order');
+        console.error("Unexpected error deleting order:", error);
+        alert("An unexpected error occurred while deleting the order.");
     }
 }
-
-// Check if the user is logged in
-function checkLogin() {
-    if (localStorage.getItem("isAdminLoggedIn") !== "true") {
-        window.location.href = "login.html"; // Redirect if not logged in
-    }
-}
-
-// Log out function
-function logout() {
-    localStorage.removeItem("isAdminLoggedIn"); // Remove session
-    window.location.href = "login.html"; // Redirect to login page
-}
-
-// Event listeners
-document.addEventListener("DOMContentLoaded", function () {
-    checkLogin();
-    loadOrders();
-    loadDashboardStats();
-
-    document.getElementById("logout-btn").addEventListener("click", logout);
-});
