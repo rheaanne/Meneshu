@@ -92,7 +92,7 @@ async function loadOrders() {
 
             row.innerHTML = `
                 <td>${order.id}</td>
-                <td>${order.order_date || "N/A"}</td>
+                <td>${order.order_date || "N/A"}</td> <!-- Fixed -->
                 <td>${order.name || "N/A"}</td>
                 <td>${order.phone || "N/A"}</td>
                 <td>${order.address || "N/A"}</td>
@@ -183,3 +183,25 @@ async function deleteOrder(orderId) {
         alert("An unexpected error occurred while deleting the order.");
     }
 }
+
+// Check if the user is logged in
+function checkLogin() {
+    if (localStorage.getItem("isAdminLoggedIn") !== "true") {
+        window.location.href = "login.html"; // Redirect if not logged in
+    }
+}
+
+// Log out function
+function logout() {
+    localStorage.removeItem("isAdminLoggedIn"); // Remove session
+    window.location.href = "login.html"; // Redirect to login page
+}
+
+// Event listeners
+document.addEventListener("DOMContentLoaded", function () {
+    checkLogin();
+    loadOrders();
+    loadDashboardStats();
+
+    document.getElementById("logout-btn").addEventListener("click", logout);
+});
