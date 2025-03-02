@@ -6,24 +6,27 @@ const supabaseClient = supabase.createClient(
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN2dm14eGtjcWV4d2p6Y2t1aGdyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDA1ODAxMTAsImV4cCI6MjA1NjE1NjExMH0.kFg45Xd3W7GsDXpabYCO9PfmyLCDXNddl6dNK4H6UQ0'
 );
 
+// Fetch reviews on page load
+document.addEventListener("DOMContentLoaded", fetchReviews);
+
 // Function to fetch reviews
 async function fetchReviews() {
-    console.log("Attempting to fetch reviews...");
+    console.log("Fetching reviews...");
 
     try {
         // Fetch data from Supabase
         let { data: reviews, error } = await supabaseClient
-            .from('feedback')
+            .from("feedback")
             .select('*');
 
-        // Log full API response for debugging
-        console.log("Fetch complete. Data:", reviews);
+        console.log("Raw Supabase response:", reviews);
+
         if (error) {
             console.error("Error fetching reviews:", error.message, error);
             return;
         }
 
-        // Check if reviews-body exists
+        // Get the reviews table body
         const reviewsBody = document.getElementById("reviews-body");
         if (!reviewsBody) {
             console.error("Element with ID 'reviews-body' not found.");
@@ -55,27 +58,29 @@ async function fetchReviews() {
             reviewsBody.appendChild(row);
         });
 
+        console.log("Reviews displayed successfully.");
     } catch (error) {
         console.error("Unexpected error fetching reviews:", error);
     }
 }
 
+// Function to delete a review
 async function deleteReview(id) {
     console.log(`Deleting review ID: ${id}`);
 
     try {
-        const { data, error } = await supabaseClient
+        const { error } = await supabaseClient
             .from("feedback")
             .delete()
             .eq("id", id);
 
         if (error) {
             console.error("Error deleting review:", error.message, error);
-            alert(`Failed to delete review: ${error.message}`);
+            alert("Failed to delete review.");
             return;
         }
 
-        console.log(`Review ID ${id} deleted successfully.`, data);
+        console.log(`Review ID ${id} deleted successfully.`);
 
         // Refresh the reviews list
         await fetchReviews();
