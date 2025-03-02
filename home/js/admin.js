@@ -1,6 +1,6 @@
-// Initialize Supabase client
 console.log("Admin script is running!");
 
+// Ensure Supabase is correctly initialized
 const supabaseClient = supabase.createClient(
     'https://svvmxxkcqexwjzckuhgr.supabase.co',
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN2dm14eGtjcWV4d2p6Y2t1aGdyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDA1ODAxMTAsImV4cCI6MjA1NjE1NjExMH0.kFg45Xd3W7GsDXpabYCO9PfmyLCDXNddl6dNK4H6UQ0'
@@ -69,8 +69,8 @@ async function loadOrders() {
 
         const orderItemsMap = {};
         orderItems.forEach(item => {
-            if (!orderItemsMap[item.order_id]) orderItemsMap[item.order_id] = [];
-            orderItemsMap[item.order_id].push(item);
+            if (!orderItemsMap[item.id]) orderItemsMap[item.id] = [];
+            orderItemsMap[item.id].push(item);
         });
 
         const ordersTable = document.getElementById('orders-table');
@@ -95,13 +95,13 @@ async function loadOrders() {
                 <td>${itemsHTML || "No Items"}</td>
                 <td>${items.reduce((sum, item) => sum + item.quantity, 0)}</td>
                 <td>₱${order.total_amount ? order.total_amount.toFixed(2) : "0.00"}</td>
-                <td class="${order.status.replace(/\s/g, '-')}">${order.status}</td>
+                <td class="${order.status.toLowerCase().replace(/\s/g, '-')}">${order.status}</td>
                 <td>
                     <select class="order-status" data-id="${order.id}">
-                        <option value="pending" ${order.status === 'pending' ? 'selected' : ''}>Pending</option>
-                        <option value="preparing" ${order.status === 'preparing' ? 'selected' : ''}>Preparing</option>
-                        <option value="out for delivery" ${order.status === 'out for delivery' ? 'selected' : ''}>Out for Delivery</option>
-                        <option value="delivered" ${order.status === 'delivered' ? 'selected' : ''}>Delivered</option>  
+                        <option value="Pending" ${order.status === 'Pending' ? 'selected' : ''}>Pending</option>
+                        <option value="Preparing" ${order.status === 'Preparing' ? 'selected' : ''}>Preparing</option>
+                        <option value="Out for Delivery" ${order.status === 'Out for Delivery' ? 'selected' : ''}>Out for Delivery</option>
+                        <option value="Delivered" ${order.status === 'Delivered' ? 'selected' : ''}>Delivered</option>  
                     </select>
                 </td>
                 <td>
