@@ -1,38 +1,37 @@
-// Initialize Supabase client correctly
+// Initialize Supabase client
 console.log("Admin script is running!");
 
-const { createClient } = supabase || window.supabase;
-const supabaseClient = createClient(
+const supabaseClient = supabase.createClient(
     'https://svvmxxkcqexwjzckuhgr.supabase.co',
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN2dm14eGtjcWV4d2p6Y2t1aGdyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDA1ODAxMTAsImV4cCI6MjA1NjE1NjExMH0.kFg45Xd3W7GsDXpabYCO9PfmyLCDXNddl6dNK4H6UQ0' 
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN2dm14eGtjcWV4d2p6Y2t1aGdyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDA1ODAxMTAsImV4cCI6MjA1NjE1NjExMH0.kFg45Xd3W7GsDXpabYCO9PfmyLCDXNddl6dNK4H6UQ0'
 );
 
-// Function to load dashboard statistics
+// Load dashboard stats
 async function loadDashboardStats() {
     try {
         console.log("Fetching total orders and total sales...");
 
-        // Fetch total orders count from `orders`
+        // Fetch total orders
         let { count: totalOrders, error: ordersError } = await supabaseClient
             .from('orders')
-            .select('*', { count: 'exact', head: true });
+            .select('*', { count: 'exact' });
 
         if (ordersError) {
             console.error("Orders Error:", ordersError);
-            totalOrders = 0; // Set default value if error occurs
+            totalOrders = 0;
         }
 
-        // Fetch total sales amount
+        // Fetch total sales
         let { data: totalSalesData, error: salesError } = await supabaseClient
             .from('orders')
             .select('total_amount');
 
         if (salesError) {
             console.error("Sales Error:", salesError);
-            totalSalesData = []; // Set default value if error occurs
+            totalSalesData = [];
         }
 
-        // Sum up total sales
+        // Calculate total sales
         let totalSales = totalSalesData.reduce((sum, order) => sum + (order.total_amount || 0), 0);
 
         console.log("Total Orders:", totalOrders);
@@ -47,27 +46,26 @@ async function loadDashboardStats() {
     }
 }
 
-
-// Function to load all orders with items
+// Load orders from Supabase
 async function loadOrders() {
     try {
-        console.log("Fetching orders and order items...");
+        console.log("Fetching orders...");
 
-        // Fetch orders from the 'orders' table
+        // Fetch orders
         const { data: orders, error: ordersError } = await supabaseClient
             .from('orders')
             .select('*');
 
         if (ordersError) throw ordersError;
 
-        // Fetch order items from the 'order_items' table
+        // Fetch order items
         const { data: orderItems, error: itemsError } = await supabaseClient
             .from('order_items')
             .select('*');
 
         if (itemsError) throw itemsError;
 
-        // Create a map of order_id -> items (to group items under each order)
+        // Group order items by order_id
         const orderItemsMap = {};
         orderItems.forEach(item => {
             if (!orderItemsMap[item.order_id]) {
@@ -76,24 +74,25 @@ async function loadOrders() {
             orderItemsMap[item.order_id].push(item);
         });
 
-        // Select the orders table in the HTML
+        // Get orders table element
         const ordersTable = document.getElementById('orders-table');
-        ordersTable.innerHTML = ''; // Clear existing rows
+        ordersTable.innerHTML = ''; // Clear previous data
 
-        // Loop through each order and display its details
+        // Loop through each order
         orders.forEach(order => {
             const row = document.createElement('tr');
 
-            // Fetch the items for this specific order
+            // Get items for this order
             const items = orderItemsMap[order.id] || [];
 
-            // Generate item names and quantities as a list
+            // Generate item names and quantities
             let itemsHTML = items.map(item => `
                 <div>${item.item_name} (x${item.quantity})</div>
             `).join('');
 
             row.innerHTML = `
                 <td>${order.id}</td>
+                <td>${order.order_date || "N/A"}</td> <!-- Fixed -->
                 <td>${order.name || "N/A"}</td>
                 <td>${order.phone || "N/A"}</td>
                 <td>${order.address || "N/A"}</td>
@@ -109,6 +108,9 @@ async function loadOrders() {
                         <option value="delivered" ${order.status === 'delivered' ? 'selected' : ''}>Delivered</option>
                     </select>
                 </td>
+                <td>
+                    <button onclick="deleteOrder(${order.id})">Delete</button> <!-- Delete button added -->
+                </td>
             `;
             ordersTable.appendChild(row);
         });
@@ -118,7 +120,7 @@ async function loadOrders() {
     }
 }
 
-// Function to update order status
+// Update order status
 async function updateOrderStatus(orderId, newStatus) {
     try {
         const { error } = await supabaseClient
@@ -129,7 +131,7 @@ async function updateOrderStatus(orderId, newStatus) {
         if (error) throw error;
 
         alert('Order status updated successfully');
-        loadOrders(); // Refresh orders list
+        loadOrders(); // Refresh orders
 
     } catch (error) {
         console.error('Error updating status:', error);
@@ -137,25 +139,43 @@ async function updateOrderStatus(orderId, newStatus) {
     }
 }
 
-// Function to check if the user is logged in
-function checkLogin() {
-    if (localStorage.getItem("isAdminLoggedIn") !== "true") {
-        window.location.href = "login.html"; // Redirect to login if not logged in
+// Delete order
+async function deleteOrder(orderId) {
+    try {
+        const { error } = await supabaseClient
+            .from('orders')
+            .delete()
+            .eq('id', orderId);
+
+        if (error) throw error;
+
+        alert('Order deleted successfully');
+        loadOrders(); // Refresh orders
+
+    } catch (error) {
+        console.error('Error deleting order:', error);
+        alert('Failed to delete order');
     }
 }
 
-// Function to log out
+// Check if the user is logged in
+function checkLogin() {
+    if (localStorage.getItem("isAdminLoggedIn") !== "true") {
+        window.location.href = "login.html"; // Redirect if not logged in
+    }
+}
+
+// Log out function
 function logout() {
-    localStorage.removeItem("isAdminLoggedIn"); // Remove login session
+    localStorage.removeItem("isAdminLoggedIn"); // Remove session
     window.location.href = "login.html"; // Redirect to login page
 }
 
 // Event listeners
 document.addEventListener("DOMContentLoaded", function () {
-    checkLogin(); // Ensure login check happens on page load
-    loadOrders(); // Load orders on page load
-    loadDashboardStats(); // Load total orders & products
+    checkLogin();
+    loadOrders();
+    loadDashboardStats();
 
-    // Attach event listener to logout button
     document.getElementById("logout-btn").addEventListener("click", logout);
 });
