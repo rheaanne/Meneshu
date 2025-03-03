@@ -14,7 +14,7 @@ async function loadDashboardStats() {
         console.log("Fetching total orders and total sales...");
 
         let { count: totalOrders, error: ordersError } = await supabaseClient
-            .from('orders')
+            .from('customer_order')
             .select('*', { count: 'exact' });
 
         if (ordersError) {
@@ -23,7 +23,7 @@ async function loadDashboardStats() {
         }
 
         let { data: totalSalesData, error: salesError } = await supabaseClient
-            .from('orders')
+            .from('customer_order')
             .select('total_amount');
 
         if (salesError) {
@@ -54,14 +54,16 @@ async function loadOrders() {
         console.log("Fetching orders...");
 
         const { data: orders, error: ordersError } = await supabaseClient
-            .from('orders')
-            .select('*');
+            .from('customer_order')
+            .select('*')
+            .order('id', { ascending: true });
+            
 
         if (ordersError) throw ordersError;
         console.log("Orders Data:", orders);
 
         const { data: orderItems, error: itemsError } = await supabaseClient
-            .from('order_items')
+            .from('product')
             .select('*');
 
         if (itemsError) throw itemsError;
@@ -74,7 +76,7 @@ async function loadOrders() {
             orderItemsMap[item.order_id].push(item);
         });
 
-        const ordersTable = document.getElementById('orders-table');
+        const ordersTable = document.getElementById('customer_order-table');
         if (!ordersTable) {
             console.error("Orders table element not found!");
             return;
@@ -98,13 +100,13 @@ async function loadOrders() {
                 <td>${itemsHTML}</td>
                 <td>${items.reduce((sum, item) => sum + item.quantity, 0)}</td>
                 <td>₱${order.total_amount ? order.total_amount.toFixed(2) : "0.00"}</td>
-                <td class="${order.status.toLowerCase().replace(/\s/g, '-')}">${order.status}</td>
-                <td>
+                <td class="${(order.status || '').toLowerCase().replace(/\s/g, '-')}" ${order.status || 'Pending'}
+                </td>
                     <select class="order-status" data-id="${order.id}">
-                        <option value="Pending" ${order.status === 'Pending' ? 'selected' : ''}>Pending</option>
-                        <option value="Preparing" ${order.status === 'Preparing' ? 'selected' : ''}>Preparing</option>
-                        <option value="Out for Delivery" ${order.status === 'Out for Delivery' ? 'selected' : ''}>Out for Delivery</option>
-                        <option value="Delivered" ${order.status === 'Delivered' ? 'selected' : ''}>Delivered</option>  
+                        <option value="pending" ${order.status === 'pending' ? 'selected' : ''}>Pending</option>
+                        <option value="preparing" ${order.status === 'preparing' ? 'selected' : ''}>Preparing</option>
+                        <option value="delivering" ${order.status === 'delivering' ? 'selected' : ''}>Delivering</option>
+                        <option value="delivered" ${order.status === 'delivered' ? 'selected' : ''}>Delivered</option>  
                     </select>
                 </td>
             `;
@@ -126,21 +128,39 @@ async function loadOrders() {
 // Update order status
 async function updateOrderStatus(orderId, newStatus) {
     try {
-        console.log("Updating order ID:", orderId, "to status:", newStatus);
+        // Convert status to lowercase for consistency with delivery.js
+        const lowerStatus = newStatus.toLowerCase();
         
-        const { error } = await supabaseClient
-            .from('orders')
-            .update({ status: newStatus })
+        console.log("Updating order ID:", orderId, "to status:", lowerStatus);
+        
+        // Update customer_order table
+        const { error: orderError } = await supabaseClient
+            .from('customer_order')
+            .update({ status: lowerStatus })
             .eq('id', orderId);
 
-        if (error) throw error;
+        if (orderError) {
+            console.error('Order update error:', orderError);
+            throw orderError;
+        }
+        
+        // Also update delivery table with matching status
+        const { error: deliveryError } = await supabaseClient
+            .from('delivery')
+            .update({ del_status: lowerStatus })
+            .eq('order_id', orderId);
+            
+        if (deliveryError) {
+            console.error('Delivery update error:', deliveryError);
+            // Continue anyway since the main order was updated
+        }
 
         alert('Order status updated successfully');
-        loadOrders();
+        loadOrders(); // Reload to show updated status
 
     } catch (error) {
         console.error('Error updating status:', error);
-        alert('Failed to update status');
+        alert('Failed to update status: ' + (error.message || 'Unknown error'));
     }
 }
 

@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
             validateFeedback(rating, comment);
 
             const { error } = await supabaseClient
-                .from('feedback')
+                .from('ratings')
                 .insert([{
                     order_id: orderId,
                     rating: parseInt(rating),

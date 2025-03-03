@@ -16,8 +16,9 @@ async function fetchReviews() {
     try {
         // Fetch data from Supabase
         let { data: reviews, error } = await supabaseClient
-            .from("feedback")
-            .select('*');
+            .from('ratings')
+            .select('*')
+            .order('order_id', { ascending: true });
 
         console.log("Raw Supabase response:", reviews);
 

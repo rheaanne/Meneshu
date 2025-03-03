@@ -8,12 +8,22 @@ const supabaseClient = createClient(
 // Add this function at the top level of your file
 async function updateOrderStatus(orderId, newStatus) {
     try {
-        const { error } = await supabaseClient
-            .from('orders')
+        // Update customer_order table
+        const { error: orderError } = await supabaseClient
+            .from('customer_order')
             .update({ status: newStatus })
             .eq('id', orderId);
-
-        if (error) throw error;
+            
+        if (orderError) throw orderError;
+        
+        // Update delivery table with matching status
+        const { error: deliveryError } = await supabaseClient
+            .from('delivery')
+            .update({ del_status: newStatus })
+            .eq('order_id', orderId);
+            
+        if (deliveryError) throw deliveryError;
+        
     } catch (error) {
         console.error('Error updating status:', error);
     }
@@ -215,16 +225,68 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Validate form data
                 validateForm(orderData);
 
-                // Insert order and get the ID
-                const { data: order, error: orderError } = await supabaseClient
-                    .from('orders')
-                    .insert([orderData])
-                    .select()
-                    .single();
+                // Replace your customer insert code with this:
+                let customerData;
+                let customerError;
 
+                // Insert order with ALL required fields
+                const { data: order, error: orderError } = await supabaseClient
+                .from('customer_order')
+                .insert([{
+                    name: orderData.name,
+                    landmark: orderData.landmark || null,
+                    address: orderData.address,
+                    phone: orderData.phone,
+                    payment_method: orderData.payment_method,
+                    subtotal: orderData.subtotal,
+                    delivery_fee: orderData.delivery_fee,
+                    total_amount: orderData.total_amount,
+                    order_date: orderData.order_date,
+                    status: orderData.status
+                }])
+                .select()
+                .single();
+                
+                const { data: existingCustomers, error: lookupError } = await supabaseClient
+                .from('customer')
+                .select('*')
+                .eq('mobile_number', orderData.phone)
+                .limit(1);
+
+                if (lookupError) {
+                console.error('Customer lookup error:', lookupError);
+                }
+
+                if (existingCustomers && existingCustomers.length > 0) {
+                // Customer exists, use the existing customer data
+                customerData = existingCustomers[0];
+                console.log('Using existing customer:', customerData);
+                } else {
+                // Customer doesn't exist, create new customer
+                const { data: newCustomer, error: insertError } = await supabaseClient
+                .from('customer')
+                .insert([{
+                name: orderData.name,
+                landmark: orderData.landmark || null,
+                address: orderData.address,
+                mobile_number: orderData.phone,
+                payment_method: orderData.payment_method
+                }])
+                .select()
+                .single();
+    
+                customerData = newCustomer;
+                customerError = insertError;
+    
+                if (customerError) {
+                console.error('Customer Error:', customerError);
+                // Continue anyway since this is additional data
+                }
+                }
+                
                 if (orderError) {
-                    console.error('Order Error:', orderError);
-                    throw new Error('Failed to create order. Please try again.');
+                    console.error('Order Error:', JSON.stringify(orderError));
+                    throw new Error(`Failed to create order: ${orderError.message || 'Unknown error'}`);
                 }
 
                 // Create order items
@@ -237,7 +299,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // Insert order items
                 const { error: itemsError } = await supabaseClient
-                    .from('order_items')
+                    .from('product')
                     .insert(orderItems);
 
 
@@ -247,39 +309,84 @@ document.addEventListener('DOMContentLoaded', () => {
                 } 
 
 
-// Modify your form submission success handler
-if (order.id) {
-    localStorage.removeItem('cartItems'); // Clear cart
-    showMessage('Order placed successfully!', 'success');
-    checkoutForm.reset();
-    document.querySelector('.cart-items').innerHTML = '';
-    updateTotals();
-    
-    // Disable the submit button during the wait
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Order Completed';
 
-    // Update order status after delays
-    setTimeout(async () => {
-        await updateOrderStatus(order.id, 'pending');
+// Modify your form submission success handler
+// With this enhanced version:
+console.log('Order data:', order);
+console.log('Customer data:', customerData);
+
+if (order && order.id) {
+    try {
+        // Create delivery record with error handling
+        const { error: deliveryError } = await supabaseClient
+        .from('delivery')
+        .insert([{
+            order_id: order.id,
+            del_fee: orderData.delivery_fee,
+            del_status: 'pending'
+        }]);
         
+        if (deliveryError) console.error('Delivery record error:', deliveryError);
+        
+        // Create payment record only if customerData exists
+        if (customerData && customerData.id) {
+            const { error: paymentError } = await supabaseClient
+            .from('payment')
+            .insert([{
+                payment_method: orderData.payment_method,
+                payment_total: orderData.total_amount,
+                cust_id: customerData.id,
+                order_id: order.id
+            }]);
+            
+            if (paymentError) console.error('Payment record error:', paymentError);
+        } else {
+            console.warn('Customer data missing or invalid:', customerData);
+        }
+        
+        localStorage.removeItem('cartItems'); // Clear cart
+        showMessage('Order placed successfully!', 'success');
+        checkoutForm.reset();
+        document.querySelector('.cart-items').innerHTML = '';
+        updateTotals();
+        
+        // Disable the submit button during the wait
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Order Completed';
+    
+        // Update order status after delays
         setTimeout(async () => {
             await updateOrderStatus(order.id, 'pending');
+            console.log('Order status updated to: pending');
             
             setTimeout(async () => {
-                await updateOrderStatus(order.id, 'delivered');
-            }, 5000); // 5 seconds to delivered
+                await updateOrderStatus(order.id, 'pending');
+                console.log('Order status updated to: pending');
+                
+                setTimeout(async () => {
+                    await updateOrderStatus(order.id, 'delivered');
+                    console.log('Order status updated to: delivered');
+                    
+                    // Move redirect here to ensure it happens after delivery
+                    setTimeout(() => {
+                        console.log('Redirecting to rate page with order ID:', order.id);
+                        window.location.href = `rate.html?orderId=${order.id}`;
+                    }, 2000); // Small delay before redirect
+                    
+                }, 5000); // 5 seconds to delivered
+                
+            }, 1000); // 1 second to pending
             
-        }, 1000); // 2 seconds to pending
-        
-    }, 1000); // 2 seconds to pending
-
-    // Redirect to rate page
-    setTimeout(() => {
-        window.location.href = `rate.html?orderId=${order.id}`;
-    }, 10000); // Give time for all status updates to complete
-
-    return;
+        }, 1000); // 1 second to pending
+    
+        return;
+    } catch (error) {
+        console.error('Post-order processing error:', error);
+        showMessage('Order placed but additional processing failed.', 'warning');
+    }
+} else {
+    console.error('Missing order ID or invalid order data', { order });
+    showMessage('Order placed but redirect failed. Please try again.', 'warning');
 }
 
                 // This code will only run if order.id is not present
