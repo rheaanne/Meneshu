@@ -345,7 +345,7 @@ if (order && order.id) {
         }
         
         localStorage.removeItem('cartItems'); // Clear cart
-        showMessage('Order placed successfully!', 'success');
+        showMessage('Your order has been delivered!', 'success');
         checkoutForm.reset();
         document.querySelector('.cart-items').innerHTML = '';
         updateTotals();
